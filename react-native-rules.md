@@ -116,7 +116,3 @@ UI and Styling:
 - Ensure responsive design by considering different screen sizes and orientations.
 - Do not use inline styling. Always place styling in the styles file inside the current directory of a component or a page
 
-Best Practices:
-- Follow React Native's threading model to ensure smooth UI performance.
-- Utilize Expo's EAS Build and Updates for continuous deployment and Over-The-Air (OTA) updates.
-- Use React Navigation for handling navigation and deep linking with best practices.

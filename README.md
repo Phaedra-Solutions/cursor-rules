@@ -12,3 +12,6 @@ Whether it’s **cursor magic** or **serious development** work, we’ve got you
 📧 **[sales@phaedrasolutions.com](mailto:sales@phaedrasolutions.com)**  
 
 We promise real humans will reply—no bots (unless they’re cool AI we built ourselves). Let’s build something epic together! 🚀💻  
+
+Feel free to use our rules to power your own cursro 🔥
+- [React native rules (For react native 0.78)](./react-native-rules.md)
