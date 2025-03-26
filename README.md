@@ -9,7 +9,7 @@ Ever feel like your cursor is on a mission of its own—randomly teleporting lik
 
 ### 🤝 Need Help?  
 Whether it’s **cursor magic** or **serious development** work, we’ve got your back. Hit us up at:  
-📧 **[sales@phaedrasolutions.com](mailto:sales@phaedrasolutions.com)**  
+**[hello@phaedrasolutions.com](mailto:hello@phaedrasolutions.com)** 
 
 We promise real humans will reply—no bots (unless they’re cool AI we built ourselves). Let’s build something epic together! 🚀💻  
 
