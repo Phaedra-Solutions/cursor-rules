@@ -17,3 +17,4 @@ Feel free to use our rules to power your own cursor 🔥
 - [React native rules (For react native 0.78)](./react-native-rules.md)
 - [Angular rules (For angular version 15)](./angular-rules.md)
 - [Backend - NestJS rules](./nestjs-rules.md)
+- [Cypress e2e rules](./cypress-testing-rules.md)
