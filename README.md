@@ -14,7 +14,7 @@ Whether it’s **cursor magic** or **serious development** work, we’ve got you
 We promise real humans will reply—no bots (unless they’re cool AI we built ourselves). Let’s build something epic together! 🚀💻  
 
 Feel free to use our rules to power your own cursor 🔥
-- [Global rules)](./global-rules.md)
+- [Global rules](./global-rules.md)
 - [React native rules (For react native 0.78)](./react-native-rules.md)
 - [Angular rules (For angular version 15)](./angular-rules.md)
 - [Backend - NestJS rules](./nestjs-rules.md)
