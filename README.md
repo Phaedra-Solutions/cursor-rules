@@ -19,3 +19,4 @@ Feel free to use our rules to power your own cursor 🔥
 - [Angular rules (For angular version 15)](./angular-rules.md)
 - [Backend - NestJS rules](./nestjs-rules.md)
 - [Cypress e2e rules](./cypress-testing-rules.md)
+- [Nextjs](./nextjs-rules.md)
