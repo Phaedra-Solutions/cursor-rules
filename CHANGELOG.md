@@ -77,6 +77,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/testing/unit-js.md`: Vitest by default and Jest where it exists, Vitest 5 behavior changes, Testing Library query priority and user-event, mocking only at boundaries with MSW and fake timers, coverage for changed code, and 2026 Vitest server advisories (minimum safe 5.0.5 / 4.1.11).
 - `rules/ai/llm-apps.md`: server-side keys, model IDs in config, structured outputs validated against a schema with short OpenAI, Anthropic, Gemini and AI SDK notes, refusal and truncation handling, timeouts, retries, quotas and cost tracking, streaming with abort, prompt caching, promptfoo regression evals without paid calls in PR CI, PII-redacted logging, and controls for each OWASP Top 10 for LLM Applications 2026 entry; LangChain, LlamaIndex and LiteLLM advisories.
 - `rules/ai/rag.md`: structure-aware chunking with tenant, ACL and provenance metadata, server-side tenant and ACL filters inside the query with a second isolation layer, pgvector iterative scans and partitioning, indirect prompt injection from documents, validated citations, embedding model versioning, ingestion safety, and deletion for right-to-be-forgotten requests.
+- `rules/ai/agents.md`: least agency, tools acting with the end user's permissions, approval for destructive and external tools (LangGraph `interrupt()`, OpenAI Agents approvals, Claude Agent SDK `canUseTool`), step, time and cost limits, sandboxed code execution, per-tenant memory with expiry, authenticated agent-to-agent calls, audit logs and a kill switch, mapped to ASI01–ASI10; LangGraph checkpointer and Claude Agent SDK advisories.
+- `rules/ai/mcp-servers.md`: MCP 2026-07-28 servers as OAuth 2.1 resource servers (protected resource metadata, audience-bound tokens, no token passthrough, scope challenges), per-tool scopes, strict input schemas, no shell passthrough, output sanitization, honest and versioned tool descriptions, `Origin` checks and localhost binding, stdio rules, rate limits and audit logs; MCP SDK, FastMCP and mcp-remote advisories.
 
 ### Changed
 
@@ -97,6 +99,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- `security/watchlist.yml`: `langgraph-checkpoint-sqlite` listed 3.1.3 as safe, a version that doesn't exist; the fix is 3.1.2.
 - `cypress-testing-rules.md`: register `cy.intercept()` before the triggering action.
 - `nestjs-rules.md`: queue processor rethrows so retries happen; controller and service examples use the same method names and arguments; DTO property is camelCase.
 - `react-native-rules.md`: the `apis` example defines and calls the same function.
@@ -113,5 +116,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `@supabase/auth-js` (CVE-2025-48370).
 - `security/watchlist.yml`: add `vitest`, `@vitest/browser`, `playwright`, `@playwright/test` and `@playwright/mcp`.
 - `security/watchlist.yml`: add `langchain-community`, `llama-index-core` and `litellm`, and CVE-2025-65106 to `langchain-core`.
+- `security/watchlist.yml`: add `langgraph-checkpoint`, `langgraph-checkpoint-postgres`, `claude-agent-sdk`, `@modelcontextprotocol/sdk`, `@modelcontextprotocol/server`, `mcp` and `fastmcp`; raise `langgraph` to 1.2.14.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.

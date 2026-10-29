@@ -64,6 +64,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `testing/unit-js` | rule | [rules/testing/unit-js.md](./rules/testing/unit-js.md) | vitest 4–5, jest 29–30 | draft |
 | `ai/llm-apps` | rule | [rules/ai/llm-apps.md](./rules/ai/llm-apps.md) | OpenAI, Anthropic, Gemini SDKs; Vercel AI SDK | draft |
 | `ai/rag` | rule | [rules/ai/rag.md](./rules/ai/rag.md) | pgvector 0.8+ and vector databases | draft |
+| `ai/agents` | rule | [rules/ai/agents.md](./rules/ai/agents.md) | LangGraph, OpenAI Agents SDK, Claude Agent SDK, AI SDK | draft |
+| `ai/mcp-servers` | rule | [rules/ai/mcp-servers.md](./rules/ai/mcp-servers.md) | MCP spec 2026-07-28; TypeScript, Python and FastMCP SDKs | draft |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |

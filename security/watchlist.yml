@@ -276,15 +276,58 @@ packages:
 
   - ecosystem: PyPI
     name: langgraph
-    safe_versions: ["1.0.10"]
-    known: [CVE-2026-28277]
+    safe_versions: ["1.2.14"]
+    known: [CVE-2026-28277, CVE-2026-118667]
     rules: [ai/agents]
 
   - ecosystem: PyPI
     name: langgraph-checkpoint-sqlite
-    safe_versions: ["3.1.3"]
-    known: [CVE-2025-67644, CVE-2026-71433, CVE-2026-115883]
+    safe_versions: ["3.1.2"]
+    known: [CVE-2025-67644, CVE-2026-71433, CVE-2026-115883, CVE-2025-8709, CVE-2025-64104]
     rules: [ai/agents]
+    note: "3.1.2 is the sqlite fix for CVE-2026-115883; the postgres package needs 3.1.3."
+
+  - ecosystem: PyPI
+    name: langgraph-checkpoint-postgres
+    safe_versions: ["3.1.3"]
+    known: [CVE-2026-71433, CVE-2026-115883]
+    rules: [ai/agents]
+
+  - ecosystem: PyPI
+    name: langgraph-checkpoint
+    safe_versions: ["4.1.1"]
+    known: [CVE-2026-48775, CVE-2026-27794, CVE-2025-64439]
+    rules: [ai/agents]
+
+  - ecosystem: PyPI
+    name: claude-agent-sdk
+    safe_versions: ["0.2.121"]
+    known: [CVE-2026-96620]
+    rules: [ai/agents]
+
+  - ecosystem: npm
+    name: "@modelcontextprotocol/sdk"
+    safe_versions: ["1.32.0"]
+    known: [CVE-2026-111771, CVE-2026-111768, CVE-2026-111769, CVE-2026-111767, CVE-2026-104850, CVE-2026-25536, CVE-2026-0621, CVE-2025-66414, GHSA-f897-62hf-6gxq]
+    rules: [ai/mcp-servers]
+
+  - ecosystem: npm
+    name: "@modelcontextprotocol/server"
+    safe_versions: ["2.3.0"]
+    known: [CVE-2026-111771, CVE-2026-111768, GHSA-f897-62hf-6gxq]
+    rules: [ai/mcp-servers]
+
+  - ecosystem: PyPI
+    name: mcp
+    safe_versions: ["2.2.0", "1.30.0"]
+    known: [CVE-2026-116684, CVE-2026-116685, CVE-2026-116686, CVE-2026-59951, CVE-2026-59950, CVE-2026-52869, CVE-2026-52870, CVE-2025-66416, CVE-2025-53365, CVE-2025-53366]
+    rules: [ai/mcp-servers]
+
+  - ecosystem: PyPI
+    name: fastmcp
+    safe_versions: ["4.1.2", "3.4.10"]
+    known: [CVE-2025-64340, CVE-2026-27124, CVE-2026-32871, CVE-2025-69196, GHSA-7xgj-8392-5q4r, GHSA-vqqp-x5qm-5qp4]
+    rules: [ai/mcp-servers]
 
   - ecosystem: npm
     name: "@langchain/langgraph-checkpoint-redis"
