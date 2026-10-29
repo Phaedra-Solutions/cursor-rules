@@ -17,3 +17,4 @@ Each prompt appends a line here when it finishes.
 - [x] 13 Angular (+ NgModule legacy, upgrade skill) (2026-10-29)
 - [x] 14 React Native + Expo (+ old-architecture legacy, upgrade skill) (2026-10-29)
 - [x] 15 NestJS (three rules + upgrade skill) (2026-10-29)
+- [x] 16 Supabase and Postgres (+ legacy keys rule, upgrade skill) (2026-10-29)

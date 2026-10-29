@@ -68,9 +68,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/backend/nestjs-data.md`: Sequelize, TypeORM and Prisma 7 variants of injection and managed transactions, allow-listed query helpers, parameterized raw SQL, capped offset and keyset pagination, N+1 avoidance, migrations and database TLS; Sequelize and TypeORM advisories.
 - `rules/legacy/nestjs-legacy.md`: NestJS 11 and older and Bull, with support status (11.x patched likely until the end of 2027; 10.x unsupported with unfixed 2026 advisories), v12-API substitutes, the Bull processor retry fix and the migration path.
 - `skills/upgrade-nestjs`: manual 9 → 10 → 11 hops, `nest upgrade --dry-run` for 11 → 12, Jest, NATS, gRPC, Terminus and Lambda follow-ups, optional ESM conversion, and a Bull → BullMQ migration through new queues that drain the old ones.
+- `rules/data/supabase.md`: publishable and secret keys, explicit Data API grants (30 Oct 2026 change), per-command RLS with `(select auth.uid())` and indexed policy columns, `security_invoker` views, `SECURITY DEFINER` in a private schema, Storage and Realtime policies, Edge Functions on per-function `deno.json` with `@supabase/server` caller checks, Stripe webhook signatures and idempotent handlers, pgTAP and `supabase db advisors`; includes a ✓ migration example.
+- `rules/data/postgres.md`: PostgreSQL 14–18 naming (snake_case for new schemas), types, constraints, indexes, migrations that are safe under load, least-privilege roles, tenant RLS, parameterized and dynamic SQL, TLS and pooling; the August 2026 security release (28 CVEs) and PostgreSQL 14 EOL on 12 Nov 2026.
+- `rules/legacy/supabase-legacy.md`: projects on legacy `anon`/`service_role` keys, import maps, URL imports or auth-helpers, with what to check (leaked service-role keys, `pg_net` headers, `verify_jwt` with the public anon JWT), the deprecation timeline and migration order.
+- `skills/upgrade-supabase`: key migration per component with Vault-backed `apikey` headers and `verify_jwt` changes, Edge Functions moved to `deno.json`, and Security Advisor fixes by lint code.
 
 ### Changed
 
+- `scripts/check-freshness.mjs` maps `postgresql`/`postgres` in `applies_to` to endoflife.date; `CONTRIBUTING.md` shows the example.
 - `README.md` notes that the project is being restructured.
 - `CONTRIBUTING.md` documents the lint commands; the PR template asks for lint and test results.
 - `CONTRIBUTING.md` documents `applies_to` ecosystem prefixes and the scheduled jobs; the lint workflow also runs the automation tests.
@@ -100,5 +105,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `@angular/common`, `@angular/router` and `@angular/ssr`; set Angular minimum safe versions to those verified in OSV (22.2.1, 21.2.25, 20.3.34; `@angular/ssr` 22.1.7, 21.2.23, 20.3.36) and link `legacy/angular-ngmodules`.
 - `security/watchlist.yml`: add `react-native`, `expo` and `react-native-webview`, and link the React Native CLI entries to `legacy/react-native-old-arch`.
 - `security/watchlist.yml`: add `@nestjs/core`, `@nestjs/common`, `@nestjs/microservices`, `@nestjs/platform-fastify`, `sequelize` and `typeorm` with the advisories cited in the NestJS rules, and link `@nestjs/devtools-integration` to `legacy/nestjs-legacy`.
+- `security/watchlist.yml`: add `@supabase/auth-js` (CVE-2025-48370).
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.

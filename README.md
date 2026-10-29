@@ -56,6 +56,9 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `backend/nestjs-microservices` | rule | [rules/backend/nestjs-microservices.md](./rules/backend/nestjs-microservices.md) | @nestjs/microservices 12, BullMQ | draft |
 | `backend/nestjs-data` | rule | [rules/backend/nestjs-data.md](./rules/backend/nestjs-data.md) | @nestjs/core 12 with Sequelize 6, TypeORM 0.3–1.x or Prisma 7 | draft |
 | `legacy/nestjs-legacy` | rule (legacy) | [rules/legacy/nestjs-legacy.md](./rules/legacy/nestjs-legacy.md) | @nestjs/core 8–11; Bull queues | legacy |
+| `data/supabase` | rule | [rules/data/supabase.md](./rules/data/supabase.md) | Supabase CLI 2.x, publishable/secret keys | draft |
+| `data/postgres` | rule | [rules/data/postgres.md](./rules/data/postgres.md) | PostgreSQL 14–18 | draft |
+| `legacy/supabase-legacy` | rule (legacy) | [rules/legacy/supabase-legacy.md](./rules/legacy/supabase-legacy.md) | legacy anon/service_role keys, import maps | legacy |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |
@@ -67,6 +70,7 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `upgrade-angular` | skill | [skills/upgrade-angular/SKILL.md](./skills/upgrade-angular/SKILL.md) | @angular/core ≤ 21 → 22 | draft |
 | `upgrade-react-native` | skill | [skills/upgrade-react-native/SKILL.md](./skills/upgrade-react-native/SKILL.md) | react-native / expo → RN 0.88, SDK 58 | draft |
 | `upgrade-nestjs` | skill | [skills/upgrade-nestjs/SKILL.md](./skills/upgrade-nestjs/SKILL.md) | @nestjs/core ≤ 11 → 12; Bull → BullMQ | draft |
+| `upgrade-supabase` | skill | [skills/upgrade-supabase/SKILL.md](./skills/upgrade-supabase/SKILL.md) | legacy keys → publishable/secret keys; import maps → deno.json | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |

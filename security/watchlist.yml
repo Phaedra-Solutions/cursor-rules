@@ -122,6 +122,13 @@ packages:
     note: "Five path-scoped middleware bypasses since 2025; the rules require guards, not middleware, for auth."
 
   - ecosystem: npm
+    name: "@supabase/auth-js"
+    safe_versions: ["2.70.0"]
+    known: [CVE-2025-48370]
+    rules: [data/supabase, legacy/supabase-legacy]
+    note: "Bundled by @supabase/supabase-js; check with npm ls @supabase/auth-js."
+
+  - ecosystem: npm
     name: sequelize
     safe_versions: ["6.37.8"]
     known: [CVE-2026-30951, CVE-2026-69240, CVE-2023-25813, CVE-2023-22578, CVE-2023-22579, CVE-2023-22580]

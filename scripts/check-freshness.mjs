@@ -19,6 +19,8 @@ export const RUNTIMES = {
   java: 'oracle-jdk',
   deno: 'deno',
   bun: 'bun',
+  postgresql: 'postgresql',
+  postgres: 'postgresql',
 }
 
 const PREFIXES = ['npm', 'pypi', 'maven', 'nuget', 'packagist', 'runtime']
