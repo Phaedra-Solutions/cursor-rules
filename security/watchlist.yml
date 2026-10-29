@@ -342,6 +342,18 @@ packages:
     rules: [devops/docker]
 
   - ecosystem: Go
+    name: github.com/containerd/containerd/v2
+    safe_versions: ["2.4.1"]
+    known: [CVE-2026-95837, CVE-2026-53493, CVE-2026-53495, CVE-2026-95838, CVE-2026-53492, CVE-2026-50195, CVE-2026-53489, CVE-2026-53488, CVE-2026-47262, CVE-2026-46680, CVE-2025-64329, CVE-2024-25621]
+    rules: [devops/docker]
+
+  - ecosystem: Go
+    name: github.com/moby/buildkit
+    safe_versions: ["0.31.1"]
+    known: [CVE-2026-61711, CVE-2026-61712, CVE-2026-33747, CVE-2026-33748]
+    rules: [devops/docker]
+
+  - ecosystem: Go
     name: k8s.io/ingress-nginx
     safe_versions: ["1.14.3"]
     known: [CVE-2023-5044, CVE-2025-1097, CVE-2025-1098, CVE-2025-1974, CVE-2025-24513, CVE-2025-24514, CVE-2026-1580, CVE-2026-24512, CVE-2026-24513, CVE-2026-24514]
