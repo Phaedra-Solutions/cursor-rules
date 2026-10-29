@@ -46,6 +46,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `languages/typescript` | rule | [rules/languages/typescript.md](./rules/languages/typescript.md) | typescript 6–7 | draft |
 | `languages/javascript-node` | rule | [rules/languages/javascript-node.md](./rules/languages/javascript-node.md) | node 22, 24, 26 | draft |
 | `legacy/node-legacy` | rule (legacy) | [rules/legacy/node-legacy.md](./rules/legacy/node-legacy.md) | node ≤ 20 and odd-numbered lines | legacy |
+| `languages/python` | rule | [rules/languages/python.md](./rules/languages/python.md) | python 3.11–3.15 | draft |
+| `legacy/python-legacy` | rule (legacy) | [rules/legacy/python-legacy.md](./rules/legacy/python-legacy.md) | python 2.7, 3.10 and older | legacy |
 | `frontend/react` | rule | [rules/frontend/react.md](./rules/frontend/react.md) | react 19 | draft |
 | `frontend/react-vite-spa` | rule | [rules/frontend/react-vite-spa.md](./rules/frontend/react-vite-spa.md) | vite 7–8 | draft |
 | `frontend/nextjs` | rule | [rules/frontend/nextjs.md](./rules/frontend/nextjs.md) | next 16 | draft |
@@ -72,6 +74,9 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `devops/docker` | rule | [rules/devops/docker.md](./rules/devops/docker.md) | Dockerfile, Compose; Engine 29 | draft |
 | `backend/express` | rule | [rules/backend/express.md](./rules/backend/express.md) | express 5 | draft |
 | `legacy/express-4` | rule (legacy) | [rules/legacy/express-4.md](./rules/legacy/express-4.md) | express 4 | legacy |
+| `backend/fastapi` | rule | [rules/backend/fastapi.md](./rules/backend/fastapi.md) | fastapi 0.115+, pydantic 2, starlette 1 | draft |
+| `backend/django` | rule | [rules/backend/django.md](./rules/backend/django.md) | django 5.2 LTS, 6.0, 6.1 | draft |
+| `legacy/django-legacy` | rule (legacy) | [rules/legacy/django-legacy.md](./rules/legacy/django-legacy.md) | django ≤ 5.1 (4.2 LTS ended Apr 2026) | legacy |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |
@@ -86,6 +91,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `upgrade-supabase` | skill | [skills/upgrade-supabase/SKILL.md](./skills/upgrade-supabase/SKILL.md) | legacy keys → publishable/secret keys; import maps → deno.json | draft |
 | `upgrade-express` | skill | [skills/upgrade-express/SKILL.md](./skills/upgrade-express/SKILL.md) | express 4 → 5 | draft |
 | `upgrade-node` | skill | [skills/upgrade-node/SKILL.md](./skills/upgrade-node/SKILL.md) | node ≤ 22 → 24 or 26 LTS | draft |
+| `upgrade-python` | skill | [skills/upgrade-python/SKILL.md](./skills/upgrade-python/SKILL.md) | python ≤ 3.12 → 3.13/3.14 | draft |
+| `upgrade-django` | skill | [skills/upgrade-django/SKILL.md](./skills/upgrade-django/SKILL.md) | django ≤ 5.1 → 5.2 LTS / 6.x | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |

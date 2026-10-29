@@ -23,3 +23,4 @@ Each prompt appends a line here when it finishes.
 - [x] 19 AI: agents and MCP servers (2026-10-29)
 - [x] 20 GitHub Actions and Docker (2026-10-29)
 - [x] 21 Node.js and Express (+ legacy, upgrade skills) (2026-10-29)
+- [x] 22 Python, FastAPI, Django (+ legacy, upgrade skills) (2026-10-29)

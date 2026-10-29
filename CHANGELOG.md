@@ -87,9 +87,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/legacy/node-legacy.md`: EOL Node lines with last releases, API limits per version, compensating controls and the migration path to Node 24 or 26.
 - `skills/upgrade-express`: the official codemods through `npx codemod@latest @expressjs/v5-migration-recipe` (the npm `@expressjs/codemod` package is deprecated), manual route-syntax fixes, behavior changes and verification.
 - `skills/upgrade-node`: target LTS choice, updating every Node pin together, native-module rebuilds, API changes and verification.
+- `rules/languages/python.md`: Python 3.11–3.15 (3.10 EOL 1 Oct 2026), uv with lockfile, cooldown and malware check, Ruff, pyright or mypy, and security rules for deserialization, subprocess, secrets, paths, SQL, HTTP timeouts and XML.
+- `rules/backend/fastapi.md`: per-direction Pydantic v2 models with `response_model`, strict and extra-forbidding inputs, auth and scopes through dependencies, async rules with SQLAlchemy 2, `pydantic-settings`, CORS, trusted hosts and limits; Starlette, python-multipart and PyJWT advisories.
+- `rules/backend/django.md`: Django 5.2 LTS, 6.0 and 6.1 with minimum safe patches, allow-listed ORM filters (CVE-2025-64459), N+1 avoidance, the deployment checklist including 6.0 CSP, and DRF permissions and explicit serializer fields; Django and DRF advisories.
+- `rules/legacy/python-legacy.md` and `rules/legacy/django-legacy.md`: EOL status, version limits, advisories left unfixed after EOL, compensating controls and migration paths.
+- `skills/upgrade-python`: one minor version at a time with pyupgrade, warnings as errors, re-locking and pin updates.
+- `skills/upgrade-django`: one feature release at a time with `django-upgrade --target-version`, add-on compatibility, migration checks and `check --deploy`.
 
 ### Changed
 
+- `scripts/check-freshness.mjs` no longer reports EOL non-LTS releases (such as Node 25) inside a range when the runtime has LTS lines; new test in `scripts/automation.test.mjs`.
 - `scripts/check-freshness.mjs` maps `postgresql`/`postgres` in `applies_to` to endoflife.date; `CONTRIBUTING.md` shows the example.
 - `README.md` notes that the project is being restructured.
 - `CONTRIBUTING.md` documents the lint commands; the PR template asks for lint and test results.
@@ -127,5 +134,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `langgraph-checkpoint`, `langgraph-checkpoint-postgres`, `claude-agent-sdk`, `@modelcontextprotocol/sdk`, `@modelcontextprotocol/server`, `mcp` and `fastmcp`; raise `langgraph` to 1.2.14.
 - `security/watchlist.yml`: add containerd v2 and BuildKit.
 - `security/watchlist.yml`: add `express`, `path-to-regexp`, `body-parser`, `qs`, `multer` and `express-rate-limit`.
+- `security/watchlist.yml`: add `djangorestframework`, `starlette`, `python-multipart` and `pyjwt`; add Django 6.1 and the 2026 Django CVEs, and point the Django entry at `legacy/django-legacy`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.

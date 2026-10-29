@@ -230,6 +230,23 @@ describe('check-freshness', () => {
     assert.deepEqual(eol.map(f => f.key), ['nodejs 22 EOL'])
   })
 
+  test('evaluateRange skips EOL non-LTS releases when the runtime has LTS lines', () => {
+    const nodeReleases = [
+      { name: '26', isLts: true, isEol: false },
+      { name: '25', isLts: false, isEol: true, eolFrom: '2026-06-01' },
+      { name: '24', isLts: true, isEol: false },
+      { name: '22', isLts: true, isEol: true, eolFrom: '2027-04-30' },
+    ]
+    const node = evaluateRange({ ecosystem: 'runtime', name: 'nodejs', lower: '22', upper: '27' }, { version: '26', releases: nodeReleases })
+    assert.deepEqual(node.map(f => f.key), ['nodejs 22 EOL'])
+    const pythonReleases = [
+      { name: '3.11', isLts: false, isEol: false },
+      { name: '3.10', isLts: false, isEol: true, eolFrom: '2026-10-01' },
+    ]
+    const python = evaluateRange({ ecosystem: 'runtime', name: 'python', lower: '3.10', upper: '3.12' }, { version: '3.11', releases: pythonReleases })
+    assert.deepEqual(python.map(f => f.key), ['python 3.10 EOL'])
+  })
+
   test('checkFreshness looks up each registry once and flags stale reviews', async () => {
     const fetchImpl = mockFetch([
       ['https://registry.npmjs.org/next/latest', { version: '17.1.0' }],

@@ -107,8 +107,10 @@ export function evaluateRange (range, latest) {
     }
   }
   if (range.ecosystem === 'runtime' && latest.releases) {
+    const hasLts = latest.releases.some(release => release.isLts)
     for (const release of latest.releases) {
       if (!release.isEol) continue
+      if (hasLts && release.isLts === false) continue
       if (range.lower && compareVersions(release.name, range.lower) < 0) continue
       if (range.upper && compareVersions(release.name, range.upper) >= 0) continue
       findings.push({
