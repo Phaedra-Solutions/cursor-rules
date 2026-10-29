@@ -40,28 +40,47 @@ packages:
 
   - ecosystem: npm
     name: "@angular/core"
-    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
     known: [CVE-2026-22610, CVE-2026-27970, CVE-2026-32635, CVE-2026-50557, CVE-2026-52725, CVE-2026-54267, CVE-2026-69151, CVE-2026-88057]
     rules: [frontend/angular, legacy/angular-ngmodules]
-    note: "Use the latest patch of v20, v21 or v22; v19 and older are unsupported."
+    note: "Use the latest patch of v20, v21 or v22; v19 and older are unsupported. Keep every @angular/* package on the same version."
 
   - ecosystem: npm
     name: "@angular/compiler"
-    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
-    known: [CVE-2026-22610, CVE-2026-32635, CVE-2026-54265, CVE-2026-69151, CVE-2026-88057]
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2026-22610, CVE-2026-32635, CVE-2026-50557, CVE-2026-54265, CVE-2026-69151, CVE-2026-88057, CVE-2025-66412]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+
+  - ecosystem: npm
+    name: "@angular/common"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2025-66035, CVE-2026-111753, CVE-2026-54266, CVE-2026-54268, CVE-2026-68945, CVE-2026-88059, CVE-2026-50170, CVE-2026-50171]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+
+  - ecosystem: npm
+    name: "@angular/router"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2026-111751, CVE-2026-111752, CVE-2026-101896]
     rules: [frontend/angular]
 
   - ecosystem: npm
     name: "@angular/platform-server"
-    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
     known: [CVE-2026-50555, CVE-2026-69149, CVE-2026-88056, CVE-2026-88058, CVE-2026-88060, CVE-2026-101895, CVE-2026-111754]
-    rules: [frontend/angular]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+
+  - ecosystem: npm
+    name: "@angular/ssr"
+    safe_versions: ["22.1.7", "21.2.23", "20.3.36"]
+    known: [CVE-2026-104871, CVE-2026-27739, CVE-2026-27738, CVE-2026-33397, CVE-2026-44437]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+    note: "@angular/ssr follows the CLI version line; the 20.3.36 fix for CVE-2026-104871 is newer than the framework minimum."
 
   - ecosystem: npm
     name: "@angular/service-worker"
-    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
     known: [CVE-2026-54264]
-    rules: [frontend/angular]
+    rules: [frontend/angular, legacy/angular-ngmodules]
 
   - ecosystem: npm
     name: angular

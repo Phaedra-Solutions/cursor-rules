@@ -14,3 +14,4 @@ Each prompt appends a line here when it finishes.
 - [x] 10 Build + install scripts and presets (2026-10-29)
 - [x] 11 TypeScript, React, React + Vite (2026-10-29)
 - [x] 12 Next.js (+ Pages Router legacy, upgrade skill) (2026-10-29)
+- [x] 13 Angular (+ NgModule legacy, upgrade skill) (2026-10-29)

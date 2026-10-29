@@ -57,6 +57,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/frontend/nextjs.md`: Next.js 16 App Router conventions, Cache Components, Server Action and Route Handler checks with a Zod example, `proxy.ts` limits, `next/image` and CSP settings; advisories with minimum safe 16.4.1.
 - `rules/legacy/nextjs-pages-router.md`: Pages Router and Next.js 12–15 rules for `getServerSideProps`, API routes and middleware (CVE-2025-29927, i18n data-route bypass), support status (15.x Maintenance LTS through 2027-01-31, 14.x unsupported), and the App Router migration path.
 - `skills/upgrade-nextjs`: one-major-at-a-time upgrades with the official codemods, a React and Node compatibility table, 14 → 15 and 15 → 16 follow-ups (`proxy.ts`, async request APIs, ESLint CLI, `images` config), and build, test and smoke-test checks.
+- `rules/frontend/angular.md`: Angular 20–22 conventions (standalone, `inject()`, signals, zoneless, OnPush by default, built-in control flow, `@defer`, Signal Forms, `httpResource`, `@angular/aria`, Vitest), a `core/`, `shared/`, `features/` layout, and security for sanitizer bypasses, Trusted Types, CSP, XSRF and SSR `allowedHosts`; 2026 advisories with minimum safe 22.2.1, 21.2.25 and 20.3.34.
+- `rules/legacy/angular-ngmodules.md`: NgModule apps and Angular 2–19, adapted from `angular-rules.md`, with the layered architecture, version-gated APIs, safe-maintenance rules, EOL dates per major, unfixed 2026 CVEs with compensating controls, and the standalone → control flow → signals → zoneless migration path.
+- `skills/upgrade-angular`: one-major-at-a-time `ng update` with the update guide, per-hop checks through v22 (`Eager` change detection, `paramsInheritanceStrategy`, Fetch backend, `trustProxyHeaders`), the standalone, control-flow, `inject()` and signal migrations, zoneless adoption checks, the Karma → Vitest switch, and build, test, e2e and smoke-test checks.
 
 ### Changed
 
@@ -86,5 +89,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Security
 
 - `security/watchlist.yml`: add the 2026 Next.js advisories cited in the new rules to the `next` entry's `known` list.
+- `security/watchlist.yml`: add `@angular/common`, `@angular/router` and `@angular/ssr`; set Angular minimum safe versions to those verified in OSV (22.2.1, 21.2.25, 20.3.34; `@angular/ssr` 22.1.7, 21.2.23, 20.3.36) and link `legacy/angular-ngmodules`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
