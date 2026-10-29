@@ -52,6 +52,10 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `legacy/angular-ngmodules` | rule (legacy) | [rules/legacy/angular-ngmodules.md](./rules/legacy/angular-ngmodules.md) | @angular/core 2–19; NgModule apps on any version | legacy |
 | `mobile/react-native-expo` | rule | [rules/mobile/react-native-expo.md](./rules/mobile/react-native-expo.md) | react-native 0.82–0.88, expo SDK 55–58 | draft |
 | `legacy/react-native-old-arch` | rule (legacy) | [rules/legacy/react-native-old-arch.md](./rules/legacy/react-native-old-arch.md) | react-native < 0.82; bare RN CLI apps | legacy |
+| `backend/nestjs` | rule | [rules/backend/nestjs.md](./rules/backend/nestjs.md) | @nestjs/core 12 | draft |
+| `backend/nestjs-microservices` | rule | [rules/backend/nestjs-microservices.md](./rules/backend/nestjs-microservices.md) | @nestjs/microservices 12, BullMQ | draft |
+| `backend/nestjs-data` | rule | [rules/backend/nestjs-data.md](./rules/backend/nestjs-data.md) | @nestjs/core 12 with Sequelize 6, TypeORM 0.3–1.x or Prisma 7 | draft |
+| `legacy/nestjs-legacy` | rule (legacy) | [rules/legacy/nestjs-legacy.md](./rules/legacy/nestjs-legacy.md) | @nestjs/core 8–11; Bull queues | legacy |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |
@@ -62,6 +66,7 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `upgrade-nextjs` | skill | [skills/upgrade-nextjs/SKILL.md](./skills/upgrade-nextjs/SKILL.md) | next 13–15 → 16 | draft |
 | `upgrade-angular` | skill | [skills/upgrade-angular/SKILL.md](./skills/upgrade-angular/SKILL.md) | @angular/core ≤ 21 → 22 | draft |
 | `upgrade-react-native` | skill | [skills/upgrade-react-native/SKILL.md](./skills/upgrade-react-native/SKILL.md) | react-native / expo → RN 0.88, SDK 58 | draft |
+| `upgrade-nestjs` | skill | [skills/upgrade-nestjs/SKILL.md](./skills/upgrade-nestjs/SKILL.md) | @nestjs/core ≤ 11 → 12; Bull → BullMQ | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |

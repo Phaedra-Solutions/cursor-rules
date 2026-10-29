@@ -93,7 +93,45 @@ packages:
     name: "@nestjs/devtools-integration"
     safe_versions: ["0.2.1"]
     known: [CVE-2025-54782]
-    rules: [backend/nestjs]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+
+  - ecosystem: npm
+    name: "@nestjs/core"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [CVE-2026-35515, CVE-2023-26108]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+    note: "Keep every @nestjs/* framework package on one version; 12.0.3 / 11.2.5 cover the microservices fixes. 10.x is unsupported and has no fix for the 2026 advisories."
+
+  - ecosystem: npm
+    name: "@nestjs/common"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [CVE-2024-29409]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+
+  - ecosystem: npm
+    name: "@nestjs/microservices"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [GHSA-96h4-vgxj-gvm2, CVE-2026-102281, CVE-2026-40879]
+    rules: [backend/nestjs-microservices, legacy/nestjs-legacy]
+
+  - ecosystem: npm
+    name: "@nestjs/platform-fastify"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [GHSA-9c5c-9qcx-q35q, CVE-2026-54281, CVE-2026-33011, CVE-2026-2293, CVE-2025-69211]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+    note: "Five path-scoped middleware bypasses since 2025; the rules require guards, not middleware, for auth."
+
+  - ecosystem: npm
+    name: sequelize
+    safe_versions: ["6.37.8"]
+    known: [CVE-2026-30951, CVE-2026-69240, CVE-2023-25813, CVE-2023-22578, CVE-2023-22579, CVE-2023-22580]
+    rules: [backend/nestjs-data]
+
+  - ecosystem: npm
+    name: typeorm
+    safe_versions: ["1.1.0", "0.3.31"]
+    known: [CVE-2026-73651, GHSA-9ggv-8w38-r7pm, CVE-2025-60542, CVE-2022-33171]
+    rules: [backend/nestjs-data]
 
   - ecosystem: npm
     name: "@react-native-community/cli"
