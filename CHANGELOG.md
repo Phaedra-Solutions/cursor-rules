@@ -16,6 +16,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Folder skeleton for `rules/`, `skills/`, `presets/`, `security/`, `templates/ci/`, `evals/` and `scripts/`.
 - `ROADMAP.md` and `implementation-prompts/`.
 - `.gitignore` for `dist/` and `node_modules/`.
+- `rules/core/behavior.md`: always-on working rules (scoped changes, small steps, existing patterns, one-line security findings, rule and version disclosure).
+- `rules/core/security-baseline.md`: always-on secure coding rules grouped by OWASP Top 10:2025 with 2025 CWE Top 25 IDs, partly adapted from Project CodeGuard.
+- `README.md` catalog table.
+- Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
 

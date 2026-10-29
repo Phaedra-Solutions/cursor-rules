@@ -14,4 +14,10 @@ Parts of our generic security layer (for example `rules/core/security-baseline` 
 
 Every file that adapts CodeGuard content lists the CodeGuard repository URL in its frontmatter `sources`. Those adapted portions remain under CC BY 4.0; our own additions in the same files are MIT.
 
+Adapted files (upstream: CodeGuard v1.5.0, commit `41160d5`):
+
+| Our file | CodeGuard sources adapted |
+|---|---|
+| `rules/core/security-baseline.md` | `sources/rules/core/`: `codeguard-1-hardcoded-credentials`, `codeguard-1-crypto-algorithms`, `codeguard-0-authorization-access-control`, `codeguard-0-input-validation-injection`, `codeguard-0-session-management-and-cookies`, `codeguard-0-xml-and-serialization`, `codeguard-0-logging`, `codeguard-0-api-web-services` |
+
 Project CodeGuard does not endorse this repository.

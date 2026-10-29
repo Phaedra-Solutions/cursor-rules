@@ -30,6 +30,16 @@ Feel free to use our rules to power your own cursor 🔥
 | [supabase-rules.md](./supabase-rules.md) | Supabase (Postgres, RLS, Edge Functions) |
 | [cypress-testing-rules.md](./cypress-testing-rules.md) | Cypress end-to-end tests |
 
+## Catalog
+
+New-format rules and skills, built from one source for Cursor and `AGENTS.md` tools. See [ROADMAP.md](./ROADMAP.md) for what's coming.
+
+| Item | Type | Path | Applies to | Status |
+|---|---|---|---|---|
+| `core/behavior` | rule (always on) | [rules/core/behavior.md](./rules/core/behavior.md) | any | draft |
+| `core/security-baseline` | rule (always on) | [rules/core/security-baseline.md](./rules/core/security-baseline.md) | any | draft |
+| `conventions/phaedra` | convention (optional) | [conventions/phaedra.md](./conventions/phaedra.md) | any | draft |
+
 ## Works with
 
 - **Cursor:** as project rules (`.mdc` files) or User Rules.

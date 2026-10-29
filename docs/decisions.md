@@ -37,6 +37,26 @@ To change a decision, add a new entry that supersedes the old one and update its
   - Write our own baseline from scratch. Full control, but slower and duplicates maintained work.
   - Point users at CodeGuard and ship nothing generic. Less work, but no integration with our version checks, skills or build.
 - **Consequences:** Every adapted file must cite CodeGuard. Upstream changes need a periodic review.
+- **Evaluation (2026-10-29):** reviewed CodeGuard v1.5.0 (released 2026-09-29; `main` at `41160d5`, 2026-10-12). License: CC BY 4.0 (`LICENSE.md`). Content: 23 core rules in `sources/rules/core` (3 always-on: hardcoded credentials, crypto algorithms, digital certificates) and 85 OWASP cheat-sheet rules in `sources/rules/owasp`, plus skills, translators and an MCP server.
+  - **Adapt** (reworded into `core/security-baseline`, grouped by OWASP Top 10:2025): hardcoded credentials, crypto algorithms, authorization and access control (IDOR, mass assignment), input validation and injection, session management and cookies, XML and serialization, logging, and the SSRF parts of API and web services.
+  - **Reference, don't copy:** the `owasp/*` cheat-sheet rules (too long for an always-on rule; linked for depth); safe C functions (→ `languages/c-cpp`); MCP security (→ `core/agent-safety`, `ai/mcp-servers`); supply chain (→ `core/supply-chain`); IaC, Kubernetes, CI/CD and containers (→ `devops/*`); mobile (→ `mobile/mobile-security`); framework-specific rules (→ our stack rules, which add version checks).
+  - **Don't use** CodeGuard's translators or release bundles directly; our build generates every target from one source (D1).
+- **Gap analysis against OWASP Top 10:2025** (CodeGuard is organised by topic, not by the 2025 categories):
+
+  | Category | CodeGuard core coverage | Gap we fill |
+  |---|---|---|
+  | A01 Broken Access Control (incl. SSRF) | Strong (authorization, IDOR, mass assignment; SSRF in API rule) | Path traversal and CSRF stated as always-on rules; 2025 mapping |
+  | A02 Security Misconfiguration | Partial, spread across framework and client-side rules | Short always-on checklist (debug, CORS, headers, admin endpoints) |
+  | A03 Software Supply Chain Failures | Basic (one short rule) | `core/supply-chain`: package existence and age checks, lockfiles, install scripts, pinned actions |
+  | A04 Cryptographic Failures | Strong (always-on crypto and credentials rules) | Public env-var prefixes, TLS verification flags |
+  | A05 Injection | Strong | Framework sinks (`v-html`, `bypassSecurityTrust*`, raw ORM APIs) |
+  | A06 Insecure Design | Weak in core (threat modeling only in the long OWASP rules) | Abuse cases, limits and quotas always on; `threat-model-lite` skill |
+  | A07 Authentication Failures | Strong (MFA, sessions, cookies) | JWT `iss`/`aud`/`exp` and algorithm allowlist stated as one checklist |
+  | A08 Software or Data Integrity Failures | Partial (deserialization, SRI) | Webhook signature verification; LangChain deserialization (CVE-2025-68664) |
+  | A09 Security Logging and Alerting Failures | Good (logging rule) | Alertability stated always on |
+  | A10 Mishandling of Exceptional Conditions | Not in core (only the OWASP error-handling rule) | Fail closed, no leaked errors, global handlers, timeouts and cleanup |
+
+  CodeGuard doesn't cover the OWASP Top 10 for LLM or Agentic Applications in depth; those go in `ai/*` and `core/agent-safety`.
 - **Reference:** [ROADMAP §12, item 2](../ROADMAP.md#12-decisions-needed)
 
 ## D3. License: MIT
