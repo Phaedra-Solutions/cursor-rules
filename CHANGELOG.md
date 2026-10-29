@@ -34,12 +34,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `.github/workflows/lint.yml`: lint script, its tests, markdownlint and lychee, with SHA-pinned actions and read-only permissions.
 - `.markdownlint.jsonc` and `lychee.toml`.
 - `.DS_Store` in `.gitignore`.
+- `security/watchlist.yml`: 25 packages from ROADMAP §5.8 with documented safe versions, cited advisories and rule IDs, re-verified against OSV and GHSA.
+- `scripts/check-advisories.mjs`: OSV batch check of the watchlist with CISA KEV flags; `--create-issues` (de-duplicated), `--dry-run`, `--json`, `--min-severity`.
+- `scripts/check-freshness.mjs`: compares `applies_to` with npm, PyPI, Maven Central, NuGet, Packagist and endoflife.date, and flags reviews older than 90 days.
+- `scripts/lib/automation.mjs` and `scripts/automation.test.mjs` (mocked fetch and `gh`).
+- Workflows: `advisories.yml` (daily), `freshness.yml` (weekly), `monthly-review.yml` (monthly checklist issue).
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
 
 - `README.md` notes that the project is being restructured.
 - `CONTRIBUTING.md` documents the lint commands; the PR template asks for lint and test results.
+- `CONTRIBUTING.md` documents `applies_to` ecosystem prefixes and the scheduled jobs; the lint workflow also runs the automation tests.
 - Markdown fixes for markdownlint in `README.md`, `CONTRIBUTING.md`, `NOTICE.md`, `SECURITY.md`, core rules and skills (code-fence languages, list spacing, bare URLs).
 - `README.md` lists all 8 rule files and adds Install, Works with, Keep Cursor updated (3.1.2 or later), Roadmap and License sections.
 - Rename `supabase-rules` to `supabase-rules.md`.

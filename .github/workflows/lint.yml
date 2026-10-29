@@ -27,7 +27,7 @@ jobs:
       - run: node scripts/lint-rules.mjs
 
   tests:
-    name: Lint script tests
+    name: Script tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -37,7 +37,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
-      - run: node --test scripts/lint-rules.test.mjs
+      - run: node --test scripts/lint-rules.test.mjs scripts/automation.test.mjs
 
   markdown:
     name: Markdown

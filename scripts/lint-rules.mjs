@@ -72,7 +72,7 @@ export function splitFrontmatter (text) {
   }
 }
 
-function stripComment (raw) {
+export function stripComment (raw) {
   let quote = null
   for (let i = 0; i < raw.length; i++) {
     const ch = raw[i]

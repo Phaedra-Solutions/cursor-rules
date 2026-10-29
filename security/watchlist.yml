@@ -1,0 +1,167 @@
+# Packages and advisories that scripts/check-advisories.mjs watches.
+# safe_versions: the lowest version we document as safe, one per supported line.
+# known: advisory IDs (CVE or GHSA) we already cite; anything else that OSV
+# reports for a safe version is new and gets reported.
+# Verified against OSV and GHSA on 2026-10-29.
+
+updated: 2026-10-29
+packages:
+  - ecosystem: npm
+    name: react-server-dom-webpack
+    safe_versions: ["19.2.8", "19.3.0"]
+    known: [CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-67779, CVE-2026-23864, CVE-2026-23869, CVE-2026-23870, CVE-2026-44907]
+    rules: [frontend/react, frontend/nextjs]
+    note: "CVE-2025-55182 (React2Shell) is in CISA KEV. ROADMAP said >= 19.2.3; four later DoS fixes need 19.2.8."
+
+  - ecosystem: npm
+    name: react-server-dom-turbopack
+    safe_versions: ["19.2.8", "19.3.0"]
+    known: [CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-67779, CVE-2026-23864, CVE-2026-23869, CVE-2026-23870, CVE-2026-44907]
+    rules: [frontend/react, frontend/nextjs]
+
+  - ecosystem: npm
+    name: react-server-dom-parcel
+    safe_versions: ["19.2.8", "19.3.0"]
+    known: [CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-67779, CVE-2026-23864, CVE-2026-23869, CVE-2026-23870, CVE-2026-44907]
+    rules: [frontend/react]
+
+  - ecosystem: npm
+    name: next
+    safe_versions: ["16.4.1", "15.5.28"]
+    known: [GHSA-673q-mjm6-r5xr, GHSA-2464-fhr4-w9xw, CVE-2026-94482, CVE-2025-29927]
+    rules: [frontend/nextjs, legacy/nextjs-pages-router]
+    note: "16.4.1 is Active LTS, 15.5.28 Maintenance LTS. GHSA-2464-fhr4-w9xw (image optimizer SVG RCE) has no CVE; ROADMAP's CVE-2026-96889 is the librsvg issue under sharp."
+
+  - ecosystem: npm
+    name: sharp
+    safe_versions: ["0.35.5"]
+    known: [GHSA-wq5f-xc86-pv6w, CVE-2026-96889]
+    rules: [frontend/nextjs]
+
+  - ecosystem: npm
+    name: "@angular/core"
+    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
+    known: [CVE-2026-22610, CVE-2026-27970, CVE-2026-32635, CVE-2026-50557, CVE-2026-52725, CVE-2026-54267, CVE-2026-69151, CVE-2026-88057]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+    note: "Use the latest patch of v20, v21 or v22; v19 and older are unsupported."
+
+  - ecosystem: npm
+    name: "@angular/compiler"
+    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
+    known: [CVE-2026-22610, CVE-2026-32635, CVE-2026-54265, CVE-2026-69151, CVE-2026-88057]
+    rules: [frontend/angular]
+
+  - ecosystem: npm
+    name: "@angular/platform-server"
+    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
+    known: [CVE-2026-50555, CVE-2026-69149, CVE-2026-88056, CVE-2026-88058, CVE-2026-88060, CVE-2026-101895, CVE-2026-111754]
+    rules: [frontend/angular]
+
+  - ecosystem: npm
+    name: "@angular/service-worker"
+    safe_versions: ["22.2.3", "21.2.25", "20.3.34"]
+    known: [CVE-2026-54264]
+    rules: [frontend/angular]
+
+  - ecosystem: npm
+    name: angular
+    safe_versions: ["1.8.3"]
+    known: [CVE-2022-25844, CVE-2022-25869, CVE-2023-26116, CVE-2023-26117, CVE-2023-26118, CVE-2024-8372, CVE-2024-8373, CVE-2024-21490, CVE-2025-0716, CVE-2026-11998]
+    rules: [legacy/angularjs]
+    note: "AngularJS is EOL (31 Dec 2021); 1.8.3 is the last release and none of these have an official fix."
+
+  - ecosystem: npm
+    name: "@nestjs/devtools-integration"
+    safe_versions: ["0.2.1"]
+    known: [CVE-2025-54782]
+    rules: [backend/nestjs]
+
+  - ecosystem: npm
+    name: "@react-native-community/cli"
+    safe_versions: ["20.0.0"]
+    known: [CVE-2025-11953]
+    rules: [mobile/react-native-expo]
+    note: "Metro4Shell; also fixed in 18.0.1 and 19.1.2."
+
+  - ecosystem: npm
+    name: "@react-native-community/cli-server-api"
+    safe_versions: ["20.0.0"]
+    known: [CVE-2025-11953]
+    rules: [mobile/react-native-expo]
+
+  - ecosystem: npm
+    name: vite
+    safe_versions: ["8.3.3", "7.3.7", "6.4.4"]
+    known: [CVE-2025-30208, CVE-2026-39363, CVE-2026-39364, CVE-2026-39365, CVE-2026-53571, CVE-2026-53632, CVE-2026-112942, CVE-2026-112943, CVE-2026-112944, CVE-2026-112945, CVE-2026-112946]
+    rules: [frontend/react-vite-spa]
+
+  - ecosystem: PyPI
+    name: django
+    safe_versions: ["5.2.18", "6.0.9"]
+    known: [CVE-2025-57833, CVE-2025-59681, CVE-2025-64458, CVE-2025-64459, CVE-2026-1207, CVE-2026-1287, CVE-2026-1312, CVE-2026-3902, CVE-2026-15307, CVE-2026-25673, CVE-2026-33034]
+    rules: [backend/django, legacy/django]
+    note: "4.2 LTS ended in April 2026."
+
+  - ecosystem: Maven
+    name: "org.springframework.boot:spring-boot"
+    safe_versions: ["4.0.6", "4.1.0"]
+    known: [CVE-2026-40976]
+    rules: [backend/spring-boot]
+
+  - ecosystem: Maven
+    name: "org.springframework.boot:spring-boot-devtools"
+    safe_versions: ["4.0.6", "4.1.0"]
+    known: [CVE-2026-40972]
+    rules: [backend/spring-boot]
+
+  - ecosystem: NuGet
+    name: Microsoft.AspNetCore.Server.Kestrel.Core
+    safe_versions: ["2.3.6"]
+    known: [CVE-2025-55315]
+    rules: [backend/aspnet-core]
+    note: "ASP.NET Core 8, 9 and 10 ship Kestrel in the shared runtime; patch the runtime (8.0.21, 9.0.10 or later)."
+
+  - ecosystem: Packagist
+    name: livewire/livewire
+    safe_versions: ["3.8.3", "4.4.8"]
+    known: [CVE-2025-54068, CVE-2026-81887, GHSA-mhf7-xp6r-6qrc]
+    rules: [backend/laravel]
+    note: "CVE-2025-54068 is in CISA KEV."
+
+  - ecosystem: PyPI
+    name: langchain-core
+    safe_versions: ["1.3.3"]
+    known: [CVE-2025-68664, CVE-2026-26013, CVE-2026-34070, CVE-2026-40087, CVE-2026-44843]
+    rules: [ai/llm-apps, ai/agents]
+    note: "The 0.3 line has unfixed advisories; document 1.x only."
+
+  - ecosystem: PyPI
+    name: langgraph
+    safe_versions: ["1.0.10"]
+    known: [CVE-2026-28277]
+    rules: [ai/agents]
+
+  - ecosystem: PyPI
+    name: langgraph-checkpoint-sqlite
+    safe_versions: ["3.1.3"]
+    known: [CVE-2025-67644, CVE-2026-71433, CVE-2026-115883]
+    rules: [ai/agents]
+
+  - ecosystem: npm
+    name: "@langchain/langgraph-checkpoint-redis"
+    safe_versions: ["1.0.2"]
+    known: [CVE-2026-27022]
+    rules: [ai/agents]
+
+  - ecosystem: Go
+    name: github.com/opencontainers/runc
+    safe_versions: ["1.3.6", "1.4.3"]
+    known: [CVE-2025-31133, CVE-2025-52565, CVE-2025-52881, CVE-2026-41579]
+    rules: [devops/docker]
+
+  - ecosystem: Go
+    name: k8s.io/ingress-nginx
+    safe_versions: ["1.14.3"]
+    known: [CVE-2023-5044, CVE-2025-1097, CVE-2025-1098, CVE-2025-1974, CVE-2025-24513, CVE-2025-24514, CVE-2026-1580, CVE-2026-24512, CVE-2026-24513, CVE-2026-24514]
+    rules: [devops/kubernetes, legacy/ingress-nginx]
+    note: "Retired in March 2026 with no further fixes; migrate to Gateway API."

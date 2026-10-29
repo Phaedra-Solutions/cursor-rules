@@ -116,7 +116,7 @@ Run these before opening a pull request (Node ≥ 22; the lint script has no dep
 node scripts/lint-rules.mjs                # frontmatter, headings, size, alwaysApply scope, hidden Unicode, references
 node scripts/lint-rules.mjs --network      # also checks that packages in install commands exist on their registry
 node scripts/lint-rules.mjs --json         # machine-readable output
-node --test scripts/lint-rules.test.mjs    # tests for the lint script
+node --test scripts/lint-rules.test.mjs scripts/automation.test.mjs   # script tests
 ```
 
 Errors fail the check (exit code 1); warnings, such as references to rules that don't exist yet or a `last_reviewed` date older than 90 days, don't. CI also runs markdownlint (`.markdownlint.jsonc`) and the lychee link checker (`lychee.toml`); see `.github/workflows/lint.yml`. If you have them installed, run them locally with:
@@ -127,6 +127,31 @@ lychee --config lychee.toml './**/*.md'
 ```
 
 Lint fixtures live in `scripts/fixtures/`. The hidden-Unicode fixture holds a `{{U+200B}}` placeholder that the test replaces at runtime, so the repository itself never contains hidden characters.
+
+## Version ranges (`applies_to`)
+
+The weekly freshness check reads each rule's `applies_to` and compares it with the latest release. Write it as `"<package> >=X <Y"`. npm is the default registry; prefix other ecosystems:
+
+| Prefix | Example |
+|---|---|
+| none (npm) | `"next >=16.0 <17"`, `"@angular/core >=22.0 <23"` |
+| `pypi:` | `"pypi:django >=5.2 <6"` |
+| `maven:` | `"maven:org.springframework.boot:spring-boot >=4.0 <5"` |
+| `nuget:` | `"nuget:Microsoft.AspNetCore.App.Ref >=10.0 <11"` |
+| `packagist:` | `"packagist:laravel/framework >=13.0 <14"` |
+| runtime (endoflife.date) | `"node >=24 <27"`, `"python >=3.12 <3.15"`, `"php >=8.3 <9"` |
+
+Separate several clauses with commas (`"packagist:laravel/framework >=13.0 <14, php >=8.3 <9"`). Use `"any"` for rules that don't depend on a version. Rules under `legacy/` are only checked for review age.
+
+## Scheduled jobs
+
+| Workflow | When | What it does |
+|---|---|---|
+| `advisories.yml` | Daily, 06:00 UTC | `scripts/check-advisories.mjs` queries OSV for every package in `security/watchlist.yml` at its documented safe versions and opens an issue for each new high, critical or CISA KEV advisory |
+| `freshness.yml` | Mondays, 06:00 UTC | `scripts/check-freshness.mjs` flags rules whose `applies_to` misses the latest release or covers an EOL runtime, and reviews older than 90 days |
+| `monthly-review.yml` | 1st of each month | Opens "Monthly security review YYYY-MM" with the ROADMAP §10 checklist |
+
+Run either script with `--dry-run` to see what it would report and which issues it would open; `--json` gives machine-readable output. When you cite a new advisory in a rule, add its ID to `known` in `security/watchlist.yml` and raise `safe_versions` if needed.
 
 ## Review checklist
 
