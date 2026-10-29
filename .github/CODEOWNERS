@@ -1,0 +1,15 @@
+# Code owners for Phaedra-Solutions/cursor-rules.
+# TODO: replace @Phaedra-Solutions/maintainers with the real team(s) for each
+# path (for example a stack team per rules/<category>/ folder and a security
+# team for the security-sensitive paths below). See ROADMAP.md §10.
+# Later matching patterns take precedence over earlier ones.
+
+* @Phaedra-Solutions/maintainers
+
+# Security-sensitive paths: branch protection must require 2 approvals,
+# one of them from a security reviewer.
+/rules/core/ @Phaedra-Solutions/maintainers
+/skills/security-*/ @Phaedra-Solutions/maintainers
+/security/ @Phaedra-Solutions/maintainers
+/.github/workflows/ @Phaedra-Solutions/maintainers
+/.github/CODEOWNERS @Phaedra-Solutions/maintainers

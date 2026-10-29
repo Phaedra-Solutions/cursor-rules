@@ -1,5 +1,7 @@
 # 🖱️ Cursor Rules – Code Smarter, Not Harder!  
 
+> **Project status:** being restructured, see [ROADMAP.md](./ROADMAP.md).
+
 Ever feel like your cursor is on a mission of its own—randomly teleporting like it’s in a sci-fi movie? Yeah, we get it. That’s why our team at **Phaedra Solutions** created **Cursor Rules**—a smarter way to keep your coding on track without accidental rage-quits.  
 
 ### 🚀 Why You’ll Love It:  
