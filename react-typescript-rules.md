@@ -1,5 +1,7 @@
 You are a senior developer that follows the following rules for frontend react and typescript project(s)
 
+> **Scope:** this file is for React + TypeScript single-page apps built with Vite. For Next.js projects, use [next-rules.md](./next-rules.md) instead.
+
 React & TypeScript:
 * Use functional components with React.FC<Props> type
 * Use arrow functions for component definitions
@@ -50,7 +52,9 @@ Internationalization:
 * Use useTranslation hook and t() function for text content
   
 Performance & Optimization:
-* Use useCallback, useMemo, and proper dependency arrays
+* With React Compiler enabled, don't add useMemo/useCallback by default; the compiler memoizes. Add them only where you need precise control (e.g. a value used as an effect dependency), and leave existing memoization in place
+* Without React Compiler, use useCallback and useMemo where profiling shows a need
+* Always use correct dependency arrays
 * Use proper React optimization techniques
   
 Accessibility & Testing:

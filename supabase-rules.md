@@ -5,8 +5,7 @@ Project Structure:
 - Use kebab-case for function names and directories
 - Organize functions in supabase/functions/ with separate directories per function
 - Keep migrations in supabase/migrations/ with timestamped filenames
-- Use deno.json for function-specific configuration
-- Create import_map.json for dependency management in functions
+- Give each function its own deno.json for dependencies and configuration (import_map.json is legacy; don't add one)
 
 Database Schema & Migrations:
 - Always enable Row Level Security (RLS) on tables
@@ -21,13 +20,13 @@ Database Schema & Migrations:
 Authentication & Authorization:
 - Sync auth.users to public.users using triggers
 - Use auth.uid() for user-specific RLS policies
-- Create service role policies for admin operations
-- Use SECURITY DEFINER for functions that need elevated privileges
+- Don't write "service role" policies: the secret/service key uses the `service_role` role, which has BYPASSRLS, so run admin operations server-side with that key and never let it reach a client
+- Use SECURITY DEFINER only when a function truly needs elevated privileges; always add `set search_path = ''`, schema-qualify every name inside, and never create it in an exposed schema
 - Implement proper JWT validation in edge functions
 
 Edge Functions:
 - Use Deno runtime with TypeScript
-- Import from ESM URLs (e.g., https://esm.sh/stripe@12.0.0)
+- Import packages with `npm:` specifiers declared in the function's deno.json (e.g., `npm:stripe@<version>`), not esm.sh URLs
 - Always include CORS headers
 - Use proper error handling with try-catch blocks
 - Validate JWT tokens using Supabase client
@@ -57,7 +56,8 @@ Security Best Practices:
 - Implement proper input sanitization
 - Use parameterized queries
 - Validate user permissions before operations
-- Use service role key only in server-side functions
+- Use the new API keys: the publishable key (`sb_publishable_...`) in clients, the secret key (`sb_secret_...`) only on servers and edge functions. Migrate off the legacy `anon`/`service_role` keys, which Supabase is deprecating by the end of 2026
+- Never ship the secret or service_role key to a browser or mobile app; it bypasses RLS
 
 Code Organization:
 - Separate types into dedicated files

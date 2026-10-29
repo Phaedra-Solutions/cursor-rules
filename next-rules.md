@@ -21,7 +21,7 @@ Your goals are:
 - Follow the user’s requirements carefully & to the letter.
 - First think step-by-step - describe your plan for what to build in pseudocode, written out in a todo list without deep detail.
 - Confirm, then write code!
-- Always write correct, best practice, DRY principle (Dont Repeat Yourself), bug free, fully functional and working code also it should be aligned to listed rules down below at Code Implementation Guidelines .
+- Always write correct, best practice, DRY principle (Dont Repeat Yourself), bug free, fully functional and working code also it should be aligned to the rules listed below.
 - Focus on easy and readability code, over being performant.
 - Fully implement all requested functionality.
 - Leave NO todo’s, comments, placeholders or missing pieces.
@@ -92,7 +92,7 @@ General Rules
 - Use your scanned knowledge of components, pages, apis, helpers functions, utils, types, constants to implement the code.
 - If there appears to be something which is already in the components, use it instead of implementing it again. for example inputs, buttons, loaders, modals, etc.
 - If a page or component is getting lengthy, break it down into smaller components and separate the files accordingly.
-- Use functional components with prop-types for type checking.
+- Use functional components with TypeScript props (an interface or type for each component's props). Don't add prop-types; React 19 ignores them.
 - Use the arrow function for component definitions.
 - Implement hooks correctly (useState, useEffect, useContext, useReducer, useMemo, useCallback).
 - Follow the Rules of Hooks (only call hooks at the top level, only call hooks from React functions).
@@ -112,7 +112,8 @@ General Rules
 
 #### State Management
 - Lift state up when needed to share state between components.
-- Use redux for intermediate state sharing when prop drilling becomes cumbersome. If redux is not used in the project, use the context API.
+- When prop drilling becomes cumbersome, follow the project's existing choice: keep Redux Toolkit where the project already uses Redux; otherwise use Zustand for client state.
+- Use TanStack Query for server state fetched on the client.
 
 #### Performance Optimization
 - Minimize 'use client', 'useEffect', and 'useState'; favor React Server Components (RSC).
@@ -121,12 +122,10 @@ General Rules
 - Optimize images: use WebP format, include size data, implement lazy loading.
 - Implement route-based code splitting in Next.js.
 - Minimize the use of global styles; prefer modular, scoped styles.
-- Use PurgeCSS with Tailwind to remove unused styles in production.
 
 #### Forms and Validation
-- Always use formik for forms.
-- Use yup for schema validation.
-- If these libraries are not used in the project, you should install and implement them.
+- Follow the project's form library: keep Formik + Yup where the project already uses them; otherwise use React Hook Form + Zod.
+- Formik and React Hook Form only run in client components. Put `'use client'` on the leaf form component, not on the page or layout.
 - Use controlled components for form inputs.
 
 #### Error Handling and Validation
@@ -141,5 +140,9 @@ General Rules
 
 #### Internationalization (i18n)
 - Use libraries like react-intl or next-i18next for internationalization. But if the project does not have internationalization, you should not implement it.
+
+#### Next.js 16 and security
+- In Next.js 16, `proxy.ts` replaces `middleware.ts` (deprecated). Use `proxy.ts` for request interception and don't add new `middleware.ts` files.
+- Every Server Action is a public endpoint: inside each one, authenticate the caller, authorize access to the specific resource, and validate input with a schema. Don't rely on `proxy.ts` or page-level checks alone.
 
 Follow Next.js docs for Data Fetching, Rendering, and Routing.

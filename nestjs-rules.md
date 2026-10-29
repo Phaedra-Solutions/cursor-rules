@@ -9,14 +9,12 @@ This document outlines the standardized coding conventions and architectural pat
 ```
 /apps/
 ├── core/               # Core business logic
-├── incident/           # Incident management
-├── analytics/          # Analytics and reporting
+├── users/              # User and account management
+├── billing/            # Billing and payments
+├── reporting/          # Analytics and reporting
 ├── audit/              # Audit functionality
-├── workforce/          # Workforce management
 ├── communication/      # Communication service
-├── notification/       # Notification handling
-├── task/               # Task management
-└── clone/              # Cloning functionality
+└── notification/       # Notification handling
 
 /libs/
 └── common/             # Shared code library
@@ -59,25 +57,29 @@ Each feature module should follow this structure:
 
 ```ts
 import { Injectable } from '@nestjs/common';
-import { PusherService } from '@ontrack-tech-group/common/services';
+import { PusherService } from '@app/common/services';
 
 @Injectable()
-export class FeatureService {
+export class EntityService {
   constructor(private readonly pusherService: PusherService) {}
 
-  async create(data: CreateEntityDto): Promise<Entity> {
-      // Implementation
-  }
-
-  async findOne(id: number): Promise<Entity> {
-    // Implementation
-  }  
-
-  async update(id: number, data: UpdateEntityDto): Promise<Entity> {
+  async create(createEntityDto: CreateEntityDto, user: User): Promise<EntityResponseDto> {
     // Implementation
   }
 
-  async delete(id: number): Promise<void> {
+  async findAll(query: EntityQueryParams): Promise<EntityListResponse> {
+    // Implementation
+  }
+
+  async findOne(id: number): Promise<EntityResponseDto> {
+    // Implementation
+  }
+
+  async update(id: number, updateEntityDto: UpdateEntityDto, user: User): Promise<EntityResponseDto> {
+    // Implementation
+  }
+
+  async remove(id: number, user: User): Promise<void> {
     // Implementation
   }
 }
@@ -102,6 +104,7 @@ export class StandardService {
 ### Controller Files
 
 - Controllers should delegate business logic to services
+- Controller and service methods share names and arguments (`create`, `findAll`, `findOne`, `update`, `remove`), as in the examples above and below
 - Controller methods should focus on request/response handling
 - Validation should be handled via DTOs with class-validator
 
@@ -201,10 +204,10 @@ import { ConfigService } from '@nestjs/config';
 import { Op, Sequelize } from 'sequelize';
 
 // 3. Shared library imports with path aliases
-import { ERRORS } from '@ontrack-tech-group/common/constants';
-import { isEventExist } from '@ontrack-tech-group/common/helpers';
-import { Event } from '@ontrack-tech-group/common/models';
-import { PusherService } from '@ontrack-tech-group/common/services';
+import { ERRORS } from '@app/common/constants';
+import { isEventExist } from '@app/common/helpers';
+import { Event } from '@app/common/models';
+import { PusherService } from '@app/common/services';
 
 // 4. Application-specific imports with path aliases
 import { _ERRORS } from '@Common/constants';
@@ -413,7 +416,7 @@ export class EntityService {
 ### PusherChannels and Events Constants
 
 ```ts
-// @ontrack-tech-group/common/constants
+// @app/common/constants
 export enum PusherChannels {
   EVENT_CHANNEL = 'event-channel',
   USER_CHANNEL = 'user-channel',
@@ -444,7 +447,7 @@ export class CreateEntityDto {
   
   @IsNumber()
   @Type(() => Number)
-  category_id: number;
+  categoryId: number;
 }
 ```
 
@@ -489,15 +492,15 @@ Helpers should be categorized into logical groups:
 
 1. Query Helpers: Functions that construct database queries
    ```ts
-   export const getIncidentDivisionWhereQuery = (filters) => {...};
+   export const getOrderStatusWhereQuery = (filters) => {...};
    ```
 2. Formatter Helpers: Functions that format data for responses
    ```ts
-   export const getFormattedEventDataForCsv = (data) => {...};
+   export const getFormattedReportDataForCsv = (data) => {...};
    ```
 3. Validation Helpers: Functions that validate data
     ```ts
-    export const checkIfAllDivisionsExist = async (divisionIds) => {...};
+    export const checkIfAllCategoriesExist = async (categoryIds) => {...};
    ```
 4. Utility Helpers: General utility functions
    ```ts
@@ -506,6 +509,8 @@ Helpers should be categorized into logical groups:
 
 
 ## Queue Processing
+
+> **Note:** Bull (`@nestjs/bull`) is in maintenance mode; BullMQ (`@nestjs/bullmq`) replaces it. Use BullMQ for new queues: register with `connection` instead of `redis`, and write processors as `@Processor('queue-name')` classes that extend `WorkerHost` and implement `process(job)`. The examples below use Bull for existing projects; the retry rule applies to both.
 
 ### Queue Module Configuration
 
@@ -541,6 +546,8 @@ export class BullQueueModule {}
 ```ts
 @Processor('events-queue')
 export class QueueProcessor {
+  private readonly logger = new Logger(QueueProcessor.name);
+
   constructor(
     private readonly eventService: EventService,
     private readonly pusherService: PusherService,
@@ -549,16 +556,17 @@ export class QueueProcessor {
   @Process('process-event')
   async processEvent(job: Job<any>) {
     try {
-      // Process the job
       await this.eventService.processEvent(job.data);
       return { success: true };
     } catch (error) {
-      // Handle and log error
-      return { success: false, error: error.message };
+      this.logger.error(`Job ${job.id} failed: ${error.message}`);
+      throw error;
     }
   }
 }
 ```
+
+- Always rethrow (or don't catch) errors in a processor. Returning a value marks the job as completed, so `attempts` and `backoff` never retry it.
 
 ### Queue Service Implementation
 
@@ -589,7 +597,7 @@ export class QueueService {
     "paths": {
       "@Modules/*": ["src/modules/*"],
       "@Common/*": ["src/common/*"],
-      "@ontrack-tech-group/common/*": ["../../libs/common/src/*"]
+      "@app/common/*": ["../../libs/common/src/*"]
     }
   }
 }
@@ -603,7 +611,7 @@ import { EventService } from '../../../../modules/event/event.service';
 // Good - use path aliases
 import { EventService } from '@Modules/event/event.service';
 import { formatDate } from '@Common/helpers';
-import { ERRORS } from '@ontrack-tech-group/common/constants';
+import { ERRORS } from '@app/common/constants';
 ```
 
 ## Security Practices

@@ -1,5 +1,7 @@
 # Angular Standards
 
+> **Note:** this file targets Angular 15 (NgModule architecture), which is end of life; Angular v2 to v19 are no longer supported. A rule for Angular 22 (standalone components, signals, zoneless) is coming; see [ROADMAP.md](./ROADMAP.md).
+
 This document outlines a comprehensive set of Angular best practices, aimed at building scalable, maintainable, and high-performance applications. These practices are based on industry standards followed by top engineering teams.
 
 
@@ -186,11 +188,11 @@ const { id, name } = user;
 
 ## Performance Optimization
 
-### 17. Input Debouncing
+### 16. Input Debouncing
 
 - Apply debouncing to input events like search and filters to reduce API load.
 
-### 18. Efficient Rendering
+### 17. Efficient Rendering
 
 - Use `trackBy` in `*ngFor` loops to avoid unnecessary DOM re-renders.
 - Memoize expensive operations in templates.

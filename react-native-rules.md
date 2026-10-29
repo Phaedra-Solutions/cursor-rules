@@ -4,6 +4,9 @@ globs:
 alwaysApply: true
 ---
 ### React Native 0.78
+
+> **Note:** this file targets React Native 0.78. React Native 0.82 and later run only on the New Architecture (0.81 / Expo SDK 54 are the last versions that allow the legacy architecture). A full rewrite for current React Native and Expo is coming; see [ROADMAP.md](./ROADMAP.md).
+
 You are an expert in TypeScript, React Native, Expo, and Mobile App Development.
 
 Code Style and Structure:
@@ -39,7 +42,7 @@ Code Style and Structure:
 
     export default MyButton;
   ```
-  - `app` should contain all the pages and layouts. read the docs for further explaination https://docs.expo.dev/develop/file-based-routing/
+  - `app` (or `src/app`) contains only route files and `_layout` files. Expo Router treats every other file there as a route, so never put styles, types or components in it. read the docs for further explaination https://docs.expo.dev/router/basics/core-concepts/
   - `services` this directory contains of all the helping material inside a project. an example of this is given as following
     ```
       services
@@ -68,19 +71,22 @@ Implementing the apis:
   And wherever you have to use it, call it from apis object like this
   
   ``` js
-    const { data } = await apis.authenticate({ idToken });
+    const { data } = await apis.authenticateWithFirebaseToken({ idToken });
   ```
 
 Implementing the screens:
-- Just like components, whenever you are asked to implement a screen, make a folder in the directory app. It contains `index.tsx` and `styles.ts` files always and `types` and `_layout.tsx` only when they are required. for example, search page might look like this
+- Just like components, whenever you are asked to implement a screen, make a folder for it in `src/features/<screen>/` (or `components/` if the project has no `src/`). It contains `index.tsx` and `styles.ts` files always and `types.ts` only when required. The route in `app` stays a thin file that re-exports the screen, plus `_layout.tsx` only when required. for example, search page might look like this
 ```
-    app/search // contents of search page
+    app/search // route only
+    ├── index.tsx // re-exports the Search screen as its default export
+    └── _layout.tsx // contains screen layout (optional)
+
+    src/features/search // contents of search screen
     ├── index.tsx // contains all the screen logic
     ├── styles.ts // contains screen styling
-    ├── _layout.tsx // contains screen layout (optional)
     └── types.ts // contains any types associated with the screen (optional)
 ```
-- In the `index.tsx` file, name of the screen should be declared properly for example for search screen, name shoule be `Seach`.
+- In the screen's `index.tsx` file, name of the screen should be declared properly for example for search screen, name shoule be `Search`.
 - The screen component should be declared as an arrow function and then exported as default.
 ```ts
   // All the imports and other stuff
