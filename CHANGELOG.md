@@ -22,6 +22,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/core/supply-chain.md`: always-on dependency, lockfile, release-age cooldown (npm, pnpm, Yarn, Bun, uv), install-script, CI hardening, publishing, SBOM and suspected-compromise rules.
 - `rules/core/agent-safety.md`: always-on rules for prompt injection, secrets, risky commands, tool config files, MCP servers and keeping the coding tool updated (2026 Cursor advisories).
 - `rules/core/legacy-mode.md`: on-demand rules for working on versions below a rule's range or past end of life.
+- `skills/security-audit`: detect the stack, run the audit toolbox, triage by severity, reachability, CISA KEV and EPSS, and write `security-report.md`; includes `scripts/detect-stack.sh`.
+- `skills/dependency-vet`: pre-install checks (existence, typosquats, malware, age, maintainers, downloads, scripts, license, provenance) with registry queries for npm, PyPI, crates.io, Packagist, RubyGems, NuGet, Maven Central and pub.dev.
+- `skills/cve-check`: `package@version` lookups through OSV, the GitHub Advisory Database, vendor pages, CISA KEV and EPSS.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed

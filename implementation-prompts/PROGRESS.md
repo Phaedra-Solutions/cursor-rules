@@ -6,3 +6,4 @@ Each prompt appends a line here when it finishes.
 - [x] 02 Fix the existing root rule files and README (2026-10-29)
 - [x] 03 Core rules: behavior + security baseline (2026-10-29)
 - [x] 04 Core rules: supply chain, agent safety, legacy mode (2026-10-29)
+- [x] 05 Security skills 1: security-audit, dependency-vet, cve-check (2026-10-29)
