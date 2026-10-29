@@ -12,3 +12,4 @@ Each prompt appends a line here when it finishes.
 - [x] 08 Advisory watcher, freshness bot, monthly review (2026-10-29)
 - [x] 09 Security CI templates for consumer projects (2026-10-29)
 - [x] 10 Build + install scripts and presets (2026-10-29)
+- [x] 11 TypeScript, React, React + Vite (2026-10-29)

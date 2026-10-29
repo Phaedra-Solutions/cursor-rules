@@ -95,6 +95,12 @@ packages:
     known: [CVE-2025-30208, CVE-2026-39363, CVE-2026-39364, CVE-2026-39365, CVE-2026-53571, CVE-2026-53632, CVE-2026-112942, CVE-2026-112943, CVE-2026-112944, CVE-2026-112945, CVE-2026-112946]
     rules: [frontend/react-vite-spa]
 
+  - ecosystem: npm
+    name: react-router
+    safe_versions: ["8.3.0", "7.18.2"]
+    known: [GHSA-qwww-vcr4-c8h2, CVE-2025-43865, CVE-2025-59057, CVE-2025-68470, CVE-2026-21884, CVE-2026-22029, CVE-2026-22030, CVE-2026-34077, CVE-2026-40181, CVE-2026-42211, CVE-2026-42342, CVE-2026-53666, CVE-2026-53669, CVE-2026-55685]
+    rules: [frontend/react-vite-spa]
+
   - ecosystem: PyPI
     name: django
     safe_versions: ["5.2.18", "6.0.9"]

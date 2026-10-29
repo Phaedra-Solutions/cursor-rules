@@ -43,6 +43,9 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `core/supply-chain` | rule (always on) | [rules/core/supply-chain.md](./rules/core/supply-chain.md) | any | draft |
 | `core/agent-safety` | rule (always on) | [rules/core/agent-safety.md](./rules/core/agent-safety.md) | any | draft |
 | `core/legacy-mode` | rule (on demand) | [rules/core/legacy-mode.md](./rules/core/legacy-mode.md) | any | draft |
+| `languages/typescript` | rule | [rules/languages/typescript.md](./rules/languages/typescript.md) | typescript 6–7 | draft |
+| `frontend/react` | rule | [rules/frontend/react.md](./rules/frontend/react.md) | react 19 | draft |
+| `frontend/react-vite-spa` | rule | [rules/frontend/react-vite-spa.md](./rules/frontend/react-vite-spa.md) | vite 7–8 | draft |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |

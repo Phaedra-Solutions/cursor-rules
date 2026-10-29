@@ -80,6 +80,38 @@ user-card/
 - New Postgres schemas: snake_case table and column names.
 - Existing schemas with quoted camelCase identifiers: keep their naming; don't mix styles in one schema.
 
+## React
+
+These keep existing Phaedra React (Vite) projects consistent. In a new project, the generic rules (`frontend/react`, `frontend/react-vite-spa`) take precedence where they differ.
+
+- Declare components as typed arrow functions and default-export them from the folder's `index.tsx`:
+
+  ```tsx
+  const ProfileCard: FC<ProfileCardProps> = ({ user, onEdit }) => { /* … */ }
+  export default ProfileCard
+  ```
+
+- Existing projects use this layout; keep it there instead of moving files:
+
+  ```text
+  src/
+  ├── components/<name>/     # index.tsx, types.ts (and styles.ts in React Native)
+  ├── components/assets/     # images and icons, imported from here
+  ├── pages/<name>/
+  ├── redux/                 # Redux Toolkit slices (createSlice), where Redux is already used
+  ├── types/index.ts         # shared types
+  └── utils/
+      ├── apis/index.ts      # the single API object; every request goes through it
+      ├── constants/
+      └── helpers/
+  ```
+
+- Wrap API calls in `try`/`catch` and report failures with the project's `showErrorToast` helper (or its equivalent); handle loading state with a flag that disables the triggering control.
+- Use the custom Tailwind colors from the project's theme (`primary`, `secondary`, `dark`, …) and responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`) instead of raw hex values.
+- Where the project uses react-i18next, put every user-facing string through `useTranslation()` and `t()`.
+- Group imports: React and third-party, then internal components, then types, then utilities and constants.
+- Use npm unless the lockfile shows another package manager.
+
 ## Test IDs
 
 - Add `data-testid` (React Native: `testID`) to every interactive element and to elements shown or hidden by logic: inputs, buttons, links, toggles, modals, error messages.

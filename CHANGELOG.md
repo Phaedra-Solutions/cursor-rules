@@ -48,6 +48,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `scripts/install.mjs`: builds a preset and copies it into a project for `cursor`, `agents` and `claude`, with `--dry-run`, conflict protection, `--force` and a version file.
 - Presets: `next-supabase`, `nest-angular`, `rn-expo`, `react-vite`, `python-fastapi`, `laravel`, `ai-app`, `all-core`.
 - `scripts/build.test.mjs` with fixtures; the lint workflow now builds and runs these tests.
+- `rules/languages/typescript.md`: strictness, boundary validation with Standard Schema, ESM config, and TypeScript 7 native-compiler compatibility (hard errors, no programmatic API until 7.1).
+- `rules/frontend/react.md`: React 19.3 components, hooks, React Compiler memoization, security and testing; RSC advisories with minimum safe 19.2.8.
+- `rules/frontend/react-vite-spa.md`: Vite 8 (Rolldown/Oxc) config renames, public `VITE_*` env, dev-server exposure, React Router 8, TanStack Query; Vite and React Router advisories.
+- `conventions/phaedra.md`: React section with the house component layout, API module, toast error handling and Tailwind theme colors.
+- `react-router` in `security/watchlist.yml`.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
