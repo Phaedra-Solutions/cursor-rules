@@ -28,7 +28,7 @@ packages:
   - ecosystem: npm
     name: next
     safe_versions: ["16.4.1", "15.5.28"]
-    known: [GHSA-673q-mjm6-r5xr, GHSA-2464-fhr4-w9xw, CVE-2026-94482, CVE-2025-29927]
+    known: [GHSA-673q-mjm6-r5xr, GHSA-2464-fhr4-w9xw, CVE-2026-94482, CVE-2025-29927, GHSA-2xp9-vwfh-vxw4, CVE-2026-75604, CVE-2026-94484, CVE-2026-94543, CVE-2026-64649, CVE-2026-64645, CVE-2026-44573]
     rules: [frontend/nextjs, legacy/nextjs-pages-router]
     note: "16.4.1 is Active LTS, 15.5.28 Maintenance LTS. GHSA-2464-fhr4-w9xw (image optimizer SVG RCE) has no CVE; ROADMAP's CVE-2026-96889 is the librsvg issue under sharp."
 

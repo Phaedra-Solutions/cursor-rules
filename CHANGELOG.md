@@ -54,6 +54,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `conventions/phaedra.md`: React section with the house component layout, API module, toast error handling and Tailwind theme colors.
 - `react-router` in `security/watchlist.yml`.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
+- `rules/frontend/nextjs.md`: Next.js 16 App Router conventions, Cache Components, Server Action and Route Handler checks with a Zod example, `proxy.ts` limits, `next/image` and CSP settings; advisories with minimum safe 16.4.1.
+- `rules/legacy/nextjs-pages-router.md`: Pages Router and Next.js 12–15 rules for `getServerSideProps`, API routes and middleware (CVE-2025-29927, i18n data-route bypass), support status (15.x Maintenance LTS through 2027-01-31, 14.x unsupported), and the App Router migration path.
+- `skills/upgrade-nextjs`: one-major-at-a-time upgrades with the official codemods, a React and Node compatibility table, 14 → 15 and 15 → 16 follow-ups (`proxy.ts`, async request APIs, ESLint CLI, `images` config), and build, test and smoke-test checks.
 
 ### Changed
 
@@ -82,5 +85,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Security
 
+- `security/watchlist.yml`: add the 2026 Next.js advisories cited in the new rules to the `next` entry's `known` list.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.

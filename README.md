@@ -46,6 +46,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `languages/typescript` | rule | [rules/languages/typescript.md](./rules/languages/typescript.md) | typescript 6–7 | draft |
 | `frontend/react` | rule | [rules/frontend/react.md](./rules/frontend/react.md) | react 19 | draft |
 | `frontend/react-vite-spa` | rule | [rules/frontend/react-vite-spa.md](./rules/frontend/react-vite-spa.md) | vite 7–8 | draft |
+| `frontend/nextjs` | rule | [rules/frontend/nextjs.md](./rules/frontend/nextjs.md) | next 16 | draft |
+| `legacy/nextjs-pages-router` | rule (legacy) | [rules/legacy/nextjs-pages-router.md](./rules/legacy/nextjs-pages-router.md) | next 12–15; Pages Router on any version | legacy |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |
@@ -53,6 +55,7 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `threat-model-lite` | skill | [skills/threat-model-lite/SKILL.md](./skills/threat-model-lite/SKILL.md) | any | draft |
 | `incident-supply-chain` | skill | [skills/incident-supply-chain/SKILL.md](./skills/incident-supply-chain/SKILL.md) | any | draft |
 | `git-commit` | skill | [skills/git-commit/SKILL.md](./skills/git-commit/SKILL.md) | any | draft |
+| `upgrade-nextjs` | skill | [skills/upgrade-nextjs/SKILL.md](./skills/upgrade-nextjs/SKILL.md) | next 13–15 → 16 | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |
