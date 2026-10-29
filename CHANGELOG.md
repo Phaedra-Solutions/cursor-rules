@@ -44,6 +44,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `templates/ci/gitlab/security.gitlab-ci.yml`: OSV-Scanner, Semgrep CE and gitleaks with digest-pinned images.
 - `templates/package-managers/`: `.npmrc`, `pnpm-workspace.yaml`, `.yarnrc.yml`, `bunfig.toml` and `uv.toml` with release-age cooldowns and install-script policy.
 - `templates/ci/README.md`: setup, pin updates, false-positive tuning and mapping to rules and skills.
+- `scripts/build.mjs`: builds Cursor `.mdc` rules, `AGENTS.md`, generated `<category>-<name>-conventions` skills, `CLAUDE.md` and skill copies into `dist/`, with a sha256 manifest; `--preset` selects a preset.
+- `scripts/install.mjs`: builds a preset and copies it into a project for `cursor`, `agents` and `claude`, with `--dry-run`, conflict protection, `--force` and a version file.
+- Presets: `next-supabase`, `nest-angular`, `rn-expo`, `react-vite`, `python-fastapi`, `laravel`, `ai-app`, `all-core`.
+- `scripts/build.test.mjs` with fixtures; the lint workflow now builds and runs these tests.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
@@ -51,6 +55,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `README.md` notes that the project is being restructured.
 - `CONTRIBUTING.md` documents the lint commands; the PR template asks for lint and test results.
 - `CONTRIBUTING.md` documents `applies_to` ecosystem prefixes and the scheduled jobs; the lint workflow also runs the automation tests.
+- `README.md` Install section leads with the install script; `CONTRIBUTING.md` documents build outputs and presets.
 - Markdown fixes for markdownlint in `README.md`, `CONTRIBUTING.md`, `NOTICE.md`, `SECURITY.md`, core rules and skills (code-fence languages, list spacing, bare URLs).
 - `README.md` lists all 8 rule files and adds Install, Works with, Keep Cursor updated (3.1.2 or later), Roadmap and License sections.
 - Rename `supabase-rules` to `supabase-rules.md`.

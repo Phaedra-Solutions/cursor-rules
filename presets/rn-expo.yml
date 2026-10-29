@@ -1,0 +1,23 @@
+# Preset: rn-expo. Build with: node scripts/build.mjs --preset rn-expo
+name: rn-expo
+description: React Native with Expo (New Architecture).
+rules:
+  - core/*
+  - languages/typescript
+  - frontend/react
+  - frontend/forms-validation
+  - mobile/react-native-expo
+  - mobile/mobile-security
+  - testing/unit-js
+  - testing/mobile-e2e
+  - devops/github-actions
+skills:
+  - security-audit
+  - dependency-vet
+  - cve-check
+  - secrets-scan
+  - threat-model-lite
+  - incident-supply-chain
+  - git-commit
+  - upgrade-react-native
+conventions: [conventions/phaedra]

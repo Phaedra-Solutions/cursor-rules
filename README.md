@@ -50,6 +50,7 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `threat-model-lite` | skill | [skills/threat-model-lite/SKILL.md](./skills/threat-model-lite/SKILL.md) | any | draft |
 | `incident-supply-chain` | skill | [skills/incident-supply-chain/SKILL.md](./skills/incident-supply-chain/SKILL.md) | any | draft |
 | `git-commit` | skill | [skills/git-commit/SKILL.md](./skills/git-commit/SKILL.md) | any | draft |
+| Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |
 | `conventions/phaedra` | convention (optional) | [conventions/phaedra.md](./conventions/phaedra.md) | any | draft |
@@ -61,7 +62,26 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 
 ## Install
 
-### Cursor
+### With the install script (new-format rules and skills)
+
+Requires Node.js 22 or later; the scripts have no dependencies.
+
+```bash
+git clone https://github.com/Phaedra-Solutions/cursor-rules.git
+cd cursor-rules
+node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app --dry-run
+node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app
+```
+
+- `--preset`: one of the files in [`presets/`](./presets/) (`next-supabase`, `nest-angular`, `rn-expo`, `react-vite`, `python-fastapi`, `laravel`, `ai-app`, `all-core`). Leave it out to install everything.
+- `--tool`: any of `cursor` (`.cursor/rules/*.mdc` and skills), `agents` (`AGENTS.md` and `.agents/skills/` for Codex, Copilot, Gemini CLI and others) and `claude` (`CLAUDE.md` importing `AGENTS.md`, plus `.claude/skills/`). The default is `cursor,agents`.
+- `--dry-run` prints every planned copy without writing anything. Run it first.
+- The script never overwrites a file that differs unless you pass `--force`; if anything conflicts, it writes nothing. If your project already has a `CLAUDE.md`, add a line `@AGENTS.md` to it instead of overwriting it.
+- It records the installed version, preset and manifest hash in `.cursor/rules/.cursor-rules-version` (or `.agents/` or `.claude/` when Cursor isn't selected).
+
+Presets list rules that are still being written; the script warns about those and installs the rest. To see what a preset produces without installing it, run `node scripts/build.mjs --preset <name>` and look in `dist/`.
+
+### By hand (the original rule files)
 
 Cursor only loads project rules that are `.mdc` files in `.cursor/rules/`. Plain `.md` files there are ignored.
 
@@ -90,9 +110,7 @@ Cursor only loads project rules that are `.mdc` files in `.cursor/rules/`. Plain
 
 4. For rules that should apply everywhere, you can instead paste `global-rules.md` into your User Rules (**Customize → Rules** in Cursor).
 
-### Other tools
-
-Copy the content of the files you need into an `AGENTS.md` file at your project root. For Claude Code, add a `CLAUDE.md` that contains `@AGENTS.md`.
+For other tools, copy the content you need into an `AGENTS.md` file at your project root. For Claude Code, add a `CLAUDE.md` that contains `@AGENTS.md`.
 
 ## Keep Cursor updated
 

@@ -116,7 +116,8 @@ Run these before opening a pull request (Node ≥ 22; the lint script has no dep
 node scripts/lint-rules.mjs                # frontmatter, headings, size, alwaysApply scope, hidden Unicode, references
 node scripts/lint-rules.mjs --network      # also checks that packages in install commands exist on their registry
 node scripts/lint-rules.mjs --json         # machine-readable output
-node --test scripts/lint-rules.test.mjs scripts/automation.test.mjs   # script tests
+node scripts/build.mjs                     # build dist/ for every tool (add --preset <name> for one preset)
+node --test scripts/*.test.mjs             # script tests
 ```
 
 Errors fail the check (exit code 1); warnings, such as references to rules that don't exist yet or a `last_reviewed` date older than 90 days, don't. CI also runs markdownlint (`.markdownlint.jsonc`) and the lychee link checker (`lychee.toml`); see `.github/workflows/lint.yml`. If you have them installed, run them locally with:
@@ -127,6 +128,21 @@ lychee --config lychee.toml './**/*.md'
 ```
 
 Lint fixtures live in `scripts/fixtures/`. The hidden-Unicode fixture holds a `{{U+200B}}` placeholder that the test replaces at runtime, so the repository itself never contains hidden characters.
+
+## Build, presets and install
+
+`node scripts/build.mjs [--preset <name>]` turns the sources into `dist/` (git-ignored):
+
+| Output | Contents |
+|---|---|
+| `dist/cursor/.cursor/rules/<category>/<name>.mdc` | Each rule and convention, with only `description`, `globs` (comma-separated, braces expanded) and `alwaysApply` |
+| `dist/cursor/.cursor/skills/`, `dist/agents/.agents/skills/`, `dist/claude/.claude/skills/` | Copies of the task skills, including `scripts/` |
+| `dist/agents/.agents/skills/<category>-<name>-conventions/` (and the `.claude` copy) | One generated skill per stack rule (and per core rule that isn't always on), for tools without glob-scoped rules |
+| `dist/agents/AGENTS.md` | Always-on core rules, house conventions, a stack-guidance table pointing at the generated skills, and the task skills |
+| `dist/claude/CLAUDE.md` | `@AGENTS.md` import (with a copy of `AGENTS.md` next to it) |
+| `dist/manifest.json` | Every output with its sha256, plus the selected rules, skills and warnings |
+
+A preset is a YAML file in `presets/` with `name`, `description`, `rules` (IDs; `core/*` style wildcards allowed), `skills` and `conventions`. Rules and skills a preset names but that don't exist yet produce a warning, not an error. `node scripts/install.mjs` builds a preset and copies it into a project (see the README's **Install** section).
 
 ## Version ranges (`applies_to`)
 
