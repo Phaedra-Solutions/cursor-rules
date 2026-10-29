@@ -173,6 +173,43 @@ packages:
     rules: [mobile/react-native-expo, legacy/react-native-old-arch]
 
   - ecosystem: npm
+    name: express
+    safe_versions: ["5.0.0", "4.20.0"]
+    known: [CVE-2024-43796, CVE-2024-29041, CVE-2024-10491, CVE-2024-9266]
+    rules: [backend/express, legacy/express-4]
+    note: "Most Express advisories are in transitive packages; see path-to-regexp, body-parser and qs."
+
+  - ecosystem: npm
+    name: path-to-regexp
+    safe_versions: ["8.4.0", "0.1.13"]
+    known: [CVE-2026-4923, CVE-2026-4926, CVE-2026-4867, CVE-2024-45296, CVE-2024-52798]
+    rules: [backend/express, legacy/express-4]
+
+  - ecosystem: npm
+    name: body-parser
+    safe_versions: ["2.4.0", "1.20.9"]
+    known: [CVE-2026-111181, CVE-2026-12590, CVE-2025-13466, CVE-2024-45590]
+    rules: [backend/express, legacy/express-4]
+
+  - ecosystem: npm
+    name: qs
+    safe_versions: ["6.16.1"]
+    known: [CVE-2026-110816, CVE-2026-82417, CVE-2026-82562, CVE-2026-8723, CVE-2026-2391, CVE-2025-15284]
+    rules: [backend/express, legacy/express-4]
+
+  - ecosystem: npm
+    name: multer
+    safe_versions: ["2.5.0"]
+    known: [CVE-2026-113872, CVE-2026-88932, CVE-2026-82333, CVE-2026-77037, CVE-2026-77063, CVE-2026-77078, CVE-2026-5038, CVE-2026-5079, CVE-2026-3520, CVE-2026-2359, CVE-2026-3304, CVE-2025-47935, CVE-2025-47944, CVE-2025-7338, CVE-2025-48997]
+    rules: [backend/express]
+
+  - ecosystem: npm
+    name: express-rate-limit
+    safe_versions: ["8.2.2"]
+    known: [CVE-2026-30827]
+    rules: [backend/express]
+
+  - ecosystem: npm
     name: vite
     safe_versions: ["8.3.3", "7.3.7", "6.4.4"]
     known: [CVE-2025-30208, CVE-2026-39363, CVE-2026-39364, CVE-2026-39365, CVE-2026-53571, CVE-2026-53632, CVE-2026-112942, CVE-2026-112943, CVE-2026-112944, CVE-2026-112945, CVE-2026-112946]

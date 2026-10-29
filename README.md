@@ -44,6 +44,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `core/agent-safety` | rule (always on) | [rules/core/agent-safety.md](./rules/core/agent-safety.md) | any | draft |
 | `core/legacy-mode` | rule (on demand) | [rules/core/legacy-mode.md](./rules/core/legacy-mode.md) | any | draft |
 | `languages/typescript` | rule | [rules/languages/typescript.md](./rules/languages/typescript.md) | typescript 6–7 | draft |
+| `languages/javascript-node` | rule | [rules/languages/javascript-node.md](./rules/languages/javascript-node.md) | node 22, 24, 26 | draft |
+| `legacy/node-legacy` | rule (legacy) | [rules/legacy/node-legacy.md](./rules/legacy/node-legacy.md) | node ≤ 20 and odd-numbered lines | legacy |
 | `frontend/react` | rule | [rules/frontend/react.md](./rules/frontend/react.md) | react 19 | draft |
 | `frontend/react-vite-spa` | rule | [rules/frontend/react-vite-spa.md](./rules/frontend/react-vite-spa.md) | vite 7–8 | draft |
 | `frontend/nextjs` | rule | [rules/frontend/nextjs.md](./rules/frontend/nextjs.md) | next 16 | draft |
@@ -68,6 +70,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `ai/mcp-servers` | rule | [rules/ai/mcp-servers.md](./rules/ai/mcp-servers.md) | MCP spec 2026-07-28; TypeScript, Python and FastMCP SDKs | draft |
 | `devops/github-actions` | rule | [rules/devops/github-actions.md](./rules/devops/github-actions.md) | GitHub Actions | draft |
 | `devops/docker` | rule | [rules/devops/docker.md](./rules/devops/docker.md) | Dockerfile, Compose; Engine 29 | draft |
+| `backend/express` | rule | [rules/backend/express.md](./rules/backend/express.md) | express 5 | draft |
+| `legacy/express-4` | rule (legacy) | [rules/legacy/express-4.md](./rules/legacy/express-4.md) | express 4 | legacy |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |
@@ -80,6 +84,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `upgrade-react-native` | skill | [skills/upgrade-react-native/SKILL.md](./skills/upgrade-react-native/SKILL.md) | react-native / expo → RN 0.88, SDK 58 | draft |
 | `upgrade-nestjs` | skill | [skills/upgrade-nestjs/SKILL.md](./skills/upgrade-nestjs/SKILL.md) | @nestjs/core ≤ 11 → 12; Bull → BullMQ | draft |
 | `upgrade-supabase` | skill | [skills/upgrade-supabase/SKILL.md](./skills/upgrade-supabase/SKILL.md) | legacy keys → publishable/secret keys; import maps → deno.json | draft |
+| `upgrade-express` | skill | [skills/upgrade-express/SKILL.md](./skills/upgrade-express/SKILL.md) | express 4 → 5 | draft |
+| `upgrade-node` | skill | [skills/upgrade-node/SKILL.md](./skills/upgrade-node/SKILL.md) | node ≤ 22 → 24 or 26 LTS | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |

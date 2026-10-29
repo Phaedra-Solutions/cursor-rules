@@ -81,6 +81,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/ai/mcp-servers.md`: MCP 2026-07-28 servers as OAuth 2.1 resource servers (protected resource metadata, audience-bound tokens, no token passthrough, scope challenges), per-tool scopes, strict input schemas, no shell passthrough, output sanitization, honest and versioned tool descriptions, `Origin` checks and localhost binding, stdio rules, rate limits and audit logs; MCP SDK, FastMCP and mcp-remote advisories.
 - `rules/devops/github-actions.md`: SHA pinning with a lookup command (never invent a SHA), per-job permissions, OIDC trust conditions, trigger safety including the 2 Dec 2026 `pull_request_target` default block and checkout v7 protections, injection-safe `run:` and `$GITHUB_ENV`, caches and artifacts, environments, reusable workflows, runners, zizmor and actionlint, and a ✓ hardened workflow skeleton with placeholder SHAs.
 - `rules/devops/docker.md`: multi-stage builds, minimal bases pinned by digest, non-root users, read-only filesystems and dropped capabilities, BuildKit secret mounts, health checks, `.dockerignore`, scanning, Cosign signing and attestations, and a hardened Compose example; runc, containerd, BuildKit, Engine and Compose advisories.
+- `rules/languages/javascript-node.md`: Node 22, 24 and 26 LTS (26 LTS since 28 Oct 2026) with minimum safe versions from the 21 Oct 2026 security release, ESM and `node:` imports, `execFile` without a shell, path traversal guards, crypto, timeouts, stream limits, process-level handlers and the permission model.
+- `rules/backend/express.md`: Express 5 middleware order, async errors, path-to-regexp 8 route syntax, the `simple` query parser, a Standard Schema validation middleware, one error handler, helmet, CORS, rate limits, trust proxy, sessions and CSRF, uploads; path-to-regexp, body-parser, qs, multer and express-rate-limit advisories.
+- `rules/legacy/express-4.md`: Express 4 maintenance status, async error wrappers, patched transitive packages, the deprecated csurf and the migration path.
+- `rules/legacy/node-legacy.md`: EOL Node lines with last releases, API limits per version, compensating controls and the migration path to Node 24 or 26.
+- `skills/upgrade-express`: the official codemods through `npx codemod@latest @expressjs/v5-migration-recipe` (the npm `@expressjs/codemod` package is deprecated), manual route-syntax fixes, behavior changes and verification.
+- `skills/upgrade-node`: target LTS choice, updating every Node pin together, native-module rebuilds, API changes and verification.
 
 ### Changed
 
@@ -120,5 +126,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `langchain-community`, `llama-index-core` and `litellm`, and CVE-2025-65106 to `langchain-core`.
 - `security/watchlist.yml`: add `langgraph-checkpoint`, `langgraph-checkpoint-postgres`, `claude-agent-sdk`, `@modelcontextprotocol/sdk`, `@modelcontextprotocol/server`, `mcp` and `fastmcp`; raise `langgraph` to 1.2.14.
 - `security/watchlist.yml`: add containerd v2 and BuildKit.
+- `security/watchlist.yml`: add `express`, `path-to-regexp`, `body-parser`, `qs`, `multer` and `express-rate-limit`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
