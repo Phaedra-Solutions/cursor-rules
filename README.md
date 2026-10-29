@@ -44,6 +44,10 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |
+| `secrets-scan` | skill | [skills/secrets-scan/SKILL.md](./skills/secrets-scan/SKILL.md) | any | draft |
+| `threat-model-lite` | skill | [skills/threat-model-lite/SKILL.md](./skills/threat-model-lite/SKILL.md) | any | draft |
+| `incident-supply-chain` | skill | [skills/incident-supply-chain/SKILL.md](./skills/incident-supply-chain/SKILL.md) | any | draft |
+| `git-commit` | skill | [skills/git-commit/SKILL.md](./skills/git-commit/SKILL.md) | any | draft |
 | `conventions/phaedra` | convention (optional) | [conventions/phaedra.md](./conventions/phaedra.md) | any | draft |
 
 ## Works with

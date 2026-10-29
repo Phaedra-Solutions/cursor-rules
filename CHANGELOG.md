@@ -25,6 +25,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `skills/security-audit`: detect the stack, run the audit toolbox, triage by severity, reachability, CISA KEV and EPSS, and write `security-report.md`; includes `scripts/detect-stack.sh`.
 - `skills/dependency-vet`: pre-install checks (existence, typosquats, malware, age, maintainers, downloads, scripts, license, provenance) with registry queries for npm, PyPI, crates.io, Packagist, RubyGems, NuGet, Maven Central and pub.dev.
 - `skills/cve-check`: `package@version` lookups through OSV, the GitHub Advisory Database, vendor pages, CISA KEV and EPSS.
+- `skills/secrets-scan`: gitleaks scans of staged changes, the working tree, ranges and history, with revoke-first rotation and consent-only history rewrites.
+- `skills/threat-model-lite`: 10-minute STRIDE pass producing abuse cases, controls mapped to OWASP Top 10:2025, and tests.
+- `skills/incident-supply-chain`: response steps for compromised dependencies, including token-monitor wipers, persistence hunting, rotation order, reporting and a timeline; indicators from Shai-Hulud through Miasma.
+- `skills/git-commit`: the team's dash-list commit flow with approval and a staged-files secret scan.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
