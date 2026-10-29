@@ -72,6 +72,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/data/postgres.md`: PostgreSQL 14–18 naming (snake_case for new schemas), types, constraints, indexes, migrations that are safe under load, least-privilege roles, tenant RLS, parameterized and dynamic SQL, TLS and pooling; the August 2026 security release (28 CVEs) and PostgreSQL 14 EOL on 12 Nov 2026.
 - `rules/legacy/supabase-legacy.md`: projects on legacy `anon`/`service_role` keys, import maps, URL imports or auth-helpers, with what to check (leaked service-role keys, `pg_net` headers, `verify_jwt` with the public anon JWT), the deprecation timeline and migration order.
 - `skills/upgrade-supabase`: key migration per component with Vault-backed `apikey` headers and `verify_jwt` changes, Edge Functions moved to `deno.json`, and Security Advisor fixes by lint code.
+- `rules/testing/cypress.md`: Cypress 15–16 with `cy.intercept()` registered before the action (✓/✗ example), verified test-ID selectors (ask before adding), no fixed waits, `cy.session()` login, seeding through `cy.task()` or the API, `cy.env()` for secrets and `Cypress.expose()` for public values, no responsive tests unless asked, and reuse of the existing config and types.
+- `rules/testing/playwright.md`: Playwright 1.5x–1.6x locator priority, web-first assertions, ARIA snapshots, `storageState` per role, route mocking, traces on retry, and review rules for test agents and the MCP server (a healed test must not weaken assertions); CVE-2025-59288 and CVE-2025-9611.
+- `rules/testing/unit-js.md`: Vitest by default and Jest where it exists, Vitest 5 behavior changes, Testing Library query priority and user-event, mocking only at boundaries with MSW and fake timers, coverage for changed code, and 2026 Vitest server advisories (minimum safe 5.0.5 / 4.1.11).
 
 ### Changed
 
@@ -106,5 +109,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `react-native`, `expo` and `react-native-webview`, and link the React Native CLI entries to `legacy/react-native-old-arch`.
 - `security/watchlist.yml`: add `@nestjs/core`, `@nestjs/common`, `@nestjs/microservices`, `@nestjs/platform-fastify`, `sequelize` and `typeorm` with the advisories cited in the NestJS rules, and link `@nestjs/devtools-integration` to `legacy/nestjs-legacy`.
 - `security/watchlist.yml`: add `@supabase/auth-js` (CVE-2025-48370).
+- `security/watchlist.yml`: add `vitest`, `@vitest/browser`, `playwright`, `@playwright/test` and `@playwright/mcp`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.

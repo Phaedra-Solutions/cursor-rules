@@ -184,6 +184,37 @@ packages:
     known: [GHSA-qwww-vcr4-c8h2, CVE-2025-43865, CVE-2025-59057, CVE-2025-68470, CVE-2026-21884, CVE-2026-22029, CVE-2026-22030, CVE-2026-34077, CVE-2026-40181, CVE-2026-42211, CVE-2026-42342, CVE-2026-53666, CVE-2026-53669, CVE-2026-55685]
     rules: [frontend/react-vite-spa]
 
+  - ecosystem: npm
+    name: vitest
+    safe_versions: ["5.0.5", "4.1.11"]
+    known: [CVE-2026-112948, CVE-2026-84373, CVE-2026-47429, CVE-2025-24964]
+    rules: [testing/unit-js]
+    note: "3.x has no fix for CVE-2026-84373."
+
+  - ecosystem: npm
+    name: "@vitest/browser"
+    safe_versions: ["5.0.5", "4.1.11"]
+    known: [CVE-2026-53633, CVE-2026-73653, CVE-2026-47428, CVE-2025-24963]
+    rules: [testing/unit-js]
+
+  - ecosystem: npm
+    name: "@playwright/test"
+    safe_versions: ["1.55.1"]
+    known: []
+    rules: [testing/playwright]
+
+  - ecosystem: npm
+    name: playwright
+    safe_versions: ["1.55.1"]
+    known: [CVE-2025-59288]
+    rules: [testing/playwright]
+
+  - ecosystem: npm
+    name: "@playwright/mcp"
+    safe_versions: ["0.0.40"]
+    known: [CVE-2025-9611]
+    rules: [testing/playwright]
+
   - ecosystem: PyPI
     name: django
     safe_versions: ["5.2.18", "6.0.9"]
