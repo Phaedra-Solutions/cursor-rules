@@ -19,3 +19,4 @@ Each prompt appends a line here when it finishes.
 - [x] 15 NestJS (three rules + upgrade skill) (2026-10-29)
 - [x] 16 Supabase and Postgres (+ legacy keys rule, upgrade skill) (2026-10-29)
 - [x] 17 Cypress, Playwright, unit tests (2026-10-29)
+- [x] 18 AI: LLM apps and RAG (2026-10-29)

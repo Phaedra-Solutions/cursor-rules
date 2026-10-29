@@ -75,6 +75,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/testing/cypress.md`: Cypress 15–16 with `cy.intercept()` registered before the action (✓/✗ example), verified test-ID selectors (ask before adding), no fixed waits, `cy.session()` login, seeding through `cy.task()` or the API, `cy.env()` for secrets and `Cypress.expose()` for public values, no responsive tests unless asked, and reuse of the existing config and types.
 - `rules/testing/playwright.md`: Playwright 1.5x–1.6x locator priority, web-first assertions, ARIA snapshots, `storageState` per role, route mocking, traces on retry, and review rules for test agents and the MCP server (a healed test must not weaken assertions); CVE-2025-59288 and CVE-2025-9611.
 - `rules/testing/unit-js.md`: Vitest by default and Jest where it exists, Vitest 5 behavior changes, Testing Library query priority and user-event, mocking only at boundaries with MSW and fake timers, coverage for changed code, and 2026 Vitest server advisories (minimum safe 5.0.5 / 4.1.11).
+- `rules/ai/llm-apps.md`: server-side keys, model IDs in config, structured outputs validated against a schema with short OpenAI, Anthropic, Gemini and AI SDK notes, refusal and truncation handling, timeouts, retries, quotas and cost tracking, streaming with abort, prompt caching, promptfoo regression evals without paid calls in PR CI, PII-redacted logging, and controls for each OWASP Top 10 for LLM Applications 2026 entry; LangChain, LlamaIndex and LiteLLM advisories.
+- `rules/ai/rag.md`: structure-aware chunking with tenant, ACL and provenance metadata, server-side tenant and ACL filters inside the query with a second isolation layer, pgvector iterative scans and partitioning, indirect prompt injection from documents, validated citations, embedding model versioning, ingestion safety, and deletion for right-to-be-forgotten requests.
 
 ### Changed
 
@@ -110,5 +112,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `@nestjs/core`, `@nestjs/common`, `@nestjs/microservices`, `@nestjs/platform-fastify`, `sequelize` and `typeorm` with the advisories cited in the NestJS rules, and link `@nestjs/devtools-integration` to `legacy/nestjs-legacy`.
 - `security/watchlist.yml`: add `@supabase/auth-js` (CVE-2025-48370).
 - `security/watchlist.yml`: add `vitest`, `@vitest/browser`, `playwright`, `@playwright/test` and `@playwright/mcp`.
+- `security/watchlist.yml`: add `langchain-community`, `llama-index-core` and `litellm`, and CVE-2025-65106 to `langchain-core`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
