@@ -1,0 +1,166 @@
+# Security checks for consumer projects. Copy to .github/workflows/security.yml.
+# Source: Phaedra-Solutions/cursor-rules templates/ci (see templates/ci/README.md).
+# Every action is pinned to a full commit SHA and every image to a digest;
+# update them together (Dependabot's github-actions ecosystem handles the SHAs).
+#
+# Repository variables (Settings > Secrets and variables > Actions > Variables):
+#   UPLOAD_SARIF=false  skip uploads to Security > Code scanning (private repos
+#                       without GitHub Code Security can't receive SARIF)
+#   ENABLE_TRIVY=true   also run the Trivy filesystem and config scan
+
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  osv-scanner:
+    name: OSV-Scanner (dependencies)
+    if: github.event_name != 'pull_request'
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@b1d267aea5211fa648d9d442fa64b90dbdcbdd36 # v2.7.0
+    with:
+      upload-sarif: ${{ vars.UPLOAD_SARIF != 'false' }}
+
+  osv-scanner-pr:
+    name: OSV-Scanner (new vulnerabilities in this PR)
+    if: github.event_name == 'pull_request'
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@b1d267aea5211fa648d9d442fa64b90dbdcbdd36 # v2.7.0
+    with:
+      upload-sarif: ${{ vars.UPLOAD_SARIF != 'false' && github.event.pull_request.head.repo.full_name == github.repository }}
+
+  semgrep:
+    name: Semgrep CE (code)
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write
+    container:
+      image: semgrep/semgrep:1.181.0@sha256:81474464c1f07483ba0682a44787fd93c91397419762a04abe2bafaae396304b
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Scan
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          set -- --config p/default --metrics off --error --sarif --output semgrep.sarif
+          if [ -n "$BASE_SHA" ]; then
+            set -- "$@" --baseline-commit "$BASE_SHA"
+          fi
+          semgrep scan "$@"
+      - name: Upload SARIF
+        if: always() && hashFiles('semgrep.sarif') != '' && vars.UPLOAD_SARIF != 'false' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep
+
+  gitleaks:
+    name: gitleaks (secrets)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    env:
+      GITLEAKS_VERSION: 8.30.1
+      GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install gitleaks (checksum verified)
+        run: |
+          archive="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          curl -sSfL -o "$RUNNER_TEMP/$archive" "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/${archive}"
+          echo "${GITLEAKS_SHA256}  $RUNNER_TEMP/$archive" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP" gitleaks
+      - name: Scan
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -- git . --redact --no-banner --report-format sarif --report-path gitleaks.sarif
+          if [ -n "$BASE_SHA" ] && [ -n "$HEAD_SHA" ]; then
+            set -- "$@" --log-opts="${BASE_SHA}..${HEAD_SHA}"
+          fi
+          "$RUNNER_TEMP/gitleaks" "$@"
+      - name: Upload SARIF
+        if: always() && hashFiles('gitleaks.sarif') != '' && vars.UPLOAD_SARIF != 'false' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
+        with:
+          sarif_file: gitleaks.sarif
+          category: gitleaks
+
+  zizmor:
+    name: zizmor (GitHub Actions)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: zizmorcore/zizmor-action@85b2b9fb8e3325e7a23d7d0a9d7ba5ae0f999e3e # v0.7.1
+        with:
+          version: '1.31.1'
+          inputs: .github
+          advanced-security: ${{ vars.UPLOAD_SARIF != 'false' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+
+  trivy:
+    name: Trivy (filesystem and config, optional)
+    if: vars.ENABLE_TRIVY == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: 'v0.76.1'
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,secret,misconfig
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          format: sarif
+          output: trivy.sarif
+          exit-code: '1'
+          cache: 'false'
+      - name: Upload SARIF
+        if: always() && hashFiles('trivy.sarif') != '' && vars.UPLOAD_SARIF != 'false' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
+        with:
+          sarif_file: trivy.sarif
+          category: trivy

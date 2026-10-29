@@ -50,6 +50,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `threat-model-lite` | skill | [skills/threat-model-lite/SKILL.md](./skills/threat-model-lite/SKILL.md) | any | draft |
 | `incident-supply-chain` | skill | [skills/incident-supply-chain/SKILL.md](./skills/incident-supply-chain/SKILL.md) | any | draft |
 | `git-commit` | skill | [skills/git-commit/SKILL.md](./skills/git-commit/SKILL.md) | any | draft |
+| Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
+| Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |
 | `conventions/phaedra` | convention (optional) | [conventions/phaedra.md](./conventions/phaedra.md) | any | draft |
 
 ## Works with

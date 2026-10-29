@@ -39,6 +39,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `scripts/check-freshness.mjs`: compares `applies_to` with npm, PyPI, Maven Central, NuGet, Packagist and endoflife.date, and flags reviews older than 90 days.
 - `scripts/lib/automation.mjs` and `scripts/automation.test.mjs` (mocked fetch and `gh`).
 - Workflows: `advisories.yml` (daily), `freshness.yml` (weekly), `monthly-review.yml` (monthly checklist issue).
+- `templates/ci/github/security.yml`: OSV-Scanner (official reusable workflows), Semgrep CE, gitleaks (checksum-verified binary), zizmor and opt-in Trivy, with per-job permissions and SARIF upload.
+- `templates/ci/github/dependabot.yml`: npm, pip, composer, gomod and GitHub Actions with a 7-day cooldown.
+- `templates/ci/gitlab/security.gitlab-ci.yml`: OSV-Scanner, Semgrep CE and gitleaks with digest-pinned images.
+- `templates/package-managers/`: `.npmrc`, `pnpm-workspace.yaml`, `.yarnrc.yml`, `bunfig.toml` and `uv.toml` with release-age cooldowns and install-script policy.
+- `templates/ci/README.md`: setup, pin updates, false-positive tuning and mapping to rules and skills.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
