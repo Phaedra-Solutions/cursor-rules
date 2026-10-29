@@ -15,3 +15,4 @@ Each prompt appends a line here when it finishes.
 - [x] 11 TypeScript, React, React + Vite (2026-10-29)
 - [x] 12 Next.js (+ Pages Router legacy, upgrade skill) (2026-10-29)
 - [x] 13 Angular (+ NgModule legacy, upgrade skill) (2026-10-29)
+- [x] 14 React Native + Expo (+ old-architecture legacy, upgrade skill) (2026-10-29)

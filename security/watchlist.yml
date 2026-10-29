@@ -99,14 +99,33 @@ packages:
     name: "@react-native-community/cli"
     safe_versions: ["20.0.0"]
     known: [CVE-2025-11953]
-    rules: [mobile/react-native-expo]
-    note: "Metro4Shell; also fixed in 18.0.1 and 19.1.2."
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+    note: "Metro4Shell (CISA KEV 2026-02-05); also fixed in 18.0.1 and 19.1.2. No fixed line below 18."
 
   - ecosystem: npm
     name: "@react-native-community/cli-server-api"
     safe_versions: ["20.0.0"]
     known: [CVE-2025-11953]
-    rules: [mobile/react-native-expo]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+
+  - ecosystem: npm
+    name: react-native
+    safe_versions: ["0.88.0", "0.87.0", "0.86.0"]
+    known: [CVE-2020-1920]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+    note: "Only the latest three minors get patches; 0.85 and older are unsupported."
+
+  - ecosystem: npm
+    name: expo
+    safe_versions: ["58.0.0"]
+    known: [CVE-2023-28131, CVE-2020-24653]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+
+  - ecosystem: npm
+    name: react-native-webview
+    safe_versions: ["11.0.0"]
+    known: [CVE-2020-6506]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
 
   - ecosystem: npm
     name: vite
