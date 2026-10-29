@@ -38,6 +38,9 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 |---|---|---|---|---|
 | `core/behavior` | rule (always on) | [rules/core/behavior.md](./rules/core/behavior.md) | any | draft |
 | `core/security-baseline` | rule (always on) | [rules/core/security-baseline.md](./rules/core/security-baseline.md) | any | draft |
+| `core/supply-chain` | rule (always on) | [rules/core/supply-chain.md](./rules/core/supply-chain.md) | any | draft |
+| `core/agent-safety` | rule (always on) | [rules/core/agent-safety.md](./rules/core/agent-safety.md) | any | draft |
+| `core/legacy-mode` | rule (on demand) | [rules/core/legacy-mode.md](./rules/core/legacy-mode.md) | any | draft |
 | `conventions/phaedra` | convention (optional) | [conventions/phaedra.md](./conventions/phaedra.md) | any | draft |
 
 ## Works with

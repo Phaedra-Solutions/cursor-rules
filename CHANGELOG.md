@@ -19,6 +19,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/core/behavior.md`: always-on working rules (scoped changes, small steps, existing patterns, one-line security findings, rule and version disclosure).
 - `rules/core/security-baseline.md`: always-on secure coding rules grouped by OWASP Top 10:2025 with 2025 CWE Top 25 IDs, partly adapted from Project CodeGuard.
 - `README.md` catalog table.
+- `rules/core/supply-chain.md`: always-on dependency, lockfile, release-age cooldown (npm, pnpm, Yarn, Bun, uv), install-script, CI hardening, publishing, SBOM and suspected-compromise rules.
+- `rules/core/agent-safety.md`: always-on rules for prompt injection, secrets, risky commands, tool config files, MCP servers and keeping the coding tool updated (2026 Cursor advisories).
+- `rules/core/legacy-mode.md`: on-demand rules for working on versions below a rule's range or past end of life.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
