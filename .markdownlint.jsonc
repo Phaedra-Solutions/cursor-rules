@@ -1,0 +1,16 @@
+{
+  "default": true,
+  // Rules and the roadmap use long table rows and long URLs.
+  "MD013": false,
+  // Compact tables (|---|---|) are the house style.
+  "MD060": false,
+  // Bold labels introduce code blocks in skills (e.g. **npm**).
+  "MD036": false,
+  // Rule files start with YAML frontmatter; the PR template starts at H2.
+  "MD041": false,
+  // The changelog repeats Added/Changed under each release.
+  "MD024": { "siblings_only": true },
+  // The frontmatter "title" is metadata, not a second H1.
+  "MD025": { "front_matter_title": "" },
+  "MD026": { "punctuation": ".,;" }
+}

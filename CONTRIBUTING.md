@@ -23,32 +23,32 @@ The plan and its reasoning live in [`ROADMAP.md`](./ROADMAP.md). Approved decisi
 1. Pick the category and a kebab-case name. The file is `rules/<category>/<name>.md` and its `id` is `<category>/<name>`.
 2. Copy this template:
 
-```markdown
----
-id: frontend/nextjs
-title: Next.js (App Router)
-description: Next.js 16 App Router conventions and security. Use when editing app/, proxy.ts or next.config.*
-applies_to: "next >=16.0 <17"          # "any" for core rules
-legacy_rule: legacy/nextjs-pages-router  # optional
-globs: ["app/**/*.{ts,tsx}", "proxy.ts", "next.config.*"]   # [] for core rules
-alwaysApply: false                     # true only in rules/core/
-tier: P0                               # P0–P3
-owner: "@Phaedra-Solutions/maintainers"
-last_reviewed: YYYY-MM-DD              # today's date (run `date +%F`)
-sources:
-  - https://nextjs.org/blog
----
+   ```markdown
+   ---
+   id: frontend/nextjs
+   title: Next.js (App Router)
+   description: Next.js 16 App Router conventions and security. Use when editing app/, proxy.ts or next.config.*
+   applies_to: "next >=16.0 <17"          # "any" for core rules
+   legacy_rule: legacy/nextjs-pages-router  # optional
+   globs: ["app/**/*.{ts,tsx}", "proxy.ts", "next.config.*"]   # [] for core rules
+   alwaysApply: false                     # true only in rules/core/
+   tier: P0                               # P0–P3
+   owner: "@Phaedra-Solutions/maintainers"
+   last_reviewed: YYYY-MM-DD              # today's date (run `date +%F`)
+   sources:
+     - https://nextjs.org/blog
+   ---
 
-# Next.js 16 (App Router)
+   # Next.js 16 (App Router)
 
-## Version check
-## Conventions
-## Do / Don't
-## Security
-## Known vulnerabilities (as of YYYY-MM)
-## Testing
-## Before you finish
-```
+   ## Version check
+   ## Conventions
+   ## Do / Don't
+   ## Security
+   ## Known vulnerabilities (as of YYYY-MM)
+   ## Testing
+   ## Before you finish
+   ```
 
 3. Fill in every section:
    - **Required headings** for every rule outside `rules/core/` and `conventions/`: `## Version check`, `## Conventions`, `## Security`, `## Known vulnerabilities`, `## Testing`, `## Before you finish`. Legacy rules also need `## Migration path`. You may add other `##` sections.
@@ -67,25 +67,25 @@ Skills follow the [Agent Skills](https://agentskills.io/specification) standard.
 1. Create `skills/<name>/SKILL.md`. The folder name equals `name`: lowercase letters, digits and hyphens, at most 64 characters.
 2. Copy this template:
 
-```markdown
----
-name: upgrade-nextjs
-description: Upgrade a Next.js app one major version at a time with codemods and checks. Use when asked to upgrade Next.js or when the project is below the version in frontend/nextjs.
-license: MIT
-metadata:
-  owner: "@Phaedra-Solutions/maintainers"
-  last_reviewed: "YYYY-MM-DD"
-  sources: "https://… https://…"   # space-separated string
----
+   ```markdown
+   ---
+   name: upgrade-nextjs
+   description: Upgrade a Next.js app one major version at a time with codemods and checks. Use when asked to upgrade Next.js or when the project is below the version in frontend/nextjs.
+   license: MIT
+   metadata:
+     owner: "@Phaedra-Solutions/maintainers"
+     last_reviewed: "YYYY-MM-DD"
+     sources: "https://… https://…"   # space-separated string
+   ---
 
-# Upgrade Next.js
+   # Upgrade Next.js
 
-## When to use
-## Before you start      # preconditions; what to ask the user
-## Steps
-## Verify
-## Safety               # what never to do (e.g. never jump two majors at once, never auto-commit)
-```
+   ## When to use
+   ## Before you start      # preconditions; what to ask the user
+   ## Steps
+   ## Verify
+   ## Safety               # what never to do (e.g. never jump two majors at once, never auto-commit)
+   ```
 
 3. Keep `description` under 1,024 characters and say *when* to use the skill.
 4. Helper scripts go in `skills/<name>/scripts/` and use only POSIX shell or Node with no dependencies.
@@ -108,6 +108,26 @@ metadata:
 - Tested in Cursor (note the Cursor version in the PR).
 - No client identifiers.
 
+## Checks
+
+Run these before opening a pull request (Node ≥ 22; the lint script has no dependencies):
+
+```sh
+node scripts/lint-rules.mjs                # frontmatter, headings, size, alwaysApply scope, hidden Unicode, references
+node scripts/lint-rules.mjs --network      # also checks that packages in install commands exist on their registry
+node scripts/lint-rules.mjs --json         # machine-readable output
+node --test scripts/lint-rules.test.mjs    # tests for the lint script
+```
+
+Errors fail the check (exit code 1); warnings, such as references to rules that don't exist yet or a `last_reviewed` date older than 90 days, don't. CI also runs markdownlint (`.markdownlint.jsonc`) and the lychee link checker (`lychee.toml`); see `.github/workflows/lint.yml`. If you have them installed, run them locally with:
+
+```sh
+markdownlint-cli2 '**/*.md' '!scripts/fixtures/**' '!node_modules/**' '!implementation-prompts/**' '!ROADMAP.md' '!*-rules.md'
+lychee --config lychee.toml './**/*.md'
+```
+
+Lint fixtures live in `scripts/fixtures/`. The hidden-Unicode fixture holds a `{{U+200B}}` placeholder that the test replaces at runtime, so the repository itself never contains hidden characters.
+
 ## Review checklist
 
 Reviewers check every item before approving:
@@ -117,7 +137,7 @@ Reviewers check every item before approving:
 - [ ] Under 500 lines (80–250 target)
 - [ ] No client or company-internal identifiers
 - [ ] No invented packages, APIs or CLI flags
-- [ ] `node scripts/lint-rules.mjs` passes (once the script exists) and `node scripts/build.mjs` builds
+- [ ] `node scripts/lint-rules.mjs` passes, and `node scripts/build.mjs` builds once it exists
 - [ ] Core rules repeated nowhere; linked instead
 - [ ] Eval results attached when behavior changed
 

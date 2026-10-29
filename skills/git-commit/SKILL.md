@@ -39,7 +39,7 @@ Never commit on your own initiative, even at the end of a task.
    - short lines; keep the whole message small. Split unrelated work into separate commits instead of one long message.
 4. **Show the message as plain text and ask for approval.** Show only the message, not the command:
 
-   ```
+   ```text
    - Add rate limiting to the login endpoint
    - Fix the empty-state message on the orders page
    - Remove the unused date helper

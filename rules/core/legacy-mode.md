@@ -25,7 +25,7 @@ Use this rule when the installed version is older than the active rule supports,
 
 1. **Read exact versions and say which rule you're applying.** Take versions from the lockfile, not the ranges in the manifest. Take the runtime version from `.nvmrc`, `.node-version`, `engines`, `.python-version`, `requires-python`, `composer.json` `require.php`, the Dockerfile base image or the CI config.
 
-   ```
+   ```text
    Applying legacy/vue2 (vue 2.7.16 from package-lock.json; Node 18.20.4 from .nvmrc).
    ```
 
@@ -43,13 +43,13 @@ Use this rule when the installed version is older than the active rule supports,
 
 Add one line per EOL or soon-EOL component (runtime and main framework) to every change summary:
 
-```
+```text
 EOL: Node 20.20.2 — end of life since 2026-04-30, no security fixes. Known issues: check with cve-check. Migration: upgrade-node.
 ```
 
 - Include the name and installed version, the status (supported, security fixes only, or EOL since a date), and the migration skill.
 - Take dates from the vendor's release page or endoflife.date. If you can't verify the status, write "EOL status unverified" instead of guessing.
-- Flag components that reach EOL within 6 months as "EOL on <date>".
+- Flag components that reach EOL within 6 months as "EOL on `<date>`".
 
 ## When to propose a migration skill
 

@@ -29,11 +29,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `skills/threat-model-lite`: 10-minute STRIDE pass producing abuse cases, controls mapped to OWASP Top 10:2025, and tests.
 - `skills/incident-supply-chain`: response steps for compromised dependencies, including token-monitor wipers, persistence hunting, rotation order, reporting and a timeline; indicators from Shai-Hulud through Miasma.
 - `skills/git-commit`: the team's dash-list commit flow with approval and a staged-files secret scan.
+- `scripts/lint-rules.mjs` (Node ≥ 22, no dependencies): validates rule, convention and skill frontmatter, required headings, size, `alwaysApply` scope and cross-references; scans every tracked text file for hidden Unicode; `--network` checks packages in install commands; `--json` output.
+- `scripts/lint-rules.test.mjs` with fixtures in `scripts/fixtures/`.
+- `.github/workflows/lint.yml`: lint script, its tests, markdownlint and lychee, with SHA-pinned actions and read-only permissions.
+- `.markdownlint.jsonc` and `lychee.toml`.
+- `.DS_Store` in `.gitignore`.
 - Project CodeGuard evaluation and OWASP 2025 gap analysis under D2 in `docs/decisions.md`; adapted-file list in `NOTICE.md`.
 
 ### Changed
 
 - `README.md` notes that the project is being restructured.
+- `CONTRIBUTING.md` documents the lint commands; the PR template asks for lint and test results.
+- Markdown fixes for markdownlint in `README.md`, `CONTRIBUTING.md`, `NOTICE.md`, `SECURITY.md`, core rules and skills (code-fence languages, list spacing, bare URLs).
 - `README.md` lists all 8 rule files and adds Install, Works with, Keep Cursor updated (3.1.2 or later), Roadmap and License sections.
 - Rename `supabase-rules` to `supabase-rules.md`.
 - `next-rules.md`: state follows the project (Redux Toolkit where present, otherwise Zustand; TanStack Query for server state); forms follow the project (Formik + Yup where present, otherwise React Hook Form + Zod) with `'use client'` on leaf form components; TypeScript props replace prop-types; add `proxy.ts` and Server Action security lines.

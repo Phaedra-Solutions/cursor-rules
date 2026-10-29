@@ -5,10 +5,10 @@ This repository is licensed under the MIT License (see [`LICENSE`](./LICENSE)), 
 ## Project CodeGuard (CoSAI), CC BY 4.0
 
 - **Project:** Project CodeGuard, by the Coalition for Secure AI (CoSAI), an OASIS Open Project
-- **Source:** https://github.com/cosai-oasis/project-codeguard
+- **Source:** <https://github.com/cosai-oasis/project-codeguard>
 - **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
-  - License text: https://github.com/cosai-oasis/project-codeguard/blob/main/LICENSE.md
-  - Summary: https://creativecommons.org/licenses/by/4.0/
+  - License text: <https://github.com/cosai-oasis/project-codeguard/blob/main/LICENSE.md>
+  - Summary: <https://creativecommons.org/licenses/by/4.0/>
 
 Parts of our generic security layer (for example `rules/core/security-baseline` and the security skills) adapt content from Project CodeGuard. Changes were made: content was reworded, reorganized into our rule and skill formats, and extended with stack-specific and house guidance.
 

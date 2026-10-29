@@ -22,7 +22,7 @@
 - [ ] No invented packages, APIs or CLI flags
 - [ ] No hidden or bidirectional Unicode characters
 - [ ] No client or company-internal identifiers
-- [ ] `node scripts/lint-rules.mjs` passes (paste the summary below, or "script not present yet")
+- [ ] `node scripts/lint-rules.mjs` and `node --test scripts/lint-rules.test.mjs` pass (paste the summary below)
 - [ ] `node scripts/build.mjs` builds (or "script not present yet")
 - [ ] Eval results attached if agent behavior changed (or "no evals for this change")
 - [ ] Tested in Cursor (version: ___ )
@@ -31,7 +31,7 @@
 
 ## Lint / build output
 
-```
+```text
 ```
 
 ## Eval results

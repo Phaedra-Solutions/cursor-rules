@@ -49,7 +49,7 @@ sources:
 
 - Always report a security finding in one line, even when answers are terse: what it is, where (`file:line`) and the fix.
 
-  ```
+  ```text
   Security: GET /api/orders/:id returns any order without an ownership check (src/orders/route.ts:42). Scope the query to the caller's org.
   ```
 
@@ -61,7 +61,7 @@ sources:
 - Before applying a stack rule, read the installed version from the lockfile or manifest and use the rule that covers it.
 - Say which rule and version you're applying when it changes the answer:
 
-  ```
+  ```text
   Applying frontend/nextjs (next 16.4.1 from package-lock.json).
   ```
 

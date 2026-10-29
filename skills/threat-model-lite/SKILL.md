@@ -25,7 +25,7 @@ You need two inputs. Ask for whichever is missing; infer from the code only what
 1. **Feature description:** what it does, who uses it (anonymous, signed-in, admin, other services), and what "done" looks like.
 2. **Data flows:** where data enters, which components handle it, where it's stored, and which external services it reaches. A bullet list is enough:
 
-   ```
+   ```text
    browser → POST /api/invoices/:id/pdf (Next.js Server Action) → invoices table (Postgres, RLS)
    Server Action → PDF service (internal HTTP) → S3 private bucket → signed URL back to browser
    ```

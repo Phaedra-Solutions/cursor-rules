@@ -45,7 +45,7 @@ This overlay sits on top of the generic rules. When it conflicts with a generic 
 - Split code into focused files and folders; don't pile unrelated code into one file.
 - Where the framework doesn't dictate the file layout, put each component in its own folder:
 
-```
+```text
 user-card/
 ├── index.tsx   # component, default export
 ├── styles.ts   # styles (React Native, or CSS-in-JS)

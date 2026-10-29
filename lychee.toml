@@ -1,0 +1,26 @@
+# Link check config for lychee (https://github.com/lycheeverse/lychee).
+
+no_progress = true
+max_retries = 3
+retry_wait_time = 5
+timeout = 30
+max_concurrency = 8
+accept = ["200..=299", "429"]
+include_mail = false
+include_verbatim = false
+
+# These sites answer automated requests with HTTP 403 even though the pages
+# work in a browser. Remove an entry if the site stops blocking.
+exclude = [
+  '^https://thehackernews\.com/',
+  '^https://openai\.com/',
+  '^https://socradar\.io/',
+  # Invalid TLS certificate as of 2026-10-29; replace the ROADMAP source.
+  '^https://zerotowp\.com/',
+]
+
+exclude_path = [
+  '(^|/)scripts/fixtures/',
+  '(^|/)node_modules/',
+  '(^|/)dist/',
+]

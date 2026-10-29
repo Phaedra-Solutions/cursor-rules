@@ -163,7 +163,7 @@ The verdict is the worst row: any Reject means reject; otherwise any Ask means a
 
 ## Verdict format
 
-```
+```text
 dependency-vet: zod@4.6.7 (npm): APPROVE
 - Exists; created 2020-03-07; latest published 2026-10-12 (older than the 7-day cooldown).
 - Maintainer colinhacks; recent versions published from GitHub Actions with provenance.
