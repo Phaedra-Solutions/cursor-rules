@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-30
+
+First release: every P0 and P1 rule from the roadmap, the P2 stacks, two legacy packs, 32 skills, presets, evals and the security automation.
+
 ### Added
 
 - MIT `LICENSE`, `NOTICE.md` with Project CodeGuard (CC BY 4.0) attribution, `SECURITY.md` and `CONTRIBUTING.md`.
@@ -126,8 +130,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Legacy pack 2b: `legacy/xamarin` (support ended 1 May 2024; no App Store or Play updates possible since Xcode 26 and API 36 requirements), `legacy/cordova` (cordova-android 15.1, cordova-ios 8.1, CSP and allow-list, InAppBrowser CVE-2026-47430), `legacy/rails-legacy` (Rails 7.2 and older, Active Storage CVE-2026-66066 and the VIPS_BLOCK_UNTRUSTED mitigation, Rack fixes), `legacy/ingress-nginx` (retired Mar 2026, last release v1.15.1, webhook and snippet hardening), `legacy/js-legacy-libraries` (Bull, Moment.js and Temporal support, deprecated packages and replacements).
 - Skills: `migrate-xamarin` (MAUI 10, handlers, data continuity), `migrate-cordova` (Capacitor 8 in place, plugin mapping), `upgrade-rails` (one minor at a time with next_rails dual boot), `migrate-ingress-nginx` (ingress2gateway 1.2, parallel run, host-by-host cut-over).
 
+- `.github/workflows/release.yml`: on `v*` tags, runs lint, tests and the catalog check, zips `dist/` per tool (cursor, agents, claude) with the manifest and a `SHA256SUMS` file, and creates a GitHub Release with this CHANGELOG section; `contents: write` only on the publish job, actions pinned to SHAs.
+- `scripts/build.mjs --catalog` regenerates the README catalog and preset tables from the rule, skill and preset files; `--catalog --check` fails when they're stale (run in the lint and release workflows), with tests.
+- `docs/verification.md`: manual verification checklist for installs into Cursor, Codex and Claude Code, with the results of the steps run for this release.
+
 ### Changed
 
+- `CONTRIBUTING.md`: regenerate the catalog with `--catalog` instead of editing README tables by hand; the lint workflow checks it.
+- `README.md` restructured for the release: intro, Works with, Quick start, Presets, generated Catalog, Security, Keep your tools updated, Contributing and License.
+- The original root rule files (`global-rules.md`, `next-rules.md`, `react-typescript-rules.md`, `react-native-rules.md`, `angular-rules.md`, `nestjs-rules.md`, `supabase-rules.md`, `cypress-testing-rules.md`) are now stubs that link to their replacements; the old content is in git history before `v1.0.0`.
 - `scripts/check-freshness.mjs` maps `wordpress` in `applies_to` to endoflife.date; `CONTRIBUTING.md` shows the example.
 - The lint workflow also runs `scripts/run-evals.test.mjs`; `CONTRIBUTING.md` links the eval guide.
 - `conventions/phaedra.md`: add a Flutter section (Riverpod for new apps, Bloc kept where it exists, go_router, freezed, test keys).
@@ -180,3 +191,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `svelte`, `@sveltejs/kit`, `astro` and `@astrojs/node`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
+
+[Unreleased]: https://github.com/Phaedra-Solutions/cursor-rules/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/Phaedra-Solutions/cursor-rules/releases/tag/v1.0.0

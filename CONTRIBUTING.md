@@ -58,7 +58,7 @@ The plan and its reasoning live in [`ROADMAP.md`](./ROADMAP.md). Approved decisi
 4. **Size:** 500 lines maximum, 80–250 target.
 5. **Don't repeat core rules.** Link them instead ("see `core/security-baseline`"). Put only stack-specific security in a stack rule.
 6. Add an eval in `evals/<category>/<name>.yaml` when the rule changes agent behavior you can test (see [evals/README.md](./evals/README.md); `node scripts/run-evals.mjs --dry-run` checks the structure without model calls).
-7. Add a row to the `## Catalog` table in `README.md` with status `draft`, and a bullet under `## [Unreleased]` in `CHANGELOG.md`.
+7. Regenerate the README catalog with `node scripts/build.mjs --catalog` (don't edit the generated tables by hand; CI fails when they're stale), and add a bullet under `## [Unreleased]` in `CHANGELOG.md`.
 
 ## Add a skill
 
@@ -142,7 +142,7 @@ Lint fixtures live in `scripts/fixtures/`. The hidden-Unicode fixture holds a `{
 | `dist/claude/CLAUDE.md` | `@AGENTS.md` import (with a copy of `AGENTS.md` next to it) |
 | `dist/manifest.json` | Every output with its sha256, plus the selected rules, skills and warnings |
 
-A preset is a YAML file in `presets/` with `name`, `description`, `rules` (IDs; `core/*` style wildcards allowed), `skills` and `conventions`. Rules and skills a preset names but that don't exist yet produce a warning, not an error. `node scripts/install.mjs` builds a preset and copies it into a project (see the README's **Install** section).
+A preset is a YAML file in `presets/` with `name`, `description`, `rules` (IDs; `core/*` style wildcards allowed), `skills` and `conventions`. Rules and skills a preset names but that don't exist yet produce a warning, not an error. `node scripts/install.mjs` builds a preset and copies it into a project (see the README's **Quick start** section). Run `node scripts/build.mjs --catalog` after adding or changing a preset so the README preset table stays in sync.
 
 ## Version ranges (`applies_to`)
 

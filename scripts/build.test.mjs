@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path'
 import { after, describe, test } from 'node:test'
 import { fileURLToPath } from 'node:url'
 
-import { build, demoteHeadings, expandBraces, renderMdc } from './build.mjs'
+import { build, CATALOG_END, CATALOG_START, demoteHeadings, expandBraces, PRESETS_END, PRESETS_START, renderCatalog, renderMdc, renderPresets, replaceBlock } from './build.mjs'
 import { install, planInstall } from './install.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -208,5 +208,35 @@ describe('install', () => {
     assert.equal(run.status, 0, run.stderr)
     assert.match(run.stdout, /new {7}\.cursor\/rules\/frontend\/example\.mdc/)
     assert.match(run.stdout, /Dry run: nothing was written\./)
+  })
+})
+
+describe('catalog', () => {
+  test('renderCatalog lists rules by category, skills and conventions', () => {
+    const catalog = renderCatalog(root)
+    assert.ok(catalog.startsWith(CATALOG_START))
+    assert.ok(catalog.trimEnd().endsWith(CATALOG_END))
+    assert.match(catalog, /### Core\n/)
+    assert.match(catalog, /\| \[`frontend\/example`\]\(\.\/rules\/frontend\/example\.md\) \| Example framework \| example >=2\.0 <3 \|/)
+    assert.match(catalog, /\| \[`example-skill`\]\(\.\/skills\/example-skill\/SKILL\.md\) \|/)
+    assert.match(catalog, /### Conventions/)
+  })
+
+  test('renderPresets lists each preset with rule and skill counts', () => {
+    const presets = renderPresets(root)
+    assert.ok(presets.startsWith(PRESETS_START))
+    assert.ok(presets.trimEnd().endsWith(PRESETS_END))
+    assert.match(presets, /\| \[`example`\]\(\.\/presets\/example\.yml\) \| .* \| \d+ \| \d+ \|/)
+  })
+
+  test('replaceBlock swaps only the marked block and needs both markers', () => {
+    const readme = `# Title\n\n${CATALOG_START}\nold\n${CATALOG_END}\n\n## After\n`
+    assert.equal(replaceBlock(readme, CATALOG_START, CATALOG_END, `${CATALOG_START}\nnew\n${CATALOG_END}\n`), `# Title\n\n${CATALOG_START}\nnew\n${CATALOG_END}\n\n## After\n`)
+    assert.throws(() => replaceBlock('# No markers\n', CATALOG_START, CATALOG_END, 'x'), /no catalog markers/)
+  })
+
+  test('the repository README catalog is up to date', () => {
+    const run = spawnSync(process.execPath, [join(here, 'build.mjs'), '--catalog', '--check', '--root', repo], { encoding: 'utf8' })
+    assert.equal(run.status, 0, run.stderr)
   })
 })

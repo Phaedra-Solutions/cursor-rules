@@ -26,6 +26,7 @@ jobs:
           node-version: 24
       - run: node scripts/lint-rules.mjs
       - run: node scripts/build.mjs
+      - run: node scripts/build.mjs --catalog --check
 
   tests:
     name: Script tests

@@ -1,238 +1,299 @@
-# 🖱️ Cursor Rules – Code Smarter, Not Harder!  
+# Cursor Rules
 
-> **Project status:** being restructured, see [ROADMAP.md](./ROADMAP.md).
+Version-aware rules and skills for AI coding agents, from **Phaedra Solutions**. Each rule checks the versions a project actually uses, applies current conventions and security guidance for that stack, and falls back to legacy guidance when the project is on an old or end-of-life version. One source builds Cursor project rules, `AGENTS.md` and Agent Skills.
 
-Ever feel like your cursor is on a mission of its own—randomly teleporting like it’s in a sci-fi movie? Yeah, we get it. That’s why our team at **Phaedra Solutions** created **Cursor Rules**—a smarter way to keep your coding on track without accidental rage-quits.  
-
-## 🚀 Why You’ll Love It:  
-
-✅ No more rogue clicks ruining your day  
-✅ Code like a pro (or at least look like one)  
-✅ Built by devs, for devs—because we’ve been there  
-
-## 🤝 Need Help?  
-
-Whether it’s **cursor magic** or **serious development** work, we’ve got your back. Hit us up at:  
-**[hello@phaedrasolutions.com](mailto:hello@phaedrasolutions.com)**
-
-We promise real humans will reply—no bots (unless they’re cool AI we built ourselves). Let’s build something epic together! 🚀💻  
-
-Feel free to use our rules to power your own cursor 🔥
-
-## Rule files
-
-| File | Use it for |
-|---|---|
-| [global-rules.md](./global-rules.md) | Any project: working style and team conventions |
-| [react-typescript-rules.md](./react-typescript-rules.md) | React + TypeScript single-page apps built with Vite |
-| [next-rules.md](./next-rules.md) | Next.js (App Router) |
-| [react-native-rules.md](./react-native-rules.md) | React Native 0.78 with Expo Router |
-| [angular-rules.md](./angular-rules.md) | Angular 15 (end of life; an Angular 22 rule is coming) |
-| [nestjs-rules.md](./nestjs-rules.md) | NestJS backends and microservices |
-| [supabase-rules.md](./supabase-rules.md) | Supabase (Postgres, RLS, Edge Functions) |
-| [cypress-testing-rules.md](./cypress-testing-rules.md) | Cypress end-to-end tests |
-
-## Catalog
-
-New-format rules and skills, built from one source for Cursor and `AGENTS.md` tools. See [ROADMAP.md](./ROADMAP.md) for what's coming.
-
-| Item | Type | Path | Applies to | Status |
-|---|---|---|---|---|
-| `core/behavior` | rule (always on) | [rules/core/behavior.md](./rules/core/behavior.md) | any | draft |
-| `core/security-baseline` | rule (always on) | [rules/core/security-baseline.md](./rules/core/security-baseline.md) | any | draft |
-| `core/supply-chain` | rule (always on) | [rules/core/supply-chain.md](./rules/core/supply-chain.md) | any | draft |
-| `core/agent-safety` | rule (always on) | [rules/core/agent-safety.md](./rules/core/agent-safety.md) | any | draft |
-| `core/legacy-mode` | rule (on demand) | [rules/core/legacy-mode.md](./rules/core/legacy-mode.md) | any | draft |
-| `languages/typescript` | rule | [rules/languages/typescript.md](./rules/languages/typescript.md) | typescript 6–7 | draft |
-| `languages/javascript-node` | rule | [rules/languages/javascript-node.md](./rules/languages/javascript-node.md) | node 22, 24, 26 | draft |
-| `legacy/node-legacy` | rule (legacy) | [rules/legacy/node-legacy.md](./rules/legacy/node-legacy.md) | node ≤ 20 and odd-numbered lines | legacy |
-| `languages/python` | rule | [rules/languages/python.md](./rules/languages/python.md) | python 3.11–3.15 | draft |
-| `legacy/python-legacy` | rule (legacy) | [rules/legacy/python-legacy.md](./rules/legacy/python-legacy.md) | python 2.7, 3.10 and older | legacy |
-| `languages/php` | rule | [rules/languages/php.md](./rules/languages/php.md) | php 8.3–8.5 | draft |
-| `languages/java` | rule | [rules/languages/java.md](./rules/languages/java.md) | Java 21/25 LTS | draft |
-| `languages/kotlin` | rule | [rules/languages/kotlin.md](./rules/languages/kotlin.md) | Kotlin 2.4 | draft |
-| `languages/csharp` | rule | [rules/languages/csharp.md](./rules/languages/csharp.md) | .NET 10 LTS (C# 14) | draft |
-| `languages/go` | rule | [rules/languages/go.md](./rules/languages/go.md) | Go 1.26–1.27 | draft |
-| `languages/dart` | rule | [rules/languages/dart.md](./rules/languages/dart.md) | Dart 3 | draft |
-| `languages/swift` | rule | [rules/languages/swift.md](./rules/languages/swift.md) | Swift 6 | draft |
-| `languages/shell` | rule | [rules/languages/shell.md](./rules/languages/shell.md) | POSIX sh, Bash | draft |
-| `legacy/php-legacy` | rule (legacy) | [rules/legacy/php-legacy.md](./rules/legacy/php-legacy.md) | php ≤ 8.2, laravel ≤ 11, CodeIgniter 3 | legacy |
-| `frontend/react` | rule | [rules/frontend/react.md](./rules/frontend/react.md) | react 19 | draft |
-| `frontend/react-vite-spa` | rule | [rules/frontend/react-vite-spa.md](./rules/frontend/react-vite-spa.md) | vite 7–8 | draft |
-| `frontend/nextjs` | rule | [rules/frontend/nextjs.md](./rules/frontend/nextjs.md) | next 16 | draft |
-| `legacy/nextjs-pages-router` | rule (legacy) | [rules/legacy/nextjs-pages-router.md](./rules/legacy/nextjs-pages-router.md) | next 12–15; Pages Router on any version | legacy |
-| `frontend/angular` | rule | [rules/frontend/angular.md](./rules/frontend/angular.md) | @angular/core 20–22 | draft |
-| `legacy/angular-ngmodules` | rule (legacy) | [rules/legacy/angular-ngmodules.md](./rules/legacy/angular-ngmodules.md) | @angular/core 2–19; NgModule apps on any version | legacy |
-| `legacy/angularjs` | rule (legacy) | [rules/legacy/angularjs.md](./rules/legacy/angularjs.md) | angular 1.x (EOL Dec 2021) | legacy |
-| `legacy/react-class-cra` | rule (legacy) | [rules/legacy/react-class-cra.md](./rules/legacy/react-class-cra.md) | react-scripts, class components, legacy Redux | legacy |
-| `legacy/jquery` | rule (legacy) | [rules/legacy/jquery.md](./rules/legacy/jquery.md) | jquery 1–4 | legacy |
-| `frontend/vue` | rule | [rules/frontend/vue.md](./rules/frontend/vue.md) | vue 3.4–3.5 | draft |
-| `frontend/nuxt` | rule | [rules/frontend/nuxt.md](./rules/frontend/nuxt.md) | nuxt 4 | draft |
-| `legacy/vue2-nuxt2` | rule (legacy) | [rules/legacy/vue2-nuxt2.md](./rules/legacy/vue2-nuxt2.md) | vue 2, nuxt 2 and 3 | legacy |
-| `frontend/tailwind` | rule | [rules/frontend/tailwind.md](./rules/frontend/tailwind.md) | tailwindcss 4 | draft |
-| `frontend/forms-validation` | rule | [rules/frontend/forms-validation.md](./rules/frontend/forms-validation.md) | any (RHF + Zod, Formik + Yup, Signal Forms) | draft |
-| `frontend/svelte` | rule | [rules/frontend/svelte.md](./rules/frontend/svelte.md) | svelte 5, @sveltejs/kit 3 | draft |
-| `frontend/astro` | rule | [rules/frontend/astro.md](./rules/frontend/astro.md) | astro 7 | draft |
-| `frontend/state-and-data` | rule | [rules/frontend/state-and-data.md](./rules/frontend/state-and-data.md) | TanStack Query 5, Zustand 5, Redux Toolkit 2 | draft |
-| `frontend/ui-shadcn-radix` | rule | [rules/frontend/ui-shadcn-radix.md](./rules/frontend/ui-shadcn-radix.md) | shadcn CLI 4, radix-ui | draft |
-| `mobile/react-native-expo` | rule | [rules/mobile/react-native-expo.md](./rules/mobile/react-native-expo.md) | react-native 0.82–0.88, expo SDK 55–58 | draft |
-| `legacy/react-native-old-arch` | rule (legacy) | [rules/legacy/react-native-old-arch.md](./rules/legacy/react-native-old-arch.md) | react-native < 0.82; bare RN CLI apps | legacy |
-| `mobile/flutter` | rule | [rules/mobile/flutter.md](./rules/mobile/flutter.md) | Flutter 3.47, Dart 3 | draft |
-| `legacy/flutter-legacy` | rule (legacy) | [rules/legacy/flutter-legacy.md](./rules/legacy/flutter-legacy.md) | Flutter 2, pre-null-safety Dart | legacy |
-| `mobile/mobile-security` | rule | [rules/mobile/mobile-security.md](./rules/mobile/mobile-security.md) | RN, Flutter, iOS, Android (MASVS 2.1) | draft |
-| `mobile/ios-swiftui` | rule | [rules/mobile/ios-swiftui.md](./rules/mobile/ios-swiftui.md) | Swift 6, SwiftUI (iOS 17+) | draft |
-| `mobile/android-compose` | rule | [rules/mobile/android-compose.md](./rules/mobile/android-compose.md) | Kotlin 2.4, Compose BOM 2026.09 | draft |
-| `backend/nestjs` | rule | [rules/backend/nestjs.md](./rules/backend/nestjs.md) | @nestjs/core 12 | draft |
-| `backend/nestjs-microservices` | rule | [rules/backend/nestjs-microservices.md](./rules/backend/nestjs-microservices.md) | @nestjs/microservices 12, BullMQ | draft |
-| `backend/nestjs-data` | rule | [rules/backend/nestjs-data.md](./rules/backend/nestjs-data.md) | @nestjs/core 12 with Sequelize 6, TypeORM 0.3–1.x or Prisma 7 | draft |
-| `legacy/nestjs-legacy` | rule (legacy) | [rules/legacy/nestjs-legacy.md](./rules/legacy/nestjs-legacy.md) | @nestjs/core 8–11; Bull queues | legacy |
-| `data/supabase` | rule | [rules/data/supabase.md](./rules/data/supabase.md) | Supabase CLI 2.x, publishable/secret keys | draft |
-| `data/postgres` | rule | [rules/data/postgres.md](./rules/data/postgres.md) | PostgreSQL 14–18 | draft |
-| `data/orm-prisma` | rule | [rules/data/orm-prisma.md](./rules/data/orm-prisma.md) | @prisma/client 7 | draft |
-| `data/orm-drizzle` | rule | [rules/data/orm-drizzle.md](./rules/data/orm-drizzle.md) | drizzle-orm 0.45, 1.0 RC | draft |
-| `data/orm-sequelize-typeorm` | rule | [rules/data/orm-sequelize-typeorm.md](./rules/data/orm-sequelize-typeorm.md) | Sequelize 6, TypeORM 1.x / 0.3 | draft |
-| `data/sqlalchemy` | rule | [rules/data/sqlalchemy.md](./rules/data/sqlalchemy.md) | SQLAlchemy 2.0–2.1, Alembic | draft |
-| `data/mongodb` | rule | [rules/data/mongodb.md](./rules/data/mongodb.md) | MongoDB 7–9, Mongoose 8–9, PyMongo 4 | draft |
-| `data/firebase` | rule | [rules/data/firebase.md](./rules/data/firebase.md) | Firestore/Storage rules, Admin SDK 13–14 | draft |
-| `cms-commerce/wordpress` | rule | [rules/cms-commerce/wordpress.md](./rules/cms-commerce/wordpress.md) | WordPress 7.1 plugins and themes | draft |
-| `legacy/supabase-legacy` | rule (legacy) | [rules/legacy/supabase-legacy.md](./rules/legacy/supabase-legacy.md) | legacy anon/service_role keys, import maps | legacy |
-| `testing/cypress` | rule | [rules/testing/cypress.md](./rules/testing/cypress.md) | cypress 15–16 | draft |
-| `testing/playwright` | rule | [rules/testing/playwright.md](./rules/testing/playwright.md) | @playwright/test 1.50+ | draft |
-| `testing/unit-js` | rule | [rules/testing/unit-js.md](./rules/testing/unit-js.md) | vitest 4–5, jest 29–30 | draft |
-| `ai/llm-apps` | rule | [rules/ai/llm-apps.md](./rules/ai/llm-apps.md) | OpenAI, Anthropic, Gemini SDKs; Vercel AI SDK | draft |
-| `ai/rag` | rule | [rules/ai/rag.md](./rules/ai/rag.md) | pgvector 0.8+ and vector databases | draft |
-| `ai/agents` | rule | [rules/ai/agents.md](./rules/ai/agents.md) | LangGraph, OpenAI Agents SDK, Claude Agent SDK, AI SDK | draft |
-| `ai/mcp-servers` | rule | [rules/ai/mcp-servers.md](./rules/ai/mcp-servers.md) | MCP spec 2026-07-28; TypeScript, Python and FastMCP SDKs | draft |
-| `devops/github-actions` | rule | [rules/devops/github-actions.md](./rules/devops/github-actions.md) | GitHub Actions | draft |
-| `devops/docker` | rule | [rules/devops/docker.md](./rules/devops/docker.md) | Dockerfile, Compose; Engine 29 | draft |
-| `devops/kubernetes` | rule | [rules/devops/kubernetes.md](./rules/devops/kubernetes.md) | Kubernetes 1.35–1.37, Helm, Kustomize | draft |
-| `devops/terraform-opentofu` | rule | [rules/devops/terraform-opentofu.md](./rules/devops/terraform-opentofu.md) | Terraform 1.16–1.17, OpenTofu 1.12–1.13 | draft |
-| `devops/cloud-aws` | rule | [rules/devops/cloud-aws.md](./rules/devops/cloud-aws.md) | AWS IaC and SDKs | draft |
-| `devops/cloud-gcp` | rule | [rules/devops/cloud-gcp.md](./rules/devops/cloud-gcp.md) | Google Cloud IaC and SDKs | draft |
-| `devops/cloud-azure` | rule | [rules/devops/cloud-azure.md](./rules/devops/cloud-azure.md) | Azure Bicep, ARM, azd, SDKs | draft |
-| `devops/vercel-netlify-cloudflare` | rule | [rules/devops/vercel-netlify-cloudflare.md](./rules/devops/vercel-netlify-cloudflare.md) | Vercel, Netlify, Cloudflare Workers | draft |
-| `backend/express` | rule | [rules/backend/express.md](./rules/backend/express.md) | express 5 | draft |
-| `legacy/express-4` | rule (legacy) | [rules/legacy/express-4.md](./rules/legacy/express-4.md) | express 4 | legacy |
-| `backend/fastapi` | rule | [rules/backend/fastapi.md](./rules/backend/fastapi.md) | fastapi 0.115+, pydantic 2, starlette 1 | draft |
-| `backend/django` | rule | [rules/backend/django.md](./rules/backend/django.md) | django 5.2 LTS, 6.0, 6.1 | draft |
-| `legacy/django-legacy` | rule (legacy) | [rules/legacy/django-legacy.md](./rules/legacy/django-legacy.md) | django ≤ 5.1 (4.2 LTS ended Apr 2026) | legacy |
-| `backend/laravel` | rule | [rules/backend/laravel.md](./rules/backend/laravel.md) | laravel 12–13 on PHP 8.3+ | draft |
-| `backend/spring-boot` | rule | [rules/backend/spring-boot.md](./rules/backend/spring-boot.md) | Spring Boot 4.0–4.1 | draft |
-| `backend/aspnet-core` | rule | [rules/backend/aspnet-core.md](./rules/backend/aspnet-core.md) | .NET 10 LTS | draft |
-| `legacy/java-spring-boot-legacy` | rule (legacy) | [rules/legacy/java-spring-boot-legacy.md](./rules/legacy/java-spring-boot-legacy.md) | Spring Boot 2.x–3.x; Java 8/11/17 | legacy |
-| `legacy/struts` | rule (legacy) | [rules/legacy/struts.md](./rules/legacy/struts.md) | Struts 1; Struts 2.x–7.x | legacy |
-| `legacy/dotnet-8-9` | rule (legacy) | [rules/legacy/dotnet-8-9.md](./rules/legacy/dotnet-8-9.md) | net8.0, net9.0 and older .NET (Core) | legacy |
-| `legacy/dotnet-framework` | rule (legacy) | [rules/legacy/dotnet-framework.md](./rules/legacy/dotnet-framework.md) | .NET Framework 4.x, Web Forms, WCF, ASMX | legacy |
-| `legacy/xamarin` | rule (legacy) | [rules/legacy/xamarin.md](./rules/legacy/xamarin.md) | Xamarin.Forms, Xamarin.iOS/Android (EOL May 2024) | legacy |
-| `legacy/cordova` | rule (legacy) | [rules/legacy/cordova.md](./rules/legacy/cordova.md) | cordova-android ≤ 15, cordova-ios, plugins | legacy |
-| `legacy/rails-legacy` | rule (legacy) | [rules/legacy/rails-legacy.md](./rules/legacy/rails-legacy.md) | rails ≤ 7.2 | legacy |
-| `legacy/ingress-nginx` | rule (legacy) | [rules/legacy/ingress-nginx.md](./rules/legacy/ingress-nginx.md) | community ingress-nginx (retired Mar 2026) | legacy |
-| `legacy/js-legacy-libraries` | rule (legacy) | [rules/legacy/js-legacy-libraries.md](./rules/legacy/js-legacy-libraries.md) | Bull, Moment.js, request, node-sass, TSLint and similar | legacy |
-| `backend/go-http` | rule | [rules/backend/go-http.md](./rules/backend/go-http.md) | Go 1.26–1.27 net/http | draft |
-| `backend/graphql` | rule | [rules/backend/graphql.md](./rules/backend/graphql.md) | Apollo Server 5, GraphQL Yoga 6 | draft |
-| `backend/fastify-hono` | rule | [rules/backend/fastify-hono.md](./rules/backend/fastify-hono.md) | fastify 5, hono 4 | draft |
-| `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
-| `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
-| `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |
-| `secrets-scan` | skill | [skills/secrets-scan/SKILL.md](./skills/secrets-scan/SKILL.md) | any | draft |
-| `threat-model-lite` | skill | [skills/threat-model-lite/SKILL.md](./skills/threat-model-lite/SKILL.md) | any | draft |
-| `incident-supply-chain` | skill | [skills/incident-supply-chain/SKILL.md](./skills/incident-supply-chain/SKILL.md) | any | draft |
-| `git-commit` | skill | [skills/git-commit/SKILL.md](./skills/git-commit/SKILL.md) | any | draft |
-| `upgrade-nextjs` | skill | [skills/upgrade-nextjs/SKILL.md](./skills/upgrade-nextjs/SKILL.md) | next 13–15 → 16 | draft |
-| `upgrade-angular` | skill | [skills/upgrade-angular/SKILL.md](./skills/upgrade-angular/SKILL.md) | @angular/core ≤ 21 → 22 | draft |
-| `upgrade-react-native` | skill | [skills/upgrade-react-native/SKILL.md](./skills/upgrade-react-native/SKILL.md) | react-native / expo → RN 0.88, SDK 58 | draft |
-| `upgrade-nestjs` | skill | [skills/upgrade-nestjs/SKILL.md](./skills/upgrade-nestjs/SKILL.md) | @nestjs/core ≤ 11 → 12; Bull → BullMQ | draft |
-| `upgrade-supabase` | skill | [skills/upgrade-supabase/SKILL.md](./skills/upgrade-supabase/SKILL.md) | legacy keys → publishable/secret keys; import maps → deno.json | draft |
-| `upgrade-express` | skill | [skills/upgrade-express/SKILL.md](./skills/upgrade-express/SKILL.md) | express 4 → 5 | draft |
-| `upgrade-node` | skill | [skills/upgrade-node/SKILL.md](./skills/upgrade-node/SKILL.md) | node ≤ 22 → 24 or 26 LTS | draft |
-| `upgrade-python` | skill | [skills/upgrade-python/SKILL.md](./skills/upgrade-python/SKILL.md) | python ≤ 3.12 → 3.13/3.14 | draft |
-| `upgrade-django` | skill | [skills/upgrade-django/SKILL.md](./skills/upgrade-django/SKILL.md) | django ≤ 5.1 → 5.2 LTS / 6.x | draft |
-| `upgrade-php` | skill | [skills/upgrade-php/SKILL.md](./skills/upgrade-php/SKILL.md) | php ≤ 8.3 → 8.4/8.5 | draft |
-| `upgrade-laravel` | skill | [skills/upgrade-laravel/SKILL.md](./skills/upgrade-laravel/SKILL.md) | laravel ≤ 12 → 13 | draft |
-| `migrate-vue2` | skill | [skills/migrate-vue2/SKILL.md](./skills/migrate-vue2/SKILL.md) | vue 2 → 3 via @vue/compat | draft |
-| `upgrade-nuxt` | skill | [skills/upgrade-nuxt/SKILL.md](./skills/upgrade-nuxt/SKILL.md) | nuxt 3 → 4 | draft |
-| `migrate-angularjs` | skill | [skills/migrate-angularjs/SKILL.md](./skills/migrate-angularjs/SKILL.md) | angular 1.x → Angular 22 | draft |
-| `migrate-cra-to-vite` | skill | [skills/migrate-cra-to-vite/SKILL.md](./skills/migrate-cra-to-vite/SKILL.md) | react-scripts → Vite | draft |
-| `migrate-class-to-hooks` | skill | [skills/migrate-class-to-hooks/SKILL.md](./skills/migrate-class-to-hooks/SKILL.md) | React class components → hooks | draft |
-| `upgrade-jquery` | skill | [skills/upgrade-jquery/SKILL.md](./skills/upgrade-jquery/SKILL.md) | jquery 1–3 → 3.7.1 / 4.x | draft |
-| `upgrade-spring-boot` | skill | [skills/upgrade-spring-boot/SKILL.md](./skills/upgrade-spring-boot/SKILL.md) | Spring Boot 2.7 → 3.5 → 4.x; Java → 21/25 | draft |
-| `migrate-struts` | skill | [skills/migrate-struts/SKILL.md](./skills/migrate-struts/SKILL.md) | Struts 2 → 6.12/7.4, or Struts → Spring MVC | draft |
-| `upgrade-dotnet` | skill | [skills/upgrade-dotnet/SKILL.md](./skills/upgrade-dotnet/SKILL.md) | net8.0/net9.0 → net10.0 | draft |
-| `migrate-dotnet-framework` | skill | [skills/migrate-dotnet-framework/SKILL.md](./skills/migrate-dotnet-framework/SKILL.md) | .NET Framework 4.x → .NET 10 | draft |
-| `migrate-xamarin` | skill | [skills/migrate-xamarin/SKILL.md](./skills/migrate-xamarin/SKILL.md) | Xamarin → .NET MAUI 10 | draft |
-| `migrate-cordova` | skill | [skills/migrate-cordova/SKILL.md](./skills/migrate-cordova/SKILL.md) | Cordova → Capacitor 8 | draft |
-| `upgrade-rails` | skill | [skills/upgrade-rails/SKILL.md](./skills/upgrade-rails/SKILL.md) | rails ≤ 8.0 → 8.1, one minor at a time | draft |
-| `migrate-ingress-nginx` | skill | [skills/migrate-ingress-nginx/SKILL.md](./skills/migrate-ingress-nginx/SKILL.md) | ingress-nginx → Gateway API | draft |
-| Presets (8) | preset | [presets/](./presets/) | per preset | draft |
-| Rule evals (25 P0 suites, with vs without the rule) | evals | [evals/](./evals/README.md) | promptfoo 0.124.1 | draft |
-| Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
-| Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |
-| `conventions/phaedra` | convention (optional) | [conventions/phaedra.md](./conventions/phaedra.md) | any | draft |
+Questions or project work: [hello@phaedrasolutions.com](mailto:hello@phaedrasolutions.com).
 
 ## Works with
 
-- **Cursor:** as project rules (`.mdc` files) or User Rules.
-- **Tools that read `AGENTS.md`:** OpenAI Codex, GitHub Copilot, Claude Code (through `CLAUDE.md`), Gemini CLI and others.
+- **Cursor:** project rules (`.cursor/rules/**/*.mdc`) and skills (`.cursor/skills/`). Use Cursor 3.1.2 or later.
+- **Tools that read `AGENTS.md`:** OpenAI Codex, GitHub Copilot, Gemini CLI and others, with skills in `.agents/skills/`.
+- **Claude Code:** `CLAUDE.md` imports `AGENTS.md`; skills go in `.claude/skills/`.
 
-## Install
+## Quick start
 
-### With the install script (new-format rules and skills)
-
-Requires Node.js 22 or later; the scripts have no dependencies.
+Requires Node.js 22 or later. The scripts have no dependencies.
 
 ```bash
-git clone https://github.com/Phaedra-Solutions/cursor-rules.git
+git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
 cd cursor-rules
 node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app --dry-run
 node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app
 ```
 
-- `--preset`: one of the files in [`presets/`](./presets/) (`next-supabase`, `nest-angular`, `rn-expo`, `react-vite`, `python-fastapi`, `laravel`, `ai-app`, `all-core`). Leave it out to install everything.
-- `--tool`: any of `cursor` (`.cursor/rules/*.mdc` and skills), `agents` (`AGENTS.md` and `.agents/skills/` for Codex, Copilot, Gemini CLI and others) and `claude` (`CLAUDE.md` importing `AGENTS.md`, plus `.claude/skills/`). The default is `cursor,agents`.
+- `--preset`: one of the presets below. Leave it out to install everything.
+- `--tool`: any of `cursor`, `agents` (`AGENTS.md` and `.agents/skills/`) and `claude` (`CLAUDE.md` and `.claude/skills/`). The default is `cursor,agents`.
 - `--dry-run` prints every planned copy without writing anything. Run it first.
-- The script never overwrites a file that differs unless you pass `--force`; if anything conflicts, it writes nothing. If your project already has a `CLAUDE.md`, add a line `@AGENTS.md` to it instead of overwriting it.
-- It records the installed version, preset and manifest hash in `.cursor/rules/.cursor-rules-version` (or `.agents/` or `.claude/` when Cursor isn't selected).
+- The script never overwrites a file that differs unless you pass `--force`; if anything conflicts, it writes nothing. If your project already has a `CLAUDE.md`, add the line `@AGENTS.md` to it instead.
+- It records the installed version, preset and manifest hash in `.cursor/rules/.cursor-rules-version` (or under `.agents/` or `.claude/`).
 
-Presets list rules that are still being written; the script warns about those and installs the rest. To see what a preset produces without installing it, run `node scripts/build.mjs --preset <name>` and look in `dist/`.
+Without cloning: download the archive for your tool from a [GitHub Release](https://github.com/Phaedra-Solutions/cursor-rules/releases), check it against `SHA256SUMS` (`sha256sum -c SHA256SUMS --ignore-missing`), and copy its contents into your project root. To see what a preset produces locally, run `node scripts/build.mjs --preset <name>` and look in `dist/`.
 
-### By hand (the original rule files)
+Pin a release tag and update deliberately; the [CHANGELOG](./CHANGELOG.md) lists what changed.
 
-Cursor only loads project rules that are `.mdc` files in `.cursor/rules/`. Plain `.md` files there are ignored.
+## Presets
 
-1. Clone this repo next to your project:
+A preset bundles the core rules, the stack rules and the skills for one kind of project. The core rules (`core/*`) are always on; stack rules load when you edit matching files.
 
-   ```bash
-   git clone https://github.com/Phaedra-Solutions/cursor-rules.git
-   ```
+<!-- presets:start (generated by node scripts/build.mjs --catalog; do not edit) -->
 
-2. Copy the files you need into your project and rename them to `.mdc`:
+| Preset | Stack | Rules | Skills |
+|---|---|---|---|
+| [`ai-app`](./presets/ai-app.yml) | LLM features, RAG, agents and MCP servers (TypeScript or Python). | 14 | 7 |
+| [`all-core`](./presets/all-core.yml) | Core rules and security skills only; works with any stack. | 5 | 7 |
+| [`laravel`](./presets/laravel.yml) | Laravel 13 on PHP 8.3+. | 9 | 9 |
+| [`nest-angular`](./presets/nest-angular.yml) | NestJS API with an Angular front end. | 17 | 9 |
+| [`next-supabase`](./presets/next-supabase.yml) | Next.js App Router with Supabase, TypeScript and Tailwind. | 15 | 9 |
+| [`python-fastapi`](./presets/python-fastapi.yml) | Python API with FastAPI, Pydantic v2 and SQLAlchemy 2. | 11 | 8 |
+| [`react-vite`](./presets/react-vite.yml) | React single-page app built with Vite. | 14 | 8 |
+| [`rn-expo`](./presets/rn-expo.yml) | React Native with Expo (New Architecture). | 12 | 8 |
 
-   ```bash
-   mkdir -p .cursor/rules
-   cp ../cursor-rules/next-rules.md .cursor/rules/next-rules.mdc
-   ```
+<!-- presets:end -->
 
-3. If a file has no frontmatter block, add one at the top so Cursor knows when to apply it:
+## Catalog
 
-   ```markdown
-   ---
-   description: Next.js App Router conventions
-   globs: app/**/*.tsx, app/**/*.ts
-   alwaysApply: false
-   ---
-   ```
+Generated from the rule and skill files. Each rule's **Applies to** is the version range it was written for; outside that range the agent follows `core/legacy-mode` or the matching `legacy/` rule.
 
-4. For rules that should apply everywhere, you can instead paste `global-rules.md` into your User Rules (**Customize → Rules** in Cursor).
+<!-- catalog:start (generated by node scripts/build.mjs --catalog; do not edit) -->
 
-For other tools, copy the content you need into an `AGENTS.md` file at your project root. For Claude Code, add a `CLAUDE.md` that contains `@AGENTS.md`.
+93 rules (24 of them for legacy versions), 32 skills and 1 optional convention overlay. "Evals" marks rules with a promptfoo suite in [evals/](./evals/README.md).
 
-## Keep Cursor updated
+### Core
 
-Cursor had several security fixes in 2026 for sandbox escapes and prompt injection (for example CVE-2026-26268, CVE-2026-48124, CVE-2026-50548, CVE-2026-50549 and CVE-2026-73217). Use **Cursor 3.1.2 or later** and install updates when they ship. See [Cursor's security advisories](https://github.com/cursor/cursor/security/advisories) and [ROADMAP.md §5.3](./ROADMAP.md#53-agent-safety-while-coding-coreagent-safety).
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`core/agent-safety`](./rules/core/agent-safety.md) | Agent safety | any | P0 | always on | yes |
+| [`core/behavior`](./rules/core/behavior.md) | Core behavior | any | P0 | always on | yes |
+| [`core/legacy-mode`](./rules/core/legacy-mode.md) | Legacy mode | any | P0 | active | yes |
+| [`core/security-baseline`](./rules/core/security-baseline.md) | Security baseline | any | P0 | always on | yes |
+| [`core/supply-chain`](./rules/core/supply-chain.md) | Supply chain | any | P0 | always on | yes |
 
-## Roadmap
+### Languages
 
-We're restructuring this repo into version-aware rules and skills for many stacks, with a security layer and support for more AI tools. See [ROADMAP.md](./ROADMAP.md).
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`languages/csharp`](./rules/languages/csharp.md) | C# | any | P2 | active |  |
+| [`languages/dart`](./rules/languages/dart.md) | Dart | any | P2 | active |  |
+| [`languages/go`](./rules/languages/go.md) | Go | go >=1.26 <1.28 | P2 | active |  |
+| [`languages/java`](./rules/languages/java.md) | Java | any | P2 | active |  |
+| [`languages/javascript-node`](./rules/languages/javascript-node.md) | JavaScript on Node.js | node >=22 <27 | P1 | active |  |
+| [`languages/kotlin`](./rules/languages/kotlin.md) | Kotlin | any | P2 | active |  |
+| [`languages/php`](./rules/languages/php.md) | PHP | php >=8.3 <9 | P1 | active |  |
+| [`languages/python`](./rules/languages/python.md) | Python | python >=3.11 <3.16 | P1 | active |  |
+| [`languages/shell`](./rules/languages/shell.md) | Shell scripts (POSIX sh and Bash) | any | P2 | active |  |
+| [`languages/swift`](./rules/languages/swift.md) | Swift | any | P2 | active |  |
+| [`languages/typescript`](./rules/languages/typescript.md) | TypeScript | typescript >=6.0 <8 | P0 | active | yes |
+
+### Frontend
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`frontend/angular`](./rules/frontend/angular.md) | Angular | @angular/core >=20.0 <23 | P0 | active | yes |
+| [`frontend/astro`](./rules/frontend/astro.md) | Astro 7 | astro >=7.0 <8 | P2 | active |  |
+| [`frontend/forms-validation`](./rules/frontend/forms-validation.md) | Forms and validation | any | P1 | active |  |
+| [`frontend/nextjs`](./rules/frontend/nextjs.md) | Next.js (App Router) | next >=16.0 <17 | P0 | active | yes |
+| [`frontend/nuxt`](./rules/frontend/nuxt.md) | Nuxt 4 | nuxt >=4.0 <5 | P1 | active |  |
+| [`frontend/react`](./rules/frontend/react.md) | React | react >=19.0 <20 | P0 | active | yes |
+| [`frontend/react-vite-spa`](./rules/frontend/react-vite-spa.md) | React single-page app with Vite | vite >=7.0 <9 | P0 | active | yes |
+| [`frontend/state-and-data`](./rules/frontend/state-and-data.md) | React state and server data | any | P2 | active |  |
+| [`frontend/svelte`](./rules/frontend/svelte.md) | Svelte 5 and SvelteKit 3 | svelte >=5.0 <6, @sveltejs/kit >=3.0 <4 | P2 | active |  |
+| [`frontend/tailwind`](./rules/frontend/tailwind.md) | Tailwind CSS 4 | tailwindcss >=4.0 <5 | P1 | active |  |
+| [`frontend/ui-shadcn-radix`](./rules/frontend/ui-shadcn-radix.md) | shadcn/ui and Radix UI | any | P2 | active |  |
+| [`frontend/vue`](./rules/frontend/vue.md) | Vue 3 | vue >=3.4 <4 | P1 | active |  |
+
+### Backend
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`backend/aspnet-core`](./rules/backend/aspnet-core.md) | ASP.NET Core | nuget:Microsoft.AspNetCore.App.Ref >=10.0 <11 | P2 | active |  |
+| [`backend/django`](./rules/backend/django.md) | Django | pypi:django >=5.2 <6.2 | P1 | active |  |
+| [`backend/express`](./rules/backend/express.md) | Express 5 | express >=5.0 <6 | P1 | active |  |
+| [`backend/fastapi`](./rules/backend/fastapi.md) | FastAPI | pypi:fastapi >=0.115 <1 | P1 | active |  |
+| [`backend/fastify-hono`](./rules/backend/fastify-hono.md) | Fastify and Hono | fastify >=5.0 <6, hono >=4.0 <5 | P2 | active |  |
+| [`backend/go-http`](./rules/backend/go-http.md) | Go HTTP services | go >=1.26 <1.28 | P2 | active |  |
+| [`backend/graphql`](./rules/backend/graphql.md) | GraphQL APIs | any | P2 | active |  |
+| [`backend/laravel`](./rules/backend/laravel.md) | Laravel | packagist:laravel/framework >=12.0 <14, php >=8.3 <9 | P1 | active |  |
+| [`backend/nestjs`](./rules/backend/nestjs.md) | NestJS | @nestjs/core >=12.0 <13 | P0 | active | yes |
+| [`backend/nestjs-data`](./rules/backend/nestjs-data.md) | NestJS data access (Sequelize, TypeORM, Prisma) | @nestjs/core >=12.0 <13 | P0 | active | yes |
+| [`backend/nestjs-microservices`](./rules/backend/nestjs-microservices.md) | NestJS microservices, real-time events and queues | @nestjs/microservices >=12.0 <13 | P0 | active | yes |
+| [`backend/spring-boot`](./rules/backend/spring-boot.md) | Spring Boot | maven:org.springframework.boot:spring-boot >=4.0 <5 | P2 | active |  |
+
+### Data
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`data/firebase`](./rules/data/firebase.md) | Firebase (Firestore, Storage, Auth, Functions) | firebase >=12.0 <14, firebase-admin >=13.0 <15 | P2 | active |  |
+| [`data/mongodb`](./rules/data/mongodb.md) | MongoDB and Mongoose | mongoose >=8.0 <10, mongodb >=6.0 <8 | P2 | active |  |
+| [`data/orm-drizzle`](./rules/data/orm-drizzle.md) | Drizzle ORM | drizzle-orm >=0.44 <2 | P2 | active |  |
+| [`data/orm-prisma`](./rules/data/orm-prisma.md) | Prisma ORM 7 | @prisma/client >=7.0 <8 | P1 | active |  |
+| [`data/orm-sequelize-typeorm`](./rules/data/orm-sequelize-typeorm.md) | Sequelize and TypeORM | sequelize >=6.0 <8, typeorm >=0.3 <2 | P2 | active |  |
+| [`data/postgres`](./rules/data/postgres.md) | PostgreSQL schema, migrations and queries | postgresql >=14 <19 | P1 | active |  |
+| [`data/sqlalchemy`](./rules/data/sqlalchemy.md) | SQLAlchemy 2 and Alembic | pypi:sqlalchemy >=2.0 <2.2 | P2 | active |  |
+| [`data/supabase`](./rules/data/supabase.md) | Supabase | supabase >=2.0 <3 | P0 | active | yes |
+
+### Mobile
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`mobile/android-compose`](./rules/mobile/android-compose.md) | Android with Jetpack Compose | any | P2 | active |  |
+| [`mobile/flutter`](./rules/mobile/flutter.md) | Flutter | any | P1 | active |  |
+| [`mobile/ios-swiftui`](./rules/mobile/ios-swiftui.md) | iOS with SwiftUI | any | P2 | active |  |
+| [`mobile/mobile-security`](./rules/mobile/mobile-security.md) | Mobile app security (MASVS) | any | P1 | active |  |
+| [`mobile/react-native-expo`](./rules/mobile/react-native-expo.md) | React Native + Expo | react-native >=0.82 <0.89, expo >=55.0 <59 | P0 | active | yes |
+
+### Testing
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`testing/cypress`](./rules/testing/cypress.md) | Cypress | cypress >=15.0 <17 | P0 | active | yes |
+| [`testing/playwright`](./rules/testing/playwright.md) | Playwright Test | @playwright/test >=1.50 <2 | P1 | active |  |
+| [`testing/unit-js`](./rules/testing/unit-js.md) | Unit and component tests (Vitest, Jest) | vitest >=4.0 <6, jest >=29 <31 | P1 | active |  |
+
+### DevOps and cloud
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`devops/cloud-aws`](./rules/devops/cloud-aws.md) | AWS infrastructure and SDK configuration | any | P2 | active |  |
+| [`devops/cloud-azure`](./rules/devops/cloud-azure.md) | Azure infrastructure and SDK configuration | any | P2 | active |  |
+| [`devops/cloud-gcp`](./rules/devops/cloud-gcp.md) | Google Cloud infrastructure and SDK configuration | any | P2 | active |  |
+| [`devops/docker`](./rules/devops/docker.md) | Docker images and Compose | any | P1 | active |  |
+| [`devops/github-actions`](./rules/devops/github-actions.md) | GitHub Actions | any | P0 | active | yes |
+| [`devops/kubernetes`](./rules/devops/kubernetes.md) | Kubernetes manifests and Helm charts | any | P2 | active |  |
+| [`devops/terraform-opentofu`](./rules/devops/terraform-opentofu.md) | Terraform and OpenTofu | any | P2 | active |  |
+| [`devops/vercel-netlify-cloudflare`](./rules/devops/vercel-netlify-cloudflare.md) | Vercel, Netlify and Cloudflare Workers deployments | any | P2 | active |  |
+
+### AI
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`ai/agents`](./rules/ai/agents.md) | AI agents and tool-using workflows | any | P1 | active |  |
+| [`ai/llm-apps`](./rules/ai/llm-apps.md) | LLM features in applications | any | P0 | active | yes |
+| [`ai/mcp-servers`](./rules/ai/mcp-servers.md) | Building MCP servers | any | P1 | active |  |
+| [`ai/rag`](./rules/ai/rag.md) | Retrieval-augmented generation (RAG) | any | P1 | active |  |
+
+### CMS and commerce
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`cms-commerce/wordpress`](./rules/cms-commerce/wordpress.md) | WordPress plugins and themes | wordpress >=6.8 <8, php >=8.2 <9 | P2 | active |  |
+
+### Legacy
+
+| Rule | Covers | Applies to | Tier | Status | Evals |
+|---|---|---|---|---|---|
+| [`legacy/angular-ngmodules`](./rules/legacy/angular-ngmodules.md) | Angular NgModule apps and Angular 19 or older | @angular/core >=2.0 <23 | P0 | legacy | yes |
+| [`legacy/angularjs`](./rules/legacy/angularjs.md) | AngularJS 1.x | angular >=1.0 <2 | P0 | legacy | yes |
+| [`legacy/cordova`](./rules/legacy/cordova.md) | Apache Cordova apps | cordova-android >=9.0 <16 | P2 | legacy |  |
+| [`legacy/django-legacy`](./rules/legacy/django-legacy.md) | Django 4.2 and older | pypi:django >=1.11 <5.2 | P1 | legacy |  |
+| [`legacy/dotnet-8-9`](./rules/legacy/dotnet-8-9.md) | .NET 8 and .NET 9 near end of support | nuget:Microsoft.NETCore.App.Ref >=3.0 <10 | P2 | legacy |  |
+| [`legacy/dotnet-framework`](./rules/legacy/dotnet-framework.md) | .NET Framework 4.x, Web Forms, WCF and ASMX | any | P2 | legacy |  |
+| [`legacy/express-4`](./rules/legacy/express-4.md) | Express 4 | express >=4.0 <5 | P1 | legacy |  |
+| [`legacy/flutter-legacy`](./rules/legacy/flutter-legacy.md) | Flutter 2 and pre-null-safety Dart | any | P1 | legacy |  |
+| [`legacy/ingress-nginx`](./rules/legacy/ingress-nginx.md) | ingress-nginx (retired) | any | P2 | legacy |  |
+| [`legacy/java-spring-boot-legacy`](./rules/legacy/java-spring-boot-legacy.md) | Java 8/11/17 and Spring Boot 2.x/3.x | maven:org.springframework.boot:spring-boot >=2.0 <4 | P2 | legacy |  |
+| [`legacy/jquery`](./rules/legacy/jquery.md) | jQuery 1-3 (and jQuery 4) | jquery >=1.0 <5 | P1 | legacy |  |
+| [`legacy/js-legacy-libraries`](./rules/legacy/js-legacy-libraries.md) | Maintenance-mode and deprecated JavaScript libraries | any | P2 | legacy |  |
+| [`legacy/nestjs-legacy`](./rules/legacy/nestjs-legacy.md) | NestJS 11 and older, and Bull queues | @nestjs/core >=8.0 <12 | P0 | legacy | yes |
+| [`legacy/nextjs-pages-router`](./rules/legacy/nextjs-pages-router.md) | Next.js Pages Router and Next.js 15 or older | next >=12.0 <17 | P0 | legacy | yes |
+| [`legacy/node-legacy`](./rules/legacy/node-legacy.md) | Node.js 20 and older, and non-LTS lines | node >=12 <22 | P1 | legacy |  |
+| [`legacy/php-legacy`](./rules/legacy/php-legacy.md) | PHP 8.2 and older, Laravel 11 and older, CodeIgniter 3 | php >=5.6 <8.3 | P1 | legacy |  |
+| [`legacy/python-legacy`](./rules/legacy/python-legacy.md) | Python 2.7 and end-of-life Python 3 | python >=2.7 <3.11 | P1 | legacy |  |
+| [`legacy/rails-legacy`](./rules/legacy/rails-legacy.md) | Rails 7.2 and older | any | P2 | legacy |  |
+| [`legacy/react-class-cra`](./rules/legacy/react-class-cra.md) | React class components, legacy Redux and Create React App | react-scripts >=1.0 <6 | P0 | legacy | yes |
+| [`legacy/react-native-old-arch`](./rules/legacy/react-native-old-arch.md) | React Native old architecture and bare React Native CLI apps | react-native <0.82 | P0 | legacy | yes |
+| [`legacy/struts`](./rules/legacy/struts.md) | Apache Struts 1 and 2 | maven:org.apache.struts:struts2-core >=2.0 <8 | P2 | legacy |  |
+| [`legacy/supabase-legacy`](./rules/legacy/supabase-legacy.md) | Supabase on legacy API keys and import maps | supabase >=1.0 <3 | P0 | legacy | yes |
+| [`legacy/vue2-nuxt2`](./rules/legacy/vue2-nuxt2.md) | Vue 2, Nuxt 2 and Nuxt 3 | vue >=2.0 <3 | P1 | legacy |  |
+| [`legacy/xamarin`](./rules/legacy/xamarin.md) | Xamarin and Xamarin.Forms | nuget:Xamarin.Forms >=1.0 <6 | P2 | legacy |  |
+
+### Skills
+
+| Skill | What it does |
+|---|---|
+| [`cve-check`](./skills/cve-check/SKILL.md) | Look up known vulnerabilities for a specific package@version in OSV, the GitHub Advisory Database and the vendor's security page, and report each advisory's ID, severity, affected and fixed versions and exploitation sta… |
+| [`dependency-vet`](./skills/dependency-vet/SKILL.md) | Vet a package before it is added to a project. |
+| [`git-commit`](./skills/git-commit/SKILL.md) | Write and make a git commit. |
+| [`incident-supply-chain`](./skills/incident-supply-chain/SKILL.md) | Respond to a suspected compromised dependency, GitHub Action or developer tool. |
+| [`migrate-angularjs`](./skills/migrate-angularjs/SKILL.md) | Plan and run a migration off AngularJS 1.x (EOL since 31 Dec 2021, unfixed CVEs) to Angular - choose between an incremental hybrid with ngUpgrade (@angular/upgrade), a per-route strangler rewrite, or a full rewrite; pre… |
+| [`migrate-class-to-hooks`](./skills/migrate-class-to-hooks/SKILL.md) | Convert React class components to function components with hooks one component at a time - characterization tests first, then map state to useState/useReducer, lifecycle methods to useEffect with correct dependencies an… |
+| [`migrate-cordova`](./skills/migrate-cordova/SKILL.md) | Migrate an Apache Cordova app to Capacitor 8 in place - inventory plugins and config.xml preferences, add Capacitor alongside the existing web layer (npx cap init, add android and ios), map each Cordova plugin to an off… |
+| [`migrate-cra-to-vite`](./skills/migrate-cra-to-vite/SKILL.md) | Move a Create React App (react-scripts) project to Vite - install Vite and @vitejs/plugin-react, move index.html to the project root with a module script, rename REACT_APP_ env variables to VITE_ and process.env to impo… |
+| [`migrate-dotnet-framework`](./skills/migrate-dotnet-framework/SKILL.md) | Migrate a .NET Framework 4.x application (ASP.NET Web Forms, MVC 5, Web API 2, WCF, ASMX, Windows services) to .NET 10 incrementally - assessment of projects, System.Web and WCF usage and package support, libraries to n… |
+| [`migrate-ingress-nginx`](./skills/migrate-ingress-nginx/SKILL.md) | Move a cluster off the retired community ingress-nginx controller to Gateway API - inventory Ingresses, classes and nginx.ingress.kubernetes.io annotations; choose and install a Gateway API implementation side by side;… |
+| [`migrate-struts`](./skills/migrate-struts/SKILL.md) | Move an application off Apache Struts - either upgrade Struts 2 to a supported line (2.5 → 6.12 → 7.4) or replace Struts 1/2 with Spring MVC on Spring Boot incrementally - with an inventory of actions, forms, validation… |
+| [`migrate-vue2`](./skills/migrate-vue2/SKILL.md) | Migrate a Vue 2 app to Vue 3 with the official @vue/compat migration build, step by step - move to Vue 2.7 and replace Vue 3-incompatible libraries first, switch the build to Vue 3 plus @vue/compat in MODE 2, fix compat… |
+| [`migrate-xamarin`](./skills/migrate-xamarin/SKILL.md) | Migrate a Xamarin.Forms, Xamarin.iOS or Xamarin.Android app to .NET MAUI 10 (or .NET for iOS/Android) - inventory packages, renderers and platform code; move shared code to SDK-style libraries; create a MAUI single proj… |
+| [`secrets-scan`](./skills/secrets-scan/SKILL.md) | Scan staged changes, the working tree or git history for leaked secrets with gitleaks, and guide the user through revoking and rotating anything found, then optionally removing it from history. |
+| [`security-audit`](./skills/security-audit/SKILL.md) | Audit a project's dependencies, code, secrets, containers and CI config for known vulnerabilities, triage findings by severity, reachability and active exploitation, and write security-report.md with the smallest safe f… |
+| [`threat-model-lite`](./skills/threat-model-lite/SKILL.md) | Run a 10-minute STRIDE pass on a new feature or significant change and produce a table of assets, entry points, abuse cases, required controls mapped to OWASP Top 10:2025, and tests to add. |
+| [`upgrade-angular`](./skills/upgrade-angular/SKILL.md) | Upgrade an Angular app one major version at a time with ng update and the official update guide, then optionally run the standalone, control-flow, inject() and signal migrations, adopt zoneless change detection and move… |
+| [`upgrade-django`](./skills/upgrade-django/SKILL.md) | Upgrade a Django project one feature release at a time (for example 4.2 → 5.0 → 5.1 → 5.2 LTS, then 6.x) with django-upgrade --target-version, deprecation warnings as errors, add-on (DRF, django-cors-headers, Celery) co… |
+| [`upgrade-dotnet`](./skills/upgrade-dotnet/SKILL.md) | Upgrade a .NET (Core) application or library from net8.0, net9.0 or older to net10.0 LTS - retarget the TFM and global.json, update platform packages (ASP.NET Core, EF Core, Microsoft.Extensions) to 10.x, check third-pa… |
+| [`upgrade-express`](./skills/upgrade-express/SKILL.md) | Upgrade an Express 4 app to Express 5 with the official codemods from the codemod.com registry (@expressjs/v5-migration-recipe), then fix what codemods can't - path-to-regexp v8 route syntax, the simple query parser and… |
+| [`upgrade-jquery`](./skills/upgrade-jquery/SKILL.md) | Upgrade jQuery 1.x/2.x/3.x to 3.7.1 and then 4.x with jQuery Migrate - find every loaded copy, upgrade plugins and jQuery UI, add the matching jQuery Migrate build in development to log deprecated and removed APIs, fix… |
+| [`upgrade-laravel`](./skills/upgrade-laravel/SKILL.md) | Upgrade a Laravel app one major version at a time (for example 10 → 11 → 12 → 13) following the official upgrade guide, with PHP minimums checked first, first-party and third-party package compatibility (Livewire, Filam… |
+| [`upgrade-nestjs`](./skills/upgrade-nestjs/SKILL.md) | Upgrade a NestJS app one major version at a time - manual 9 → 10 → 11 hops, then nest upgrade for 11 → 12 - keeping the module format, with ESM, Jest and path-alias checks, the Bull → BullMQ queue migration (new queues,… |
+| [`upgrade-nextjs`](./skills/upgrade-nextjs/SKILL.md) | Upgrade a Next.js app one major version at a time with the official codemods, keeping React on a matching major, then verify with build, tests and a smoke test. |
+| [`upgrade-node`](./skills/upgrade-node/SKILL.md) | Upgrade a project's Node.js version to a supported LTS (24 or 26) - pick the target, update .nvmrc, engines, package-manager and type versions, CI matrices, Dockerfiles and deploy runtimes together, rebuild native modul… |
+| [`upgrade-nuxt`](./skills/upgrade-nuxt/SKILL.md) | Upgrade a Nuxt 3 app to Nuxt 4 (Nuxt 3 reached EOL on 31 Jul 2026) with npx nuxt upgrade and the official codemod recipe (npx codemod@0.18.7 nuxt/4/migration-recipe), then fix what codemods don't - the app/ srcDir, shal… |
+| [`upgrade-php`](./skills/upgrade-php/SKILL.md) | Upgrade a project's PHP version one minor release at a time (for example 8.1 → 8.2 → 8.3 → 8.4) with Rector's PHP sets (withPhpSets), PHPStan at a fixed level with a baseline, Composer platform and dependency updates, d… |
+| [`upgrade-python`](./skills/upgrade-python/SKILL.md) | Upgrade a project's Python version one minor release at a time (for example 3.10 → 3.11 → 3.12 → 3.13) with pyupgrade, deprecation warnings treated as errors, dependency re-locking, C-extension checks and every pin (req… |
+| [`upgrade-rails`](./skills/upgrade-rails/SKILL.md) | Upgrade a Rails application one minor version at a time (for example 6.1 → 7.0 → 7.1 → 7.2 → 8.0 → 8.1) with dual boot through next_rails (Gemfile.next and the next command), bundle_report compatibility checks, deprecat… |
+| [`upgrade-react-native`](./skills/upgrade-react-native/SKILL.md) | Upgrade a React Native or Expo app one Expo SDK (or one React Native minor for bare apps) at a time, with npx expo install --fix, the Upgrade Helper diff, per-library New Architecture readiness checks, expo prebuild --c… |
+| [`upgrade-spring-boot`](./skills/upgrade-spring-boot/SKILL.md) | Upgrade a Spring Boot application one major step at a time (2.7 → 3.5 → 4.0 → 4.1) and its JDK (8/11/17 → 21 or 25) with OpenRewrite recipes run through the rewrite Maven or Gradle plugin (UpgradeToJava21, UpgradeSpring… |
+| [`upgrade-supabase`](./skills/upgrade-supabase/SKILL.md) | Move a Supabase project off the legacy anon and service_role keys to publishable and secret keys (create, swap per component, update env vars, pg_net and webhook headers, Edge Function code and verify_jwt, test, then de… |
+
+### Planned
+
+Referenced but not written yet; until they exist, the build skips them.
+
+| Rule | Referenced by |
+|---|---|
+| `testing/mobile-e2e` | preset `rn-expo` |
+| `testing/pytest` | preset `python-fastapi` |
+
+### Conventions
+
+| Overlay | Covers |
+|---|---|
+| [`conventions/phaedra`](./conventions/phaedra.md) | Phaedra house conventions |
+
+<!-- catalog:end -->
+
+Also in this repo:
+
+- [`evals/`](./evals/README.md): promptfoo suites that measure each P0 rule with and without the rule (run locally or by manual workflow; no paid model calls in pull-request CI).
+- [`templates/ci/`](./templates/ci/README.md): security workflows for your projects (GitHub Actions, GitLab CI, Dependabot).
+- [`templates/package-managers/`](./templates/package-managers/): release-age cooldown settings for npm, pnpm, Yarn, Bun and uv.
+- The original root files (`global-rules.md`, `next-rules.md`, `react-typescript-rules.md`, `react-native-rules.md`, `angular-rules.md`, `nestjs-rules.md`, `supabase-rules.md`, `cypress-testing-rules.md`) are now stubs pointing to their replacements; their old content is in git history before `v1.0.0`.
+
+## Security
+
+- **Always-on core rules:** `core/security-baseline` (OWASP Top 10:2025 with CWE Top 25 references), `core/supply-chain` (lockfiles, release-age cooldowns, install scripts, pinned CI actions), `core/agent-safety` (prompt injection, secrets, risky commands, MCP servers) and `core/behavior`.
+- **Per-stack security:** every rule has a Security section and a dated Known vulnerabilities list, with minimum safe versions; legacy rules add compensating controls for versions that no longer get fixes.
+- **Skills:** `security-audit`, `dependency-vet`, `cve-check`, `secrets-scan`, `threat-model-lite` and `incident-supply-chain`.
+- **For your projects:** the CI templates in [`templates/ci/`](./templates/ci/README.md) run OSV-Scanner, Semgrep, gitleaks and zizmor.
+- **For this repo:** pull-request lint checks frontmatter, size, hidden Unicode, links and Markdown; a daily job checks [`security/watchlist.yml`](./security/watchlist.yml) against OSV and CISA KEV; a weekly job checks every `applies_to` range for new releases and end-of-life dates.
+- **Reporting:** see [SECURITY.md](./SECURITY.md). Don't open public issues for vulnerabilities.
+
+## Keep your tools updated
+
+- **Cursor:** several 2026 fixes covered sandbox escapes and prompt injection (for example CVE-2026-26268, CVE-2026-48124, CVE-2026-50548, CVE-2026-50549 and CVE-2026-73217). Use **Cursor 3.1.2 or later** and install updates when they ship. See [Cursor's security advisories](https://github.com/cursor/cursor/security/advisories).
+- **Claude Code, Codex, Copilot and other agents:** keep them on current releases; `core/agent-safety` covers their configuration files and MCP servers.
+- **These rules:** version and advisory tables go stale. Update to the latest release at least monthly, and use the `cve-check` skill before relying on a table.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the rule and skill templates, sourcing rules and the review process. Before opening a pull request:
+
+```bash
+node scripts/lint-rules.mjs
+node --test scripts/*.test.mjs
+node scripts/build.mjs
+node scripts/build.mjs --catalog        # regenerates the catalog and preset tables in this README
+```
+
+The plan and its reasoning are in [ROADMAP.md](./ROADMAP.md); decisions are in [docs/decisions.md](./docs/decisions.md).
 
 ## License
 
