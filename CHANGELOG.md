@@ -98,6 +98,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/legacy/php-legacy.md`: PHP ≤ 8.2, Laravel ≤ 11 and CodeIgniter 3 with EOL status, advisories unfixed on Laravel 10/11, Livewire RCEs, compensating controls and the migration path.
 - `skills/upgrade-php`: one minor at a time with Rector `withPhpSets`, PHPStan with a baseline, deprecations as failures and pin updates.
 - `skills/upgrade-laravel`: one major at a time following the official guide, package compatibility, optional rector-laravel sets and Laravel Shift.
+- `rules/frontend/vue.md`: Vue 3.5 with `<script setup>`, typed props, emits and `defineModel`, composables, Pinia, Vapor Mode only after 3.6 is stable, and template security; vue-i18n advisories.
+- `rules/frontend/nuxt.md`: Nuxt 4 `app/` layout, keyed shallow data fetching, public-only runtime config, validated and authorized server routes, middleware as UX only, nuxt-security, payload caching and devtools cautions; 2026 Nuxt, devtools, Nitro and h3 advisories with minimum safe 4.6.2.
+- `rules/frontend/tailwind.md`: Tailwind 4 CSS-first config with `@theme`, automatic content detection, the Vite and PostCSS plugins, complete class strings and v3 → v4 upgrade notes.
+- `rules/frontend/forms-validation.md`: one Standard Schema per form shared with the server, mandatory server re-validation, React Hook Form + Zod for new code and Formik + Yup where it exists, Vue and Angular notes, and accessible error messages.
+- `rules/legacy/vue2-nuxt2.md`: Vue 2, Nuxt 2 and Nuxt 3 EOL status, unfixed advisories, compensating controls and migration paths.
+- `skills/migrate-vue2`: Vue 2 → 3 through Vue 2.7 and the `@vue/compat` migration build, flag by flag.
+- `skills/upgrade-nuxt`: Nuxt 3 → 4 with `npx nuxt upgrade` and `npx codemod@0.18.7 nuxt/4/migration-recipe`, plus the manual breaking changes.
 
 ### Changed
 
@@ -141,5 +148,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `express`, `path-to-regexp`, `body-parser`, `qs`, `multer` and `express-rate-limit`.
 - `security/watchlist.yml`: add `djangorestframework`, `starlette`, `python-multipart` and `pyjwt`; add Django 6.1 and the 2026 Django CVEs, and point the Django entry at `legacy/django-legacy`.
 - `security/watchlist.yml`: add `laravel/framework`, `filament/filament` and `guzzlehttp/guzzle`.
+- `security/watchlist.yml`: add `nuxt`, `@nuxt/devtools`, `nitropack`, `h3`, `vue-i18n` and `zod`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.

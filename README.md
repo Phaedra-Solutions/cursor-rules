@@ -56,6 +56,11 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `legacy/nextjs-pages-router` | rule (legacy) | [rules/legacy/nextjs-pages-router.md](./rules/legacy/nextjs-pages-router.md) | next 12–15; Pages Router on any version | legacy |
 | `frontend/angular` | rule | [rules/frontend/angular.md](./rules/frontend/angular.md) | @angular/core 20–22 | draft |
 | `legacy/angular-ngmodules` | rule (legacy) | [rules/legacy/angular-ngmodules.md](./rules/legacy/angular-ngmodules.md) | @angular/core 2–19; NgModule apps on any version | legacy |
+| `frontend/vue` | rule | [rules/frontend/vue.md](./rules/frontend/vue.md) | vue 3.4–3.5 | draft |
+| `frontend/nuxt` | rule | [rules/frontend/nuxt.md](./rules/frontend/nuxt.md) | nuxt 4 | draft |
+| `legacy/vue2-nuxt2` | rule (legacy) | [rules/legacy/vue2-nuxt2.md](./rules/legacy/vue2-nuxt2.md) | vue 2, nuxt 2 and 3 | legacy |
+| `frontend/tailwind` | rule | [rules/frontend/tailwind.md](./rules/frontend/tailwind.md) | tailwindcss 4 | draft |
+| `frontend/forms-validation` | rule | [rules/frontend/forms-validation.md](./rules/frontend/forms-validation.md) | any (RHF + Zod, Formik + Yup, Signal Forms) | draft |
 | `mobile/react-native-expo` | rule | [rules/mobile/react-native-expo.md](./rules/mobile/react-native-expo.md) | react-native 0.82–0.88, expo SDK 55–58 | draft |
 | `legacy/react-native-old-arch` | rule (legacy) | [rules/legacy/react-native-old-arch.md](./rules/legacy/react-native-old-arch.md) | react-native < 0.82; bare RN CLI apps | legacy |
 | `backend/nestjs` | rule | [rules/backend/nestjs.md](./rules/backend/nestjs.md) | @nestjs/core 12 | draft |
@@ -98,6 +103,8 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `upgrade-django` | skill | [skills/upgrade-django/SKILL.md](./skills/upgrade-django/SKILL.md) | django ≤ 5.1 → 5.2 LTS / 6.x | draft |
 | `upgrade-php` | skill | [skills/upgrade-php/SKILL.md](./skills/upgrade-php/SKILL.md) | php ≤ 8.3 → 8.4/8.5 | draft |
 | `upgrade-laravel` | skill | [skills/upgrade-laravel/SKILL.md](./skills/upgrade-laravel/SKILL.md) | laravel ≤ 12 → 13 | draft |
+| `migrate-vue2` | skill | [skills/migrate-vue2/SKILL.md](./skills/migrate-vue2/SKILL.md) | vue 2 → 3 via @vue/compat | draft |
+| `upgrade-nuxt` | skill | [skills/upgrade-nuxt/SKILL.md](./skills/upgrade-nuxt/SKILL.md) | nuxt 3 → 4 | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |
