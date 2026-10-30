@@ -89,6 +89,12 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `data/supabase` | rule | [rules/data/supabase.md](./rules/data/supabase.md) | Supabase CLI 2.x, publishable/secret keys | draft |
 | `data/postgres` | rule | [rules/data/postgres.md](./rules/data/postgres.md) | PostgreSQL 14–18 | draft |
 | `data/orm-prisma` | rule | [rules/data/orm-prisma.md](./rules/data/orm-prisma.md) | @prisma/client 7 | draft |
+| `data/orm-drizzle` | rule | [rules/data/orm-drizzle.md](./rules/data/orm-drizzle.md) | drizzle-orm 0.45, 1.0 RC | draft |
+| `data/orm-sequelize-typeorm` | rule | [rules/data/orm-sequelize-typeorm.md](./rules/data/orm-sequelize-typeorm.md) | Sequelize 6, TypeORM 1.x / 0.3 | draft |
+| `data/sqlalchemy` | rule | [rules/data/sqlalchemy.md](./rules/data/sqlalchemy.md) | SQLAlchemy 2.0–2.1, Alembic | draft |
+| `data/mongodb` | rule | [rules/data/mongodb.md](./rules/data/mongodb.md) | MongoDB 7–9, Mongoose 8–9, PyMongo 4 | draft |
+| `data/firebase` | rule | [rules/data/firebase.md](./rules/data/firebase.md) | Firestore/Storage rules, Admin SDK 13–14 | draft |
+| `cms-commerce/wordpress` | rule | [rules/cms-commerce/wordpress.md](./rules/cms-commerce/wordpress.md) | WordPress 7.1 plugins and themes | draft |
 | `legacy/supabase-legacy` | rule (legacy) | [rules/legacy/supabase-legacy.md](./rules/legacy/supabase-legacy.md) | legacy anon/service_role keys, import maps | legacy |
 | `testing/cypress` | rule | [rules/testing/cypress.md](./rules/testing/cypress.md) | cypress 15–16 | draft |
 | `testing/playwright` | rule | [rules/testing/playwright.md](./rules/testing/playwright.md) | @playwright/test 1.50+ | draft |

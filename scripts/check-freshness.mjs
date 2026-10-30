@@ -21,6 +21,7 @@ export const RUNTIMES = {
   bun: 'bun',
   postgresql: 'postgresql',
   postgres: 'postgresql',
+  wordpress: 'wordpress',
 }
 
 const PREFIXES = ['npm', 'pypi', 'maven', 'nuget', 'packagist', 'runtime']

@@ -2,9 +2,9 @@
 # safe_versions: the lowest version we document as safe, one per supported line.
 # known: advisory IDs (CVE or GHSA) we already cite; anything else that OSV
 # reports for a safe version is new and gets reported.
-# Verified against OSV and GHSA on 2026-10-29.
+# Verified against OSV and GHSA on 2026-10-30.
 
-updated: 2026-10-29
+updated: 2026-10-30
 packages:
   - ecosystem: npm
     name: react-server-dom-webpack
@@ -132,13 +132,37 @@ packages:
     name: sequelize
     safe_versions: ["6.37.8"]
     known: [CVE-2026-30951, CVE-2026-69240, CVE-2023-25813, CVE-2023-22578, CVE-2023-22579, CVE-2023-22580]
-    rules: [backend/nestjs-data]
+    rules: [backend/nestjs-data, data/orm-sequelize-typeorm]
 
   - ecosystem: npm
     name: typeorm
     safe_versions: ["1.1.0", "0.3.31"]
     known: [CVE-2026-73651, GHSA-9ggv-8w38-r7pm, CVE-2025-60542, CVE-2022-33171]
-    rules: [backend/nestjs-data]
+    rules: [backend/nestjs-data, data/orm-sequelize-typeorm]
+
+  - ecosystem: npm
+    name: mongoose
+    safe_versions: ["9.7.2", "8.24.1", "7.8.10", "6.13.10"]
+    known: [CVE-2026-73562, CVE-2026-42334, CVE-2025-23061, CVE-2024-53900]
+    rules: [data/mongodb]
+
+  - ecosystem: npm
+    name: drizzle-orm
+    safe_versions: ["0.45.2", "1.0.0-beta.20"]
+    known: [CVE-2026-39356]
+    rules: [data/orm-drizzle]
+
+  - ecosystem: npm
+    name: firebase
+    safe_versions: ["10.9.0"]
+    known: [CVE-2024-11023]
+    rules: [data/firebase]
+
+  - ecosystem: PyPI
+    name: pymongo
+    safe_versions: ["4.18.3"]
+    known: [CVE-2026-106435, CVE-2026-96748, CVE-2026-96749, CVE-2026-96747, CVE-2026-88029, CVE-2024-5629]
+    rules: [data/mongodb]
 
   - ecosystem: npm
     name: "@react-native-community/cli"

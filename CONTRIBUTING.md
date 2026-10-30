@@ -155,7 +155,7 @@ The weekly freshness check reads each rule's `applies_to` and compares it with t
 | `maven:` | `"maven:org.springframework.boot:spring-boot >=4.0 <5"` |
 | `nuget:` | `"nuget:Microsoft.AspNetCore.App.Ref >=10.0 <11"` |
 | `packagist:` | `"packagist:laravel/framework >=13.0 <14"` |
-| runtime (endoflife.date) | `"node >=24 <27"`, `"python >=3.12 <3.15"`, `"php >=8.3 <9"`, `"postgresql >=14 <19"` |
+| runtime (endoflife.date) | `"node >=24 <27"`, `"python >=3.12 <3.15"`, `"php >=8.3 <9"`, `"postgresql >=14 <19"`, `"wordpress >=6.8 <8"` |
 
 Separate several clauses with commas (`"packagist:laravel/framework >=13.0 <14, php >=8.3 <9"`). Use `"any"` for rules that don't depend on a version. Rules under `legacy/` are only checked for review age.
 
