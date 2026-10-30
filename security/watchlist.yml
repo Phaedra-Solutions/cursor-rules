@@ -409,20 +409,27 @@ packages:
     name: "org.springframework.boot:spring-boot"
     safe_versions: ["4.0.6", "4.1.0"]
     known: [CVE-2026-40976, CVE-2026-40973]
-    rules: [backend/spring-boot]
+    rules: [backend/spring-boot, legacy/java-spring-boot-legacy]
     note: "3.x OSS support ended 30 Jun 2026; 4.0 OSS ends 31 Dec 2026."
 
   - ecosystem: Maven
     name: "org.springframework.security:spring-security-web"
     safe_versions: ["7.0.6"]
     known: [CVE-2026-41706, CVE-2026-22747, CVE-2026-47838, CVE-2026-22732]
-    rules: [backend/spring-boot]
+    rules: [backend/spring-boot, legacy/java-spring-boot-legacy]
 
   - ecosystem: Maven
     name: "org.springframework:spring-webmvc"
     safe_versions: ["7.0.9"]
     known: [CVE-2026-47890, CVE-2026-41853, CVE-2026-41843, CVE-2026-41844, CVE-2026-41845, CVE-2026-41846, CVE-2026-41841, CVE-2026-41842, CVE-2026-22745, CVE-2026-22741, CVE-2026-22737, CVE-2026-22735, CVE-2026-47884]
-    rules: [backend/spring-boot]
+    rules: [backend/spring-boot, legacy/java-spring-boot-legacy]
+
+  - ecosystem: Maven
+    name: "org.apache.struts:struts2-core"
+    safe_versions: ["7.4.0", "6.12.0"]
+    known: [CVE-2026-104711, CVE-2026-104712, CVE-2026-104713, CVE-2026-104714, CVE-2026-73631, CVE-2026-73632, CVE-2026-73633, CVE-2026-73634, CVE-2026-73635, CVE-2025-68493, CVE-2025-66675, CVE-2025-64775, CVE-2024-53677, CVE-2023-50164]
+    rules: [legacy/struts]
+    note: "2.5 EOL 30 Oct 2023; Struts 1 EOL 5 Apr 2013 with no fixed versions."
 
   - ecosystem: Maven
     name: "org.springframework.boot:spring-boot-devtools"
@@ -441,7 +448,7 @@ packages:
     name: Microsoft.AspNetCore.App.Runtime.linux-x64
     safe_versions: ["10.0.13", "9.0.21", "8.0.32"]
     known: [CVE-2026-88092, CVE-2026-70183, CVE-2026-70188, CVE-2026-70175, CVE-2026-70196, CVE-2026-70186, CVE-2026-96236, CVE-2026-70181, CVE-2026-56170, CVE-2026-45591, CVE-2026-26130, CVE-2026-42899, CVE-2025-55315]
-    rules: [backend/aspnet-core, languages/csharp]
+    rules: [backend/aspnet-core, languages/csharp, legacy/dotnet-8-9]
     note: ".NET 8 and 9 end support on 10 Nov 2026."
 
   - ecosystem: Packagist

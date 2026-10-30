@@ -34,3 +34,4 @@ Each prompt appends a line here when it finishes.
 - [x] 30 P2 frontend and native mobile: Svelte, Astro, state, shadcn, SwiftUI, Compose (2026-10-30)
 - [x] 31 P2 DevOps and cloud: Kubernetes, Terraform/OpenTofu, AWS/GCP/Azure, Vercel/Netlify/Cloudflare (2026-10-30)
 - [x] 32 P2 data and CMS: Firebase, MongoDB, Drizzle, Sequelize/TypeORM, SQLAlchemy, WordPress (2026-10-30)
+- [x] 33 Legacy pack 2a: Java/Spring Boot, Struts, .NET 8/9, .NET Framework (2026-10-30)

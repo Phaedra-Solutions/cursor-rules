@@ -119,6 +119,10 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `backend/laravel` | rule | [rules/backend/laravel.md](./rules/backend/laravel.md) | laravel 12–13 on PHP 8.3+ | draft |
 | `backend/spring-boot` | rule | [rules/backend/spring-boot.md](./rules/backend/spring-boot.md) | Spring Boot 4.0–4.1 | draft |
 | `backend/aspnet-core` | rule | [rules/backend/aspnet-core.md](./rules/backend/aspnet-core.md) | .NET 10 LTS | draft |
+| `legacy/java-spring-boot-legacy` | rule (legacy) | [rules/legacy/java-spring-boot-legacy.md](./rules/legacy/java-spring-boot-legacy.md) | Spring Boot 2.x–3.x; Java 8/11/17 | legacy |
+| `legacy/struts` | rule (legacy) | [rules/legacy/struts.md](./rules/legacy/struts.md) | Struts 1; Struts 2.x–7.x | legacy |
+| `legacy/dotnet-8-9` | rule (legacy) | [rules/legacy/dotnet-8-9.md](./rules/legacy/dotnet-8-9.md) | net8.0, net9.0 and older .NET (Core) | legacy |
+| `legacy/dotnet-framework` | rule (legacy) | [rules/legacy/dotnet-framework.md](./rules/legacy/dotnet-framework.md) | .NET Framework 4.x, Web Forms, WCF, ASMX | legacy |
 | `backend/go-http` | rule | [rules/backend/go-http.md](./rules/backend/go-http.md) | Go 1.26–1.27 net/http | draft |
 | `backend/graphql` | rule | [rules/backend/graphql.md](./rules/backend/graphql.md) | Apollo Server 5, GraphQL Yoga 6 | draft |
 | `backend/fastify-hono` | rule | [rules/backend/fastify-hono.md](./rules/backend/fastify-hono.md) | fastify 5, hono 4 | draft |
@@ -146,6 +150,10 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `migrate-cra-to-vite` | skill | [skills/migrate-cra-to-vite/SKILL.md](./skills/migrate-cra-to-vite/SKILL.md) | react-scripts → Vite | draft |
 | `migrate-class-to-hooks` | skill | [skills/migrate-class-to-hooks/SKILL.md](./skills/migrate-class-to-hooks/SKILL.md) | React class components → hooks | draft |
 | `upgrade-jquery` | skill | [skills/upgrade-jquery/SKILL.md](./skills/upgrade-jquery/SKILL.md) | jquery 1–3 → 3.7.1 / 4.x | draft |
+| `upgrade-spring-boot` | skill | [skills/upgrade-spring-boot/SKILL.md](./skills/upgrade-spring-boot/SKILL.md) | Spring Boot 2.7 → 3.5 → 4.x; Java → 21/25 | draft |
+| `migrate-struts` | skill | [skills/migrate-struts/SKILL.md](./skills/migrate-struts/SKILL.md) | Struts 2 → 6.12/7.4, or Struts → Spring MVC | draft |
+| `upgrade-dotnet` | skill | [skills/upgrade-dotnet/SKILL.md](./skills/upgrade-dotnet/SKILL.md) | net8.0/net9.0 → net10.0 | draft |
+| `migrate-dotnet-framework` | skill | [skills/migrate-dotnet-framework/SKILL.md](./skills/migrate-dotnet-framework/SKILL.md) | .NET Framework 4.x → .NET 10 | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Rule evals (25 P0 suites, with vs without the rule) | evals | [evals/](./evals/README.md) | promptfoo 0.124.1 | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
