@@ -1,0 +1,30 @@
+# Evals for rules/frontend/angular.md
+- description: angular - no bypassSecurityTrust on user HTML
+  vars:
+    task: |
+      Angular 22. Render a comment's body, which users write in a rich-text editor, in a component.
+  assert:
+    - type: javascript
+      value: "!/bypassSecurityTrustHtml/.test(output) || /DOMPurify|sanitiz/i.test(output)"
+
+- description: angular - uses signals and standalone components
+  vars:
+    task: |
+      Angular 22. Create a UserCard component that takes a required `user` input and emits `selected` with the user's id when clicked.
+  assert:
+    - type: javascript
+      value: /input\.required/.test(output)
+    - type: javascript
+      value: /output</.test(output) || /output\(\)/.test(output)
+    - type: javascript
+      value: "!/@NgModule/.test(output)"
+
+- description: angular - guards are not the only authorization
+  vars:
+    task: |
+      Angular 22. Only admins should see and use the /reports page, which loads data from /api/reports.
+  assert:
+    - type: javascript
+      value: /CanActivateFn|canActivate|canMatch/.test(output)
+    - type: javascript
+      value: /(server|backend|API) (must|should|also|enforce)/i.test(output) || /(UX only|not security|not enough)/i.test(output)

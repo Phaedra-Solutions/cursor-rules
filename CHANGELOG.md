@@ -113,9 +113,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/legacy/react-class-cra.md`: class components, legacy Redux and CRA with its 14 Feb 2025 deprecation, React 19 removals, safe maintenance and the migration path.
 - `rules/legacy/jquery.md`: XSS-safe jQuery APIs, `$.ajax` CSRF and `dataType` rules, CVEs by version, jQuery UI advisories, and jQuery 4.0 (17 Jan 2026) upgrade notes.
 - Skills: `migrate-angularjs` (ngUpgrade hybrid, strangler or rewrite), `migrate-cra-to-vite` (env prefix, `index.html`, SVGs, proxy, tests), `migrate-class-to-hooks` (lifecycle to effects with characterization tests), `upgrade-jquery` (3.7.1 then 4.x with jQuery Migrate).
+- `evals/`: promptfoo suites for all 25 P0 rules (76 tests, deterministic JavaScript assertions), with-rule and without-rule prompt functions, an example `promptfooconfig.yaml` and a README with targets (≥ 90% with the rule, measurable uplift).
+- `scripts/run-evals.mjs`: zero-dependency wrapper that injects each rule's text, runs a pinned promptfoo (0.124.1) through `npx`, and writes per-rule pass rates with and without the rule; `--dry-run` and `--validate` make no model calls. Tests in `scripts/run-evals.test.mjs`.
+- `.github/workflows/evals.yml`: manual-only (`workflow_dispatch`) eval run with provider keys from an `evals` environment, read-only permissions, SHA-pinned actions and the summary uploaded as an artifact.
 
 ### Changed
 
+- The lint workflow also runs `scripts/run-evals.test.mjs`; `CONTRIBUTING.md` links the eval guide.
 - `conventions/phaedra.md`: add a Flutter section (Riverpod for new apps, Bloc kept where it exists, go_router, freezed, test keys).
 - `scripts/check-freshness.mjs` no longer reports EOL non-LTS releases (such as Node 25) inside a range when the runtime has LTS lines; new test in `scripts/automation.test.mjs`.
 - `scripts/check-freshness.mjs` maps `postgresql`/`postgres` in `applies_to` to endoflife.date; `CONTRIBUTING.md` shows the example.

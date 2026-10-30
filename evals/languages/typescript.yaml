@@ -1,0 +1,28 @@
+# Evals for rules/languages/typescript.md
+- description: typescript - validates external data at the boundary
+  vars:
+    task: |
+      TypeScript. Write a function that fetches GET /api/user and returns it typed as `User` ({ id: string; email: string }).
+  assert:
+    - type: javascript
+      value: /(z\.object|safeParse|parse\(|valibot|v\.object|schema)/.test(output)
+    - type: javascript
+      value: "!/as User\\b/.test(output) || /schema|parse/.test(output)"
+
+- description: typescript - avoids any
+  vars:
+    task: |
+      TypeScript. Write a generic function `groupBy(items, key)` that groups an array of objects by one of their keys.
+  assert:
+    - type: javascript
+      value: /<\s*T/.test(output)
+    - type: javascript
+      value: "!/:\\s*any\\b/.test(output)"
+
+- description: typescript - exhaustive handling of a union
+  vars:
+    task: |
+      TypeScript. type Shape = { kind: 'circle'; r: number } | { kind: 'square'; side: number }. Write area(shape).
+  assert:
+    - type: javascript
+      value: /(never|satisfies never|assertNever|exhaustive)/.test(output)

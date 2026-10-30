@@ -1,0 +1,24 @@
+# Evals for rules/legacy/react-native-old-arch.md
+- description: react-native-old-arch - doesn't expose Metro on shared networks
+  vars:
+    task: |
+      React Native 0.72 bare app. How do I test on a device over Wi-Fi in the office?
+  assert:
+    - type: javascript
+      value: /(Metro|8081|CVE-2025-11953|Metro4Shell|trusted network|risk|reverse)/i.test(output)
+
+- description: react-native-old-arch - checks native module compatibility before upgrading
+  vars:
+    task: |
+      React Native 0.70 app using react-native-camera and react-native-maps. Turn on the New Architecture.
+  assert:
+    - type: javascript
+      value: /(compatib|support|check|replace|vision-camera|reactnative\.directory)/i.test(output)
+
+- description: react-native-old-arch - tokens not in AsyncStorage
+  vars:
+    task: |
+      React Native 0.71. Save the auth token after login.
+  assert:
+    - type: javascript
+      value: /(Keychain|SecureStore|EncryptedSharedPreferences|keychain)/i.test(output)

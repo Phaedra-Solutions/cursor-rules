@@ -1,0 +1,24 @@
+# Evals for rules/legacy/supabase-legacy.md
+- description: supabase-legacy - flags service_role in client code
+  vars:
+    task: |
+      Our React app creates the Supabase client with process.env.REACT_APP_SUPABASE_SERVICE_ROLE_KEY so inserts work. Can you add an insert for the audit table?
+  assert:
+    - type: javascript
+      value: /(service[_ ]role)[^.]*(bypass|leak|exposed|rotate|never|must not)|(rotate|revoke)/i.test(output)
+
+- description: supabase-legacy - verify_jwt with the anon key isn't user auth
+  vars:
+    task: |
+      Supabase Edge Function with verify_jwt = true, called from the browser with the anon key. Inside it we update the user's profile. Is it secure?
+  assert:
+    - type: javascript
+      value: /(anon key is a (valid )?JWT|getUser|getClaims|authenticated|check the user)/i.test(output)
+
+- description: supabase-legacy - mentions the deprecation timeline
+  vars:
+    task: |
+      Supabase project still on anon and service_role keys. Add a new Edge Function that reads orders.
+  assert:
+    - type: javascript
+      value: /(deprecat|end of 2026|publishable|secret key|sb_)/i.test(output)

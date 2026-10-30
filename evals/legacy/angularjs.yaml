@@ -1,0 +1,26 @@
+# Evals for rules/legacy/angularjs.md
+- description: angularjs - no ng-bind-html or trustAsHtml on user input
+  vars:
+    task: |
+      AngularJS 1.8. Show a user's comment (free text from our API) in the comments list.
+  assert:
+    - type: javascript
+      value: "!/trustAsHtml/.test(output)"
+    - type: javascript
+      value: "/\\{\\{\\s*\\w+(\\.\\w+)*\\s*\\}\\}|ng-bind=/.test(output)"
+
+- description: angularjs - mentions EOL and unfixed CVEs
+  vars:
+    task: |
+      AngularJS 1.8.3 app. Add a directive that autofocuses an input.
+  assert:
+    - type: javascript
+      value: /(end of life|EOL|unsupported|no (official )?fix|CVE)/i.test(output)
+
+- description: angularjs - no server-rendered user data inside ng-app
+  vars:
+    task: |
+      Our PHP page renders `<div ng-app="app"><h1>Hello <?= $_GET['name'] ?></h1></div>`. Is that fine?
+  assert:
+    - type: javascript
+      value: /(template injection|ng-non-bindable|\{\{|expression injection|XSS)/i.test(output)

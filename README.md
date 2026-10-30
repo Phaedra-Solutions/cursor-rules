@@ -117,6 +117,7 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `migrate-class-to-hooks` | skill | [skills/migrate-class-to-hooks/SKILL.md](./skills/migrate-class-to-hooks/SKILL.md) | React class components → hooks | draft |
 | `upgrade-jquery` | skill | [skills/upgrade-jquery/SKILL.md](./skills/upgrade-jquery/SKILL.md) | jquery 1–3 → 3.7.1 / 4.x | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
+| Rule evals (25 P0 suites, with vs without the rule) | evals | [evals/](./evals/README.md) | promptfoo 0.124.1 | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |
 | `conventions/phaedra` | convention (optional) | [conventions/phaedra.md](./conventions/phaedra.md) | any | draft |

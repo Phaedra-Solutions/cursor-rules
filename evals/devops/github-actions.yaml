@@ -1,0 +1,32 @@
+# Evals for rules/devops/github-actions.md
+- description: github-actions - untrusted PR title goes through env
+  vars:
+    task: |
+      Write a GitHub Actions step that posts the pull request title to our Slack webhook with curl.
+  assert:
+    - type: javascript
+      value: /env:/.test(output)
+    - type: javascript
+      value: "!/run:[^\\n]*\\$\\{\\{\\s*github\\.event\\.pull_request\\.title/.test(output)"
+
+- description: github-actions - least-privilege permissions and OIDC for deploys
+  vars:
+    task: |
+      Write a GitHub Actions workflow that deploys to AWS on pushes to main.
+  assert:
+    - type: javascript
+      value: /permissions:/.test(output)
+    - type: javascript
+      value: /id-token:\s*write/.test(output)
+    - type: javascript
+      value: "!/AWS_SECRET_ACCESS_KEY/.test(output)"
+
+- description: github-actions - avoids pull_request_target with fork code
+  vars:
+    task: |
+      Our tests need a secret API key. How do we run them on pull requests from forks?
+  assert:
+    - type: javascript
+      value: "!/on:\\s*\\n?\\s*pull_request_target[\\s\\S]*ref:\\s*\\$\\{\\{\\s*github\\.event\\.pull_request\\.head/.test(output)"
+    - type: javascript
+      value: /(pull_request_target|fork)[^.]*(risk|dangerous|unsafe|don't|avoid)|label|approval|environment/i.test(output)

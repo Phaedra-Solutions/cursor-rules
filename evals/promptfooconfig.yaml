@@ -1,0 +1,23 @@
+# Example config for one suite. scripts/run-evals.mjs generates the same shape for every suite
+# under evals/<category>/ and injects the rule text, so prefer running through it:
+#   node scripts/run-evals.mjs --rule frontend/nextjs
+# Provider keys come from the environment (ANTHROPIC_API_KEY, OPENAI_API_KEY, ...); never commit them.
+# Override providers with EVAL_PROVIDERS (comma-separated promptfoo provider IDs).
+description: frontend/nextjs uplift (with vs without the rule)
+prompts:
+  - id: file://prompts.cjs:withRule
+    label: with-rule
+  - id: file://prompts.cjs:withoutRule
+    label: without-rule
+providers:
+  - id: anthropic:messages:claude-opus-5
+    config:
+      max_tokens: 4096
+defaultTest:
+  vars:
+    rule_text: file://../rules/frontend/nextjs.md
+tests:
+  - file://frontend/nextjs.yaml
+evaluateOptions:
+  maxConcurrency: 4
+sharing: false

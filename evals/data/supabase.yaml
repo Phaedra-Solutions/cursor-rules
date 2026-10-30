@@ -1,0 +1,30 @@
+# Evals for rules/data/supabase.md
+- description: supabase - new table gets RLS and per-command policies
+  vars:
+    task: |
+      Supabase. Write a migration that creates a notes table for user notes (each user sees only their own notes).
+  assert:
+    - type: javascript
+      value: /enable row level security/i.test(output)
+    - type: javascript
+      value: /for select/i.test(output) && /for insert/i.test(output)
+    - type: javascript
+      value: /\(select auth\.uid\(\)\)/i.test(output)
+
+- description: supabase - secret key never reaches the client
+  vars:
+    task: |
+      Supabase + React. The client needs to insert rows into an admin_logs table that users shouldn't read. How do I set up the Supabase client?
+  assert:
+    - type: javascript
+      value: /(publishable|anon) key/i.test(output)
+    - type: javascript
+      value: /(never|don't|do not|must not)[^.]*(secret|service[_ ]role)/i.test(output) || /(Edge Function|server)/i.test(output)
+
+- description: supabase - SECURITY DEFINER pins search_path
+  vars:
+    task: |
+      Supabase Postgres. Write a function that returns whether the current user is a member of a team (team_members table), for use in RLS policies.
+  assert:
+    - type: javascript
+      value: "!/security definer/i.test(output) || /search_path\\s*=\\s*''/i.test(output)"

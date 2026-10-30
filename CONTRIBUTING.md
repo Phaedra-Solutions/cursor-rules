@@ -57,7 +57,7 @@ The plan and its reasoning live in [`ROADMAP.md`](./ROADMAP.md). Approved decisi
    - `## Before you finish`: the exact commands to run (lint, typecheck, test, the audit command for the ecosystem).
 4. **Size:** 500 lines maximum, 80–250 target.
 5. **Don't repeat core rules.** Link them instead ("see `core/security-baseline`"). Put only stack-specific security in a stack rule.
-6. Add an eval in `evals/<category>/<name>.yaml` when the rule changes agent behavior you can test.
+6. Add an eval in `evals/<category>/<name>.yaml` when the rule changes agent behavior you can test (see [evals/README.md](./evals/README.md); `node scripts/run-evals.mjs --dry-run` checks the structure without model calls).
 7. Add a row to the `## Catalog` table in `README.md` with status `draft`, and a bullet under `## [Unreleased]` in `CHANGELOG.md`.
 
 ## Add a skill

@@ -1,0 +1,39 @@
+# Evals for rules/testing/cypress.md
+- description: cypress - intercept is registered before the click
+  vars:
+    task: |
+      Cypress 16. Test that clicking [data-testid="order-submit-button"] sends POST /api/orders and shows a success message.
+  assert:
+    - type: javascript
+      value: output.indexOf('cy.intercept') > -1 && output.indexOf('cy.intercept') < output.indexOf('.click(')
+    - type: javascript
+      value: /cy\.wait\(['"]@/.test(output)
+
+- description: cypress - no fixed waits
+  vars:
+    task: |
+      Cypress 16. The dashboard loads data slowly. Write a test that checks the "Revenue" card shows a number.
+  assert:
+    - type: javascript
+      value: "!/cy\\.wait\\(\\s*\\d+/.test(output)"
+
+- description: cypress - logs in with cy.session
+  vars:
+    task: |
+      Cypress 16. Many specs need a logged-in user. Add a reusable login command (POST /api/auth/login).
+  assert:
+    - type: javascript
+      value: /cy\.session\(/.test(output)
+    - type: javascript
+      value: /cy\.request\(/.test(output)
+
+- description: cypress - uses test IDs and checks they exist
+  vars:
+    task: |
+      Cypress 16. Write a test that fills the signup form (email, password) and submits it. Here is the component:
+      `<form><input name="email" /><input name="password" type="password" /><button>Sign up</button></form>`
+  assert:
+    - type: javascript
+      value: /data-testid/.test(output)
+    - type: javascript
+      value: /(add|missing|doesn't have|no test ?ids?|ask)/i.test(output)

@@ -1,0 +1,30 @@
+# Evals for rules/backend/nestjs-microservices.md
+- description: nestjs-microservices - BullMQ processor rethrows on failure
+  vars:
+    task: |
+      NestJS 12 with @nestjs/bullmq. Write a processor for the "email" queue that sends a welcome email with emailService.sendWelcome(userId), with retries.
+  assert:
+    - type: javascript
+      value: /extends WorkerHost/.test(output)
+    - type: javascript
+      value: /attempts:\s*\d/.test(output)
+    - type: javascript
+      value: "!/catch\\s*\\([^)]*\\)\\s*\\{[^}]*return\\s*\\{\\s*success:\\s*false/s.test(output)"
+
+- description: nestjs-microservices - TCP transport isn't left in plaintext across hosts
+  vars:
+    task: |
+      NestJS 12. Connect the API service to a billing microservice running on another server over the TCP transport.
+  assert:
+    - type: javascript
+      value: /(tlsOptions|TLS|mTLS|private network|plaintext)/i.test(output)
+
+- description: nestjs-microservices - ClientProxy calls have a timeout
+  vars:
+    task: |
+      NestJS 12. Call the "orders.create" message pattern on the orders microservice from a service method and return the result.
+  assert:
+    - type: javascript
+      value: /timeout\(/.test(output)
+    - type: javascript
+      value: /firstValueFrom|lastValueFrom/.test(output)

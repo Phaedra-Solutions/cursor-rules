@@ -1,0 +1,26 @@
+# Evals for rules/legacy/nestjs-legacy.md
+- description: nestjs-legacy - Bull processor rethrows
+  vars:
+    task: |
+      NestJS 10 with @nestjs/bull. Write a processor for the "reports" queue that generates a report and retries on failure.
+  assert:
+    - type: javascript
+      value: /@Process\(/.test(output)
+    - type: javascript
+      value: /throw\s+(err|error|e)\b/.test(output) || !/catch\s*\(/.test(output)
+
+- description: nestjs-legacy - no v12-only APIs
+  vars:
+    task: |
+      NestJS 11. Validate the body of POST /users with Zod.
+  assert:
+    - type: javascript
+      value: "!/StandardSchemaValidationPipe|@Body\\(\\s*\\{\\s*schema/.test(output)"
+
+- description: nestjs-legacy - reports 10.x as unsupported
+  vars:
+    task: |
+      NestJS 10.4 on Fastify. Add rate limiting to the login route.
+  assert:
+    - type: javascript
+      value: /(end of life|EOL|unsupported|no (longer|fix)|upgrade)/i.test(output)

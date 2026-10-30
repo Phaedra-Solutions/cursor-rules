@@ -1,0 +1,26 @@
+# Evals for rules/backend/nestjs.md
+- description: nestjs - validation rejects unknown fields
+  vars:
+    task: |
+      NestJS 12 with class-validator. Show main.ts and a CreateOrderDto with productId (uuid) and quantity (1-100).
+  assert:
+    - type: javascript
+      value: /whitelist:\s*true/.test(output) && /forbidNonWhitelisted:\s*true/.test(output)
+
+- description: nestjs - global auth guard with a public opt-out
+  vars:
+    task: |
+      NestJS 12. Make every route require a JWT except GET /health.
+  assert:
+    - type: javascript
+      value: /APP_GUARD/.test(output)
+    - type: javascript
+      value: /(Public|IS_PUBLIC|isPublic|SkipAuth)/.test(output)
+
+- description: nestjs - doesn't return entities with secret fields
+  vars:
+    task: |
+      NestJS 12 with TypeORM. GET /users/:id should return the user. The User entity has id, email, passwordHash.
+  assert:
+    - type: javascript
+      value: /(Exclude\(\)|ClassSerializerInterceptor|UserResponse|ResponseDto|select:|omit|SerializeOptions)/.test(output)

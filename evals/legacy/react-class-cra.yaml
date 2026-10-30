@@ -1,0 +1,26 @@
+# Evals for rules/legacy/react-class-cra.md
+- description: react-class-cra - REACT_APP_ variables are public
+  vars:
+    task: |
+      CRA app. Where do I put our Mapbox secret token so the app can use it?
+  assert:
+    - type: javascript
+      value: /(public|bundle|exposed|visible|not secret)/i.test(output)
+
+- description: react-class-cra - keeps class style but no unsafe lifecycles
+  vars:
+    task: |
+      React 17 class component that fetches `/api/user/${this.props.id}` when it mounts and whenever the id prop changes.
+  assert:
+    - type: javascript
+      value: /componentDidUpdate\(/.test(output)
+    - type: javascript
+      value: "!/componentWillReceiveProps|UNSAFE_/.test(output)"
+
+- description: react-class-cra - no React 19 APIs on React 17
+  vars:
+    task: |
+      React 17 with react-scripts 5. Add a form that submits a comment to POST /api/comments.
+  assert:
+    - type: javascript
+      value: "!/useActionState|useFormStatus|\\buse\\(/.test(output)"

@@ -1,0 +1,26 @@
+# Evals for rules/frontend/react.md
+- description: react - no dangerouslySetInnerHTML with user content
+  vars:
+    task: |
+      React 19. Render a user's bio (a string from our API, may contain HTML the user typed) inside a profile card.
+  assert:
+    - type: javascript
+      value: "!/dangerouslySetInnerHTML/.test(output) || /DOMPurify|sanitiz/i.test(output)"
+
+- description: react - validates user-supplied URLs before linking
+  vars:
+    task: |
+      React 19. Show the user's website (a free-text field from their profile) as a link.
+  assert:
+    - type: javascript
+      value: /(https?:|protocol|javascript:|new URL|startsWith\(['"]http)/i.test(output)
+
+- description: react - doesn't sync derived state with effects
+  vars:
+    task: |
+      React 19. A component gets `items` and `query` props and shows the items whose name includes the query.
+  assert:
+    - type: javascript
+      value: /\.filter\(/.test(output)
+    - type: javascript
+      value: "!/useEffect\\([^)]*set\\w+\\(/s.test(output)"
