@@ -123,6 +123,11 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `legacy/struts` | rule (legacy) | [rules/legacy/struts.md](./rules/legacy/struts.md) | Struts 1; Struts 2.x–7.x | legacy |
 | `legacy/dotnet-8-9` | rule (legacy) | [rules/legacy/dotnet-8-9.md](./rules/legacy/dotnet-8-9.md) | net8.0, net9.0 and older .NET (Core) | legacy |
 | `legacy/dotnet-framework` | rule (legacy) | [rules/legacy/dotnet-framework.md](./rules/legacy/dotnet-framework.md) | .NET Framework 4.x, Web Forms, WCF, ASMX | legacy |
+| `legacy/xamarin` | rule (legacy) | [rules/legacy/xamarin.md](./rules/legacy/xamarin.md) | Xamarin.Forms, Xamarin.iOS/Android (EOL May 2024) | legacy |
+| `legacy/cordova` | rule (legacy) | [rules/legacy/cordova.md](./rules/legacy/cordova.md) | cordova-android ≤ 15, cordova-ios, plugins | legacy |
+| `legacy/rails-legacy` | rule (legacy) | [rules/legacy/rails-legacy.md](./rules/legacy/rails-legacy.md) | rails ≤ 7.2 | legacy |
+| `legacy/ingress-nginx` | rule (legacy) | [rules/legacy/ingress-nginx.md](./rules/legacy/ingress-nginx.md) | community ingress-nginx (retired Mar 2026) | legacy |
+| `legacy/js-legacy-libraries` | rule (legacy) | [rules/legacy/js-legacy-libraries.md](./rules/legacy/js-legacy-libraries.md) | Bull, Moment.js, request, node-sass, TSLint and similar | legacy |
 | `backend/go-http` | rule | [rules/backend/go-http.md](./rules/backend/go-http.md) | Go 1.26–1.27 net/http | draft |
 | `backend/graphql` | rule | [rules/backend/graphql.md](./rules/backend/graphql.md) | Apollo Server 5, GraphQL Yoga 6 | draft |
 | `backend/fastify-hono` | rule | [rules/backend/fastify-hono.md](./rules/backend/fastify-hono.md) | fastify 5, hono 4 | draft |
@@ -154,6 +159,10 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `migrate-struts` | skill | [skills/migrate-struts/SKILL.md](./skills/migrate-struts/SKILL.md) | Struts 2 → 6.12/7.4, or Struts → Spring MVC | draft |
 | `upgrade-dotnet` | skill | [skills/upgrade-dotnet/SKILL.md](./skills/upgrade-dotnet/SKILL.md) | net8.0/net9.0 → net10.0 | draft |
 | `migrate-dotnet-framework` | skill | [skills/migrate-dotnet-framework/SKILL.md](./skills/migrate-dotnet-framework/SKILL.md) | .NET Framework 4.x → .NET 10 | draft |
+| `migrate-xamarin` | skill | [skills/migrate-xamarin/SKILL.md](./skills/migrate-xamarin/SKILL.md) | Xamarin → .NET MAUI 10 | draft |
+| `migrate-cordova` | skill | [skills/migrate-cordova/SKILL.md](./skills/migrate-cordova/SKILL.md) | Cordova → Capacitor 8 | draft |
+| `upgrade-rails` | skill | [skills/upgrade-rails/SKILL.md](./skills/upgrade-rails/SKILL.md) | rails ≤ 8.0 → 8.1, one minor at a time | draft |
+| `migrate-ingress-nginx` | skill | [skills/migrate-ingress-nginx/SKILL.md](./skills/migrate-ingress-nginx/SKILL.md) | ingress-nginx → Gateway API | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Rule evals (25 P0 suites, with vs without the rule) | evals | [evals/](./evals/README.md) | promptfoo 0.124.1 | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
