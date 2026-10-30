@@ -56,6 +56,9 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `legacy/nextjs-pages-router` | rule (legacy) | [rules/legacy/nextjs-pages-router.md](./rules/legacy/nextjs-pages-router.md) | next 12–15; Pages Router on any version | legacy |
 | `frontend/angular` | rule | [rules/frontend/angular.md](./rules/frontend/angular.md) | @angular/core 20–22 | draft |
 | `legacy/angular-ngmodules` | rule (legacy) | [rules/legacy/angular-ngmodules.md](./rules/legacy/angular-ngmodules.md) | @angular/core 2–19; NgModule apps on any version | legacy |
+| `legacy/angularjs` | rule (legacy) | [rules/legacy/angularjs.md](./rules/legacy/angularjs.md) | angular 1.x (EOL Dec 2021) | legacy |
+| `legacy/react-class-cra` | rule (legacy) | [rules/legacy/react-class-cra.md](./rules/legacy/react-class-cra.md) | react-scripts, class components, legacy Redux | legacy |
+| `legacy/jquery` | rule (legacy) | [rules/legacy/jquery.md](./rules/legacy/jquery.md) | jquery 1–4 | legacy |
 | `frontend/vue` | rule | [rules/frontend/vue.md](./rules/frontend/vue.md) | vue 3.4–3.5 | draft |
 | `frontend/nuxt` | rule | [rules/frontend/nuxt.md](./rules/frontend/nuxt.md) | nuxt 4 | draft |
 | `legacy/vue2-nuxt2` | rule (legacy) | [rules/legacy/vue2-nuxt2.md](./rules/legacy/vue2-nuxt2.md) | vue 2, nuxt 2 and 3 | legacy |
@@ -109,6 +112,10 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `upgrade-laravel` | skill | [skills/upgrade-laravel/SKILL.md](./skills/upgrade-laravel/SKILL.md) | laravel ≤ 12 → 13 | draft |
 | `migrate-vue2` | skill | [skills/migrate-vue2/SKILL.md](./skills/migrate-vue2/SKILL.md) | vue 2 → 3 via @vue/compat | draft |
 | `upgrade-nuxt` | skill | [skills/upgrade-nuxt/SKILL.md](./skills/upgrade-nuxt/SKILL.md) | nuxt 3 → 4 | draft |
+| `migrate-angularjs` | skill | [skills/migrate-angularjs/SKILL.md](./skills/migrate-angularjs/SKILL.md) | angular 1.x → Angular 22 | draft |
+| `migrate-cra-to-vite` | skill | [skills/migrate-cra-to-vite/SKILL.md](./skills/migrate-cra-to-vite/SKILL.md) | react-scripts → Vite | draft |
+| `migrate-class-to-hooks` | skill | [skills/migrate-class-to-hooks/SKILL.md](./skills/migrate-class-to-hooks/SKILL.md) | React class components → hooks | draft |
+| `upgrade-jquery` | skill | [skills/upgrade-jquery/SKILL.md](./skills/upgrade-jquery/SKILL.md) | jquery 1–3 → 3.7.1 / 4.x | draft |
 | Presets (8) | preset | [presets/](./presets/) | per preset | draft |
 | Security CI (GitHub, GitLab, Dependabot) | template | [templates/ci/](./templates/ci/README.md) | any | draft |
 | Package-manager cooldown settings | template | [templates/package-managers/](./templates/package-managers/) | npm, pnpm, Yarn, Bun, uv | draft |

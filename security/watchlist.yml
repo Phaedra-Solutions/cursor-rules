@@ -247,6 +247,18 @@ packages:
     rules: [frontend/forms-validation]
 
   - ecosystem: npm
+    name: jquery
+    safe_versions: ["3.7.1", "4.0.0"]
+    known: [CVE-2020-11022, CVE-2020-11023, CVE-2019-11358, CVE-2015-9251, CVE-2012-6708, CVE-2020-7656, CVE-2011-4969, CVE-2016-10707]
+    rules: [legacy/jquery]
+
+  - ecosystem: npm
+    name: jquery-ui
+    safe_versions: ["1.13.2"]
+    known: [CVE-2022-31160, CVE-2021-41182, CVE-2021-41183, CVE-2021-41184, CVE-2016-7103, CVE-2012-6662, CVE-2010-5312]
+    rules: [legacy/jquery]
+
+  - ecosystem: npm
     name: vite
     safe_versions: ["8.3.3", "7.3.7", "6.4.4"]
     known: [CVE-2025-30208, CVE-2026-39363, CVE-2026-39364, CVE-2026-39365, CVE-2026-53571, CVE-2026-53632, CVE-2026-112942, CVE-2026-112943, CVE-2026-112944, CVE-2026-112945, CVE-2026-112946]

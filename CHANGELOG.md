@@ -109,6 +109,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/legacy/flutter-legacy.md`: Flutter 2 and pre-null-safety Dart, with `dart migrate` available only up to Dart 2.19.6 (Flutter 3.7) and the path to Dart 3.
 - `rules/mobile/mobile-security.md`: controls by MASVS 2.1 category with MASWE 1.0 IDs and MASTG v2 test IDs, platform specifics and realistic resilience expectations.
 - `rules/data/orm-prisma.md`: Prisma 7 generator, driver adapters, `prisma.config.ts`, aligned CLI and client versions, migrations, raw-query safety, transactions, extensions and pooling.
+- `rules/legacy/angularjs.md`: AngularJS 1.x with `$sce`, no `ng-bind-html`/`trustAs*` on untrusted input, no template injection, `ng-csp`, XSRF, the unfixed CVEs (CVE-2026-11998 and others) with compensating controls, and hybrid, strangler or rewrite migration options.
+- `rules/legacy/react-class-cra.md`: class components, legacy Redux and CRA with its 14 Feb 2025 deprecation, React 19 removals, safe maintenance and the migration path.
+- `rules/legacy/jquery.md`: XSS-safe jQuery APIs, `$.ajax` CSRF and `dataType` rules, CVEs by version, jQuery UI advisories, and jQuery 4.0 (17 Jan 2026) upgrade notes.
+- Skills: `migrate-angularjs` (ngUpgrade hybrid, strangler or rewrite), `migrate-cra-to-vite` (env prefix, `index.html`, SVGs, proxy, tests), `migrate-class-to-hooks` (lifecycle to effects with characterization tests), `upgrade-jquery` (3.7.1 then 4.x with jQuery Migrate).
 
 ### Changed
 
@@ -154,5 +158,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `djangorestframework`, `starlette`, `python-multipart` and `pyjwt`; add Django 6.1 and the 2026 Django CVEs, and point the Django entry at `legacy/django-legacy`.
 - `security/watchlist.yml`: add `laravel/framework`, `filament/filament` and `guzzlehttp/guzzle`.
 - `security/watchlist.yml`: add `nuxt`, `@nuxt/devtools`, `nitropack`, `h3`, `vue-i18n` and `zod`.
+- `security/watchlist.yml`: add `jquery` and `jquery-ui`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
