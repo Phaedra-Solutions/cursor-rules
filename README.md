@@ -99,6 +99,12 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `ai/mcp-servers` | rule | [rules/ai/mcp-servers.md](./rules/ai/mcp-servers.md) | MCP spec 2026-07-28; TypeScript, Python and FastMCP SDKs | draft |
 | `devops/github-actions` | rule | [rules/devops/github-actions.md](./rules/devops/github-actions.md) | GitHub Actions | draft |
 | `devops/docker` | rule | [rules/devops/docker.md](./rules/devops/docker.md) | Dockerfile, Compose; Engine 29 | draft |
+| `devops/kubernetes` | rule | [rules/devops/kubernetes.md](./rules/devops/kubernetes.md) | Kubernetes 1.35–1.37, Helm, Kustomize | draft |
+| `devops/terraform-opentofu` | rule | [rules/devops/terraform-opentofu.md](./rules/devops/terraform-opentofu.md) | Terraform 1.16–1.17, OpenTofu 1.12–1.13 | draft |
+| `devops/cloud-aws` | rule | [rules/devops/cloud-aws.md](./rules/devops/cloud-aws.md) | AWS IaC and SDKs | draft |
+| `devops/cloud-gcp` | rule | [rules/devops/cloud-gcp.md](./rules/devops/cloud-gcp.md) | Google Cloud IaC and SDKs | draft |
+| `devops/cloud-azure` | rule | [rules/devops/cloud-azure.md](./rules/devops/cloud-azure.md) | Azure Bicep, ARM, azd, SDKs | draft |
+| `devops/vercel-netlify-cloudflare` | rule | [rules/devops/vercel-netlify-cloudflare.md](./rules/devops/vercel-netlify-cloudflare.md) | Vercel, Netlify, Cloudflare Workers | draft |
 | `backend/express` | rule | [rules/backend/express.md](./rules/backend/express.md) | express 5 | draft |
 | `legacy/express-4` | rule (legacy) | [rules/legacy/express-4.md](./rules/legacy/express-4.md) | express 4 | legacy |
 | `backend/fastapi` | rule | [rules/backend/fastapi.md](./rules/backend/fastapi.md) | fastapi 0.115+, pydantic 2, starlette 1 | draft |
