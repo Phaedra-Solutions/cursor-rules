@@ -305,9 +305,28 @@ packages:
   - ecosystem: Packagist
     name: livewire/livewire
     safe_versions: ["3.8.3", "4.4.8"]
-    known: [CVE-2025-54068, CVE-2026-81887, GHSA-mhf7-xp6r-6qrc]
-    rules: [backend/laravel]
+    known: [CVE-2025-54068, CVE-2026-81887, GHSA-mhf7-xp6r-6qrc, CVE-2024-47823]
+    rules: [backend/laravel, legacy/php-legacy]
     note: "CVE-2025-54068 is in CISA KEV."
+
+  - ecosystem: Packagist
+    name: laravel/framework
+    safe_versions: ["13.30.0", "12.69.0"]
+    known: [CVE-2026-114509, CVE-2026-114508, CVE-2026-102279, GHSA-crmm-hgp2-wgrp, CVE-2026-48019, CVE-2025-27515, CVE-2024-52301, CVE-2024-13918, CVE-2024-13919]
+    rules: [backend/laravel, legacy/php-legacy]
+    note: "OSV lists the 2026 advisories as unfixed on 10.x and 11.x."
+
+  - ecosystem: Packagist
+    name: filament/filament
+    safe_versions: ["5.8.3", "4.13.3"]
+    known: [CVE-2026-104181, CVE-2026-77567, CVE-2026-84306, CVE-2026-84307, CVE-2026-48500, CVE-2026-48166, CVE-2026-48505, CVE-2025-67507]
+    rules: [backend/laravel]
+
+  - ecosystem: Packagist
+    name: guzzlehttp/guzzle
+    safe_versions: ["7.15.2", "8.0.1"]
+    known: [CVE-2026-67339, CVE-2026-55767, CVE-2026-67353, CVE-2026-69245, CVE-2026-59883, CVE-2026-67354, CVE-2026-69246, CVE-2026-67355, CVE-2026-55568]
+    rules: [languages/php]
 
   - ecosystem: PyPI
     name: langchain-core

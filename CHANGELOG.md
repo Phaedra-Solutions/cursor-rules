@@ -93,6 +93,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/legacy/python-legacy.md` and `rules/legacy/django-legacy.md`: EOL status, version limits, advisories left unfixed after EOL, compensating controls and migration paths.
 - `skills/upgrade-python`: one minor version at a time with pyupgrade, warnings as errors, re-locking and pin updates.
 - `skills/upgrade-django`: one feature release at a time with `django-upgrade --target-version`, add-on compatibility, migration checks and `check --deploy`.
+- `rules/languages/php.md`: PHP 8.3–8.5 with minimum safe 8.5.11/8.4.26/8.3.35, `strict_types`, PER coding style, PHPStan or Psalm taint analysis, `composer audit`, PDO prepared statements, `password_hash`, no `unserialize`/`eval` on input, context escaping, uploads, sessions and TLS.
+- `rules/backend/laravel.md`: Laravel 12 and 13 with Form Requests, Policies on every action, `$fillable`, bound raw queries, Blade escaping, CSRF (`PreventRequestForgery` on 13), Sanctum, rate limiting, signed URLs and queues; Laravel, Livewire and Filament advisories.
+- `rules/legacy/php-legacy.md`: PHP ≤ 8.2, Laravel ≤ 11 and CodeIgniter 3 with EOL status, advisories unfixed on Laravel 10/11, Livewire RCEs, compensating controls and the migration path.
+- `skills/upgrade-php`: one minor at a time with Rector `withPhpSets`, PHPStan with a baseline, deprecations as failures and pin updates.
+- `skills/upgrade-laravel`: one major at a time following the official guide, package compatibility, optional rector-laravel sets and Laravel Shift.
 
 ### Changed
 
@@ -135,5 +140,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add containerd v2 and BuildKit.
 - `security/watchlist.yml`: add `express`, `path-to-regexp`, `body-parser`, `qs`, `multer` and `express-rate-limit`.
 - `security/watchlist.yml`: add `djangorestframework`, `starlette`, `python-multipart` and `pyjwt`; add Django 6.1 and the 2026 Django CVEs, and point the Django entry at `legacy/django-legacy`.
+- `security/watchlist.yml`: add `laravel/framework`, `filament/filament` and `guzzlehttp/guzzle`.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
