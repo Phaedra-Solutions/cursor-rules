@@ -49,6 +49,13 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `languages/python` | rule | [rules/languages/python.md](./rules/languages/python.md) | python 3.11–3.15 | draft |
 | `legacy/python-legacy` | rule (legacy) | [rules/legacy/python-legacy.md](./rules/legacy/python-legacy.md) | python 2.7, 3.10 and older | legacy |
 | `languages/php` | rule | [rules/languages/php.md](./rules/languages/php.md) | php 8.3–8.5 | draft |
+| `languages/java` | rule | [rules/languages/java.md](./rules/languages/java.md) | Java 21/25 LTS | draft |
+| `languages/kotlin` | rule | [rules/languages/kotlin.md](./rules/languages/kotlin.md) | Kotlin 2.4 | draft |
+| `languages/csharp` | rule | [rules/languages/csharp.md](./rules/languages/csharp.md) | .NET 10 LTS (C# 14) | draft |
+| `languages/go` | rule | [rules/languages/go.md](./rules/languages/go.md) | Go 1.26–1.27 | draft |
+| `languages/dart` | rule | [rules/languages/dart.md](./rules/languages/dart.md) | Dart 3 | draft |
+| `languages/swift` | rule | [rules/languages/swift.md](./rules/languages/swift.md) | Swift 6 | draft |
+| `languages/shell` | rule | [rules/languages/shell.md](./rules/languages/shell.md) | POSIX sh, Bash | draft |
 | `legacy/php-legacy` | rule (legacy) | [rules/legacy/php-legacy.md](./rules/legacy/php-legacy.md) | php ≤ 8.2, laravel ≤ 11, CodeIgniter 3 | legacy |
 | `frontend/react` | rule | [rules/frontend/react.md](./rules/frontend/react.md) | react 19 | draft |
 | `frontend/react-vite-spa` | rule | [rules/frontend/react-vite-spa.md](./rules/frontend/react-vite-spa.md) | vite 7–8 | draft |

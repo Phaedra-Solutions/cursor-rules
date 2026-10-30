@@ -29,3 +29,4 @@ Each prompt appends a line here when it finishes.
 - [x] 25 Flutter, mobile security, Prisma (2026-10-30)
 - [x] 26 Legacy pack 1: AngularJS, CRA/class components, jQuery (2026-10-30)
 - [x] 27 Evals harness and suites for P0 rules (2026-10-30)
+- [x] 28 P2 languages: Java, Kotlin, C#, Go, Dart, Swift, shell (2026-10-30)

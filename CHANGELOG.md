@@ -116,6 +116,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `evals/`: promptfoo suites for all 25 P0 rules (76 tests, deterministic JavaScript assertions), with-rule and without-rule prompt functions, an example `promptfooconfig.yaml` and a README with targets (≥ 90% with the rule, measurable uplift).
 - `scripts/run-evals.mjs`: zero-dependency wrapper that injects each rule's text, runs a pinned promptfoo (0.124.1) through `npx`, and writes per-rule pass rates with and without the rule; `--dry-run` and `--validate` make no model calls. Tests in `scripts/run-evals.test.mjs`.
 - `.github/workflows/evals.yml`: manual-only (`workflow_dispatch`) eval run with provider keys from an `evals` environment, read-only permissions, SHA-pinned actions and the summary uploaded as an artifact.
+- P2 language rules: `languages/java` (21/25 LTS, deserialization, XXE, SpotBugs/FindSecBugs), `languages/kotlin` (null safety, structured concurrency, kotlinx.serialization, detekt), `languages/csharp` (.NET 10, nullable, async, no BinaryFormatter, NuGet audit; .NET 8/9 end 10 Nov 2026), `languages/go` (1.26–1.27, errors, context, `os.Root`, `unsafe`/cgo, govulncheck), `languages/dart` (Dart 3 patterns, isolates, lints), `languages/swift` (Swift 6 strict concurrency, Keychain, SwiftLint), `languages/shell` (`set -euo pipefail`, quoting, no `eval`, `mktemp`, no curl-pipe-shell, ShellCheck).
 
 ### Changed
 
