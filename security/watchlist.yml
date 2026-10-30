@@ -259,6 +259,31 @@ packages:
     rules: [legacy/jquery]
 
   - ecosystem: npm
+    name: fastify
+    safe_versions: ["5.12.6"]
+    known: [CVE-2026-107832, CVE-2026-76169, CVE-2026-84504, CVE-2026-84428, CVE-2026-84469, CVE-2026-92081, CVE-2026-16732, CVE-2026-18504, CVE-2026-33806, CVE-2026-3635, CVE-2026-3419, CVE-2026-25223, CVE-2026-25224]
+    rules: [backend/fastify-hono]
+
+  - ecosystem: npm
+    name: hono
+    safe_versions: ["4.13.11"]
+    known: [CVE-2026-109955, CVE-2026-71850, CVE-2026-93981, CVE-2026-84364, CVE-2026-84363, CVE-2026-84365, CVE-2026-54290, CVE-2026-22817, CVE-2026-22818]
+    rules: [backend/fastify-hono]
+    note: "44 GHSA advisories in 2026; only the ones cited in the rule are listed."
+
+  - ecosystem: npm
+    name: "@hono/node-server"
+    safe_versions: ["2.1.3"]
+    known: [CVE-2026-118663, CVE-2026-73565, CVE-2026-39406, CVE-2026-29087, GHSA-frvp-7c67-39w9]
+    rules: [backend/fastify-hono]
+
+  - ecosystem: npm
+    name: "@apollo/server"
+    safe_versions: ["5.5.0"]
+    known: [CVE-2026-23897, GHSA-9q82-xgwf-vj6h]
+    rules: [backend/graphql]
+
+  - ecosystem: npm
     name: vite
     safe_versions: ["8.3.3", "7.3.7", "6.4.4"]
     known: [CVE-2025-30208, CVE-2026-39363, CVE-2026-39364, CVE-2026-39365, CVE-2026-53571, CVE-2026-53632, CVE-2026-112942, CVE-2026-112943, CVE-2026-112944, CVE-2026-112945, CVE-2026-112946]
@@ -335,7 +360,20 @@ packages:
   - ecosystem: Maven
     name: "org.springframework.boot:spring-boot"
     safe_versions: ["4.0.6", "4.1.0"]
-    known: [CVE-2026-40976]
+    known: [CVE-2026-40976, CVE-2026-40973]
+    rules: [backend/spring-boot]
+    note: "3.x OSS support ended 30 Jun 2026; 4.0 OSS ends 31 Dec 2026."
+
+  - ecosystem: Maven
+    name: "org.springframework.security:spring-security-web"
+    safe_versions: ["7.0.6"]
+    known: [CVE-2026-41706, CVE-2026-22747, CVE-2026-47838, CVE-2026-22732]
+    rules: [backend/spring-boot]
+
+  - ecosystem: Maven
+    name: "org.springframework:spring-webmvc"
+    safe_versions: ["7.0.9"]
+    known: [CVE-2026-47890, CVE-2026-41853, CVE-2026-41843, CVE-2026-41844, CVE-2026-41845, CVE-2026-41846, CVE-2026-41841, CVE-2026-41842, CVE-2026-22745, CVE-2026-22741, CVE-2026-22737, CVE-2026-22735, CVE-2026-47884]
     rules: [backend/spring-boot]
 
   - ecosystem: Maven
@@ -350,6 +388,13 @@ packages:
     known: [CVE-2025-55315]
     rules: [backend/aspnet-core]
     note: "ASP.NET Core 8, 9 and 10 ship Kestrel in the shared runtime; patch the runtime (8.0.21, 9.0.10 or later)."
+
+  - ecosystem: NuGet
+    name: Microsoft.AspNetCore.App.Runtime.linux-x64
+    safe_versions: ["10.0.13", "9.0.21", "8.0.32"]
+    known: [CVE-2026-88092, CVE-2026-70183, CVE-2026-70188, CVE-2026-70175, CVE-2026-70196, CVE-2026-70186, CVE-2026-96236, CVE-2026-70181, CVE-2026-56170, CVE-2026-45591, CVE-2026-26130, CVE-2026-42899, CVE-2025-55315]
+    rules: [backend/aspnet-core, languages/csharp]
+    note: ".NET 8 and 9 end support on 10 Nov 2026."
 
   - ecosystem: Packagist
     name: livewire/livewire

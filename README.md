@@ -99,6 +99,11 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `backend/django` | rule | [rules/backend/django.md](./rules/backend/django.md) | django 5.2 LTS, 6.0, 6.1 | draft |
 | `legacy/django-legacy` | rule (legacy) | [rules/legacy/django-legacy.md](./rules/legacy/django-legacy.md) | django ≤ 5.1 (4.2 LTS ended Apr 2026) | legacy |
 | `backend/laravel` | rule | [rules/backend/laravel.md](./rules/backend/laravel.md) | laravel 12–13 on PHP 8.3+ | draft |
+| `backend/spring-boot` | rule | [rules/backend/spring-boot.md](./rules/backend/spring-boot.md) | Spring Boot 4.0–4.1 | draft |
+| `backend/aspnet-core` | rule | [rules/backend/aspnet-core.md](./rules/backend/aspnet-core.md) | .NET 10 LTS | draft |
+| `backend/go-http` | rule | [rules/backend/go-http.md](./rules/backend/go-http.md) | Go 1.26–1.27 net/http | draft |
+| `backend/graphql` | rule | [rules/backend/graphql.md](./rules/backend/graphql.md) | Apollo Server 5, GraphQL Yoga 6 | draft |
+| `backend/fastify-hono` | rule | [rules/backend/fastify-hono.md](./rules/backend/fastify-hono.md) | fastify 5, hono 4 | draft |
 | `security-audit` | skill | [skills/security-audit/SKILL.md](./skills/security-audit/SKILL.md) | any | draft |
 | `dependency-vet` | skill | [skills/dependency-vet/SKILL.md](./skills/dependency-vet/SKILL.md) | any | draft |
 | `cve-check` | skill | [skills/cve-check/SKILL.md](./skills/cve-check/SKILL.md) | any | draft |

@@ -117,6 +117,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `scripts/run-evals.mjs`: zero-dependency wrapper that injects each rule's text, runs a pinned promptfoo (0.124.1) through `npx`, and writes per-rule pass rates with and without the rule; `--dry-run` and `--validate` make no model calls. Tests in `scripts/run-evals.test.mjs`.
 - `.github/workflows/evals.yml`: manual-only (`workflow_dispatch`) eval run with provider keys from an `evals` environment, read-only permissions, SHA-pinned actions and the summary uploaded as an artifact.
 - P2 language rules: `languages/java` (21/25 LTS, deserialization, XXE, SpotBugs/FindSecBugs), `languages/kotlin` (null safety, structured concurrency, kotlinx.serialization, detekt), `languages/csharp` (.NET 10, nullable, async, no BinaryFormatter, NuGet audit; .NET 8/9 end 10 Nov 2026), `languages/go` (1.26–1.27, errors, context, `os.Root`, `unsafe`/cgo, govulncheck), `languages/dart` (Dart 3 patterns, isolates, lints), `languages/swift` (Swift 6 strict concurrency, Keychain, SwiftLint), `languages/shell` (`set -euo pipefail`, quoting, no `eval`, `mktemp`, no curl-pipe-shell, ShellCheck).
+- P2 backend rules: `backend/spring-boot` (Boot 4.0/4.1 support dates, deny-by-default filter chain, method security, Actuator CVE-2026-40976, DevTools, parameter binding, ProblemDetail), `backend/aspnet-core` (.NET 10, fallback authorization policy, antiforgery, EF Core `FromSql`, Data Protection, Oct 2026 runtime fixes), `backend/go-http` (server timeouts, body limits, `CrossOriginProtection`, `html/template`, pprof), `backend/graphql` (per-resolver authorization, cost limits, introspection, persisted operations, DataLoader), `backend/fastify-hono` (schemas and validators, proxy trust, JWT pitfalls, static files, 2026 advisories).
 
 ### Changed
 
@@ -164,5 +165,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `security/watchlist.yml`: add `laravel/framework`, `filament/filament` and `guzzlehttp/guzzle`.
 - `security/watchlist.yml`: add `nuxt`, `@nuxt/devtools`, `nitropack`, `h3`, `vue-i18n` and `zod`.
 - `security/watchlist.yml`: add `jquery` and `jquery-ui`.
+- `security/watchlist.yml`: add Spring Security, Spring Web MVC, the ASP.NET Core runtime, `fastify`, `hono`, `@hono/node-server` and `@apollo/server`; add CVE-2026-40973 to Spring Boot.
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
