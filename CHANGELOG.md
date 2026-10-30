@@ -105,9 +105,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `rules/legacy/vue2-nuxt2.md`: Vue 2, Nuxt 2 and Nuxt 3 EOL status, unfixed advisories, compensating controls and migration paths.
 - `skills/migrate-vue2`: Vue 2 → 3 through Vue 2.7 and the `@vue/compat` migration build, flag by flag.
 - `skills/upgrade-nuxt`: Nuxt 3 → 4 with `npx nuxt upgrade` and `npx codemod@0.18.7 nuxt/4/migration-recipe`, plus the manual breaking changes.
+- `rules/mobile/flutter.md`: Flutter 3.47 / Dart 3.13 with the standalone `material_ui` and `cupertino_ui` packages, Impeller status, state management that follows the project, secrets out of `--dart-define`, `flutter_secure_storage`, platform-channel validation and obfuscated release builds.
+- `rules/legacy/flutter-legacy.md`: Flutter 2 and pre-null-safety Dart, with `dart migrate` available only up to Dart 2.19.6 (Flutter 3.7) and the path to Dart 3.
+- `rules/mobile/mobile-security.md`: controls by MASVS 2.1 category with MASWE 1.0 IDs and MASTG v2 test IDs, platform specifics and realistic resilience expectations.
+- `rules/data/orm-prisma.md`: Prisma 7 generator, driver adapters, `prisma.config.ts`, aligned CLI and client versions, migrations, raw-query safety, transactions, extensions and pooling.
 
 ### Changed
 
+- `conventions/phaedra.md`: add a Flutter section (Riverpod for new apps, Bloc kept where it exists, go_router, freezed, test keys).
 - `scripts/check-freshness.mjs` no longer reports EOL non-LTS releases (such as Node 25) inside a range when the runtime has LTS lines; new test in `scripts/automation.test.mjs`.
 - `scripts/check-freshness.mjs` maps `postgresql`/`postgres` in `applies_to` to endoflife.date; `CONTRIBUTING.md` shows the example.
 - `README.md` notes that the project is being restructured.

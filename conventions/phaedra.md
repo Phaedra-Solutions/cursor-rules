@@ -7,7 +7,7 @@ globs: []
 alwaysApply: false
 tier: P0
 owner: "@Phaedra-Solutions/maintainers"
-last_reviewed: 2026-10-29
+last_reviewed: 2026-10-30
 sources:
   - https://react-hook-form.com/
   - https://github.com/react-hook-form/resolvers
@@ -23,6 +23,8 @@ sources:
   - https://redux-toolkit.js.org/
   - https://prettier.io/docs/options
   - https://testing-library.com/docs/queries/about/#priority
+  - https://riverpod.dev/
+  - https://pub.dev/packages/go_router
 ---
 
 # Phaedra house conventions
@@ -111,6 +113,13 @@ These keep existing Phaedra React (Vite) projects consistent. In a new project, 
 - Where the project uses react-i18next, put every user-facing string through `useTranslation()` and `t()`.
 - Group imports: React and third-party, then internal components, then types, then utilities and constants.
 - Use npm unless the lockfile shows another package manager.
+
+## Flutter
+
+- State management in new Flutter apps: Riverpod (`flutter_riverpod`). Keep Bloc in projects that already use it; don't mix the two in one app.
+- Routing: `go_router`. Models: `freezed` with `json_serializable`.
+- Feature-first folders (`lib/features/<feature>/{data,domain,presentation}`), snake_case file names as Dart requires.
+- Add `Key('<feature>-<element>')` to interactive widgets for tests, matching the test ID naming below.
 
 ## Test IDs
 

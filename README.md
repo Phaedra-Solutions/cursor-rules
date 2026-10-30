@@ -63,12 +63,16 @@ New-format rules and skills, built from one source for Cursor and `AGENTS.md` to
 | `frontend/forms-validation` | rule | [rules/frontend/forms-validation.md](./rules/frontend/forms-validation.md) | any (RHF + Zod, Formik + Yup, Signal Forms) | draft |
 | `mobile/react-native-expo` | rule | [rules/mobile/react-native-expo.md](./rules/mobile/react-native-expo.md) | react-native 0.82–0.88, expo SDK 55–58 | draft |
 | `legacy/react-native-old-arch` | rule (legacy) | [rules/legacy/react-native-old-arch.md](./rules/legacy/react-native-old-arch.md) | react-native < 0.82; bare RN CLI apps | legacy |
+| `mobile/flutter` | rule | [rules/mobile/flutter.md](./rules/mobile/flutter.md) | Flutter 3.47, Dart 3 | draft |
+| `legacy/flutter-legacy` | rule (legacy) | [rules/legacy/flutter-legacy.md](./rules/legacy/flutter-legacy.md) | Flutter 2, pre-null-safety Dart | legacy |
+| `mobile/mobile-security` | rule | [rules/mobile/mobile-security.md](./rules/mobile/mobile-security.md) | RN, Flutter, iOS, Android (MASVS 2.1) | draft |
 | `backend/nestjs` | rule | [rules/backend/nestjs.md](./rules/backend/nestjs.md) | @nestjs/core 12 | draft |
 | `backend/nestjs-microservices` | rule | [rules/backend/nestjs-microservices.md](./rules/backend/nestjs-microservices.md) | @nestjs/microservices 12, BullMQ | draft |
 | `backend/nestjs-data` | rule | [rules/backend/nestjs-data.md](./rules/backend/nestjs-data.md) | @nestjs/core 12 with Sequelize 6, TypeORM 0.3–1.x or Prisma 7 | draft |
 | `legacy/nestjs-legacy` | rule (legacy) | [rules/legacy/nestjs-legacy.md](./rules/legacy/nestjs-legacy.md) | @nestjs/core 8–11; Bull queues | legacy |
 | `data/supabase` | rule | [rules/data/supabase.md](./rules/data/supabase.md) | Supabase CLI 2.x, publishable/secret keys | draft |
 | `data/postgres` | rule | [rules/data/postgres.md](./rules/data/postgres.md) | PostgreSQL 14–18 | draft |
+| `data/orm-prisma` | rule | [rules/data/orm-prisma.md](./rules/data/orm-prisma.md) | @prisma/client 7 | draft |
 | `legacy/supabase-legacy` | rule (legacy) | [rules/legacy/supabase-legacy.md](./rules/legacy/supabase-legacy.md) | legacy anon/service_role keys, import maps | legacy |
 | `testing/cypress` | rule | [rules/testing/cypress.md](./rules/testing/cypress.md) | cypress 15–16 | draft |
 | `testing/playwright` | rule | [rules/testing/playwright.md](./rules/testing/playwright.md) | @playwright/test 1.50+ | draft |

@@ -26,3 +26,4 @@ Each prompt appends a line here when it finishes.
 - [x] 22 Python, FastAPI, Django (+ legacy, upgrade skills) (2026-10-29)
 - [x] 23 PHP and Laravel (+ legacy, upgrade skills) (2026-10-30)
 - [x] 24 Vue, Nuxt, Tailwind, forms and validation (+ Vue 2 legacy) (2026-10-30)
+- [x] 25 Flutter, mobile security, Prisma (2026-10-30)
