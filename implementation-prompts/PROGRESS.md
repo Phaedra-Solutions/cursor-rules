@@ -31,3 +31,4 @@ Each prompt appends a line here when it finishes.
 - [x] 27 Evals harness and suites for P0 rules (2026-10-30)
 - [x] 28 P2 languages: Java, Kotlin, C#, Go, Dart, Swift, shell (2026-10-30)
 - [x] 29 P2 backend: Spring Boot, ASP.NET Core, Go HTTP, GraphQL, Fastify/Hono (2026-10-30)
+- [x] 30 P2 frontend and native mobile: Svelte, Astro, state, shadcn, SwiftUI, Compose (2026-10-30)

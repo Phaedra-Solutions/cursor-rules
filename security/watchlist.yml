@@ -284,6 +284,30 @@ packages:
     rules: [backend/graphql]
 
   - ecosystem: npm
+    name: svelte
+    safe_versions: ["5.55.7"]
+    known: [CVE-2025-15265, CVE-2026-42567, CVE-2026-27125, GHSA-f3cj-j4f6-wq85, CVE-2026-27121, GHSA-gw32-9rmw-qwww, CVE-2026-27119, CVE-2026-27122, CVE-2026-27901, CVE-2026-42599, CVE-2026-27902, CVE-2026-42573]
+    rules: [frontend/svelte]
+
+  - ecosystem: npm
+    name: "@sveltejs/kit"
+    safe_versions: ["3.0.0"]
+    known: [CVE-2026-114060, CVE-2026-114061, CVE-2026-66062, CVE-2026-40073, CVE-2026-40074, CVE-2026-82256, CVE-2026-82257, CVE-2026-82258, CVE-2026-82259, CVE-2026-82260, CVE-2026-82261, CVE-2026-22803, CVE-2025-67647]
+    rules: [frontend/svelte]
+
+  - ecosystem: npm
+    name: astro
+    safe_versions: ["7.3.3"]
+    known: [CVE-2026-114127, CVE-2026-114128, GHSA-26w7-cxv4-gfx2, CVE-2026-84376, CVE-2026-73422, CVE-2026-73423, CVE-2026-59727, CVE-2026-59729, CVE-2026-59731, CVE-2026-54298, CVE-2026-54299, CVE-2026-50146, CVE-2026-45028, CVE-2026-41067, CVE-2026-33769, CVE-2025-66202, CVE-2025-65019, CVE-2025-64765, CVE-2025-64764, CVE-2025-64757, CVE-2025-64745, CVE-2025-64525, CVE-2025-61925, CVE-2025-59837]
+    rules: [frontend/astro]
+
+  - ecosystem: npm
+    name: "@astrojs/node"
+    safe_versions: ["11.1.3"]
+    known: [CVE-2026-102984, CVE-2026-59730, CVE-2026-41322, CVE-2026-29772, CVE-2026-27829, CVE-2026-27729, CVE-2026-25545]
+    rules: [frontend/astro]
+
+  - ecosystem: npm
     name: vite
     safe_versions: ["8.3.3", "7.3.7", "6.4.4"]
     known: [CVE-2025-30208, CVE-2026-39363, CVE-2026-39364, CVE-2026-39365, CVE-2026-53571, CVE-2026-53632, CVE-2026-112942, CVE-2026-112943, CVE-2026-112944, CVE-2026-112945, CVE-2026-112946]
