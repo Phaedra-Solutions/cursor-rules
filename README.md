@@ -1,5 +1,7 @@
 # Cursor Rules and Agent Skills for AI Coding Agents
 
+**English** | [简体中文](./docs/i18n/README.zh-CN.md) | [हिन्दी](./docs/i18n/README.hi.md) | [Español](./docs/i18n/README.es.md) | [العربية](./docs/i18n/README.ar.md) | [Français](./docs/i18n/README.fr.md) | [বাংলা](./docs/i18n/README.bn.md) | [Português](./docs/i18n/README.pt-BR.md) | [Русский](./docs/i18n/README.ru.md) | [اردو](./docs/i18n/README.ur.md)
+
 **Version-aware, security-first rules for Cursor, Claude Code, OpenAI Codex, GitHub Copilot and Gemini CLI.** Open source (MIT), maintained by [Phaedra Solutions](https://phaedrasolutions.com).
 
 `cursor-rules` is a library of coding rules and [Agent Skills](https://agentskills.io) that make AI coding agents work like a senior engineer on your stack. Before an agent writes code, each rule checks which framework version your project actually uses. It then applies current conventions, security controls and known-vulnerability checks for that version. For old or end-of-life versions it switches to legacy guidance and a migration path. One source builds Cursor project rules (`.mdc`), `AGENTS.md`, `CLAUDE.md` and Agent Skills (`SKILL.md`), so every tool on your team follows the same instructions.
