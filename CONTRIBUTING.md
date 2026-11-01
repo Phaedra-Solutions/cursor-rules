@@ -17,6 +17,7 @@ The plan and its reasoning live in [`ROADMAP.md`](./ROADMAP.md). Approved decisi
 | `evals/<category>/<name>.yaml` | Prompt tests per rule |
 | `scripts/` | `build.mjs`, `install.mjs`, `lint-rules.mjs`, … (Node ≥ 22, zero dependencies) |
 | `dist/` | Build output, git-ignored |
+| `docs/i18n/README.<lang>.md` | Translations of the README prose (the catalog stays in the English `README.md` only) |
 
 ## Add a rule
 
@@ -143,6 +144,8 @@ Lint fixtures live in `scripts/fixtures/`. The hidden-Unicode fixture holds a `{
 | `dist/manifest.json` | Every output with its sha256, plus the selected rules, skills and warnings |
 
 A preset is a YAML file in `presets/` with `name`, `description`, `rules` (IDs; `core/*` style wildcards allowed), `skills` and `conventions`. Rules and skills a preset names but that don't exist yet produce a warning, not an error. `node scripts/install.mjs` builds a preset and copies it into a project (see the README's **Quick start** section). Run `node scripts/build.mjs --catalog` after adding or changing a preset so the README preset table stays in sync.
+
+The README has translations in `docs/i18n/` (Chinese, Hindi, Spanish, Arabic, French, Bengali, Portuguese, Russian and Urdu). They link to the English catalog instead of copying it. When you change the README's prose, presets or supported stacks, update the translations in the same pull request, or open an issue listing the sections that need translating.
 
 ## Version ranges (`applies_to`)
 

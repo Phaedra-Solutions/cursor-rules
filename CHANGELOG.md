@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- README translations in `docs/i18n/` for Simplified Chinese, Hindi, Spanish, Arabic, French, Bengali, Brazilian Portuguese, Russian and Urdu, with a language switcher in every version; English stays the default `README.md`.
 - `rules/testing/pytest.md` (P2): pytest 9 native TOML config and strict mode, fixtures and scopes, keyword-only parametrize options, pytest-asyncio 1.x without the `event_loop` fixture, boundary-only mocking, no network in unit tests, coverage for changed code, and CVE-2025-71176 (fixed in 9.0.3).
 - `rules/testing/a11y.md` (P2): WCAG 2.2 AA target, semantic HTML before ARIA, names, keyboard and focus handling, axe-core checks in Playwright, Cypress and component tests, a11y lint plugins, manual keyboard and screen-reader passes, and no overlay widgets.
 - `pytest` to `security/watchlist.yml`.
