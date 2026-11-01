@@ -96,6 +96,8 @@ Requires Node.js 22 or later. The scripts have no dependencies.
    node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app
    ```
 
+![Terminal recording: a dry run of the next-supabase preset lists 41 new files and writes nothing; the real install writes 41 files, adding .agents, .cursor and AGENTS.md to the project](./docs/assets/install-preset.gif)
+
 Options:
 
 - `--preset`: one of the [presets](#presets). Leave it out to install everything.
@@ -105,9 +107,13 @@ Options:
 
 The installer records the version, preset and manifest hash in `.cursor/rules/.cursor-rules-version` (or under `.agents/` or `.claude/`), so you can always tell which release a project uses.
 
+![Terminal recording: after AGENTS.md is edited by hand, a second install reports a conflict and writes nothing until --force is passed; the version file shows the source, release and preset](./docs/assets/safe-by-default.gif)
+
 **Without cloning:** download the archive for your tool from a [GitHub Release](https://github.com/Phaedra-Solutions/cursor-rules/releases), check it against `SHA256SUMS` (`sha256sum -c SHA256SUMS --ignore-missing`), and copy its contents into your project root.
 
 **To see the output first:** run `node scripts/build.mjs --preset <name>` and look in `dist/`.
+
+![Terminal recording: building the react-vite preset writes 68 files into dist/, with one folder each for Cursor, AGENTS.md tools and Claude Code](./docs/assets/build-preview.gif)
 
 Pin a release tag and update deliberately; the [CHANGELOG](./CHANGELOG.md) lists what changed.
 
@@ -432,6 +438,8 @@ node --test scripts/*.test.mjs
 node scripts/build.mjs
 node scripts/build.mjs --catalog        # regenerates the catalog and preset tables in this README
 ```
+
+![Terminal recording: the rule linter checks 128 rules and skills with 0 errors, all 65 script tests pass, and the README catalog check passes](./docs/assets/contributor-checks.gif)
 
 The plan and its reasoning are in [ROADMAP.md](./ROADMAP.md); decisions are in [docs/decisions.md](./docs/decisions.md).
 
