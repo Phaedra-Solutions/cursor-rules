@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Check the CHANGELOG release links again in the lychee link check, now that the `v1.0.0` and `v1.1.0` tags are published.
+
 ## [1.1.0] - 2026-11-01
 
 Two new P2 testing rules, README translations in nine languages and how-to GIFs.
