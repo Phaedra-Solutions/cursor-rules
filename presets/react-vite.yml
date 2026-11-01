@@ -11,6 +11,7 @@ rules:
   - frontend/state-and-data
   - testing/unit-js
   - testing/playwright
+  - testing/a11y
   - devops/github-actions
 skills:
   - security-audit

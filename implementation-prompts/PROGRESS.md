@@ -37,3 +37,4 @@ Each prompt appends a line here when it finishes.
 - [x] 33 Legacy pack 2a: Java/Spring Boot, Struts, .NET 8/9, .NET Framework (2026-10-30)
 - [x] 34 Legacy pack 2b: Xamarin, Cordova, Rails, ingress-nginx, JS legacy libraries (2026-10-30)
 - [x] 35 Release v1.0.0: stubs for old files, generated README catalog, release workflow, verification checklist (2026-10-30)
+- [x] 36 Template run: testing/pytest and testing/a11y (P2) (2026-11-01)

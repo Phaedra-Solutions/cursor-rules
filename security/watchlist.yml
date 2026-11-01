@@ -4,7 +4,7 @@
 # reports for a safe version is new and gets reported.
 # Verified against OSV and GHSA on 2026-10-30.
 
-updated: 2026-10-30
+updated: 2026-11-01
 packages:
   - ecosystem: npm
     name: react-server-dom-webpack
@@ -361,6 +361,13 @@ packages:
     safe_versions: ["1.55.1"]
     known: []
     rules: [testing/playwright]
+
+  - ecosystem: PyPI
+    name: pytest
+    safe_versions: ["9.0.3"]
+    known: [CVE-2025-71176]
+    rules: [testing/pytest]
+    note: "8.x has no backported fix; set --basetemp to a user-owned directory on shared machines."
 
   - ecosystem: npm
     name: playwright

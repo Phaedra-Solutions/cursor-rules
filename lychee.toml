@@ -15,6 +15,7 @@ exclude = [
   '^https://thehackernews\.com/',
   '^https://openai\.com/',
   '^https://socradar\.io/',
+  '^https://www\.ftc\.gov/',
   # Invalid TLS certificate as of 2026-10-29; replace the ROADMAP source.
   '^https://zerotowp\.com/',
 ]

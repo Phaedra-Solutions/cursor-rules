@@ -13,6 +13,7 @@ rules:
   - data/postgres
   - testing/cypress
   - testing/unit-js
+  - testing/a11y
   - devops/github-actions
   - devops/docker
 skills:
