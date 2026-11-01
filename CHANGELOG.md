@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-01
+
+Two new P2 testing rules, README translations in nine languages and how-to GIFs.
+
 ### Added
 
 - Terminal GIFs in `docs/assets/` for installing a preset, the installer's conflict protection, building a preset and the contributor checks, rendered from real command output and shown in the README.
@@ -19,6 +23,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add `testing/a11y` to the `react-vite`, `next-supabase` and `nest-angular` presets; `python-fastapi` no longer warns about the missing `testing/pytest` rule.
 - Exclude `ftc.gov` from the lychee link check because it answers automated requests with an error.
 - Rewrite `README.md` with an at-a-glance summary, "Why version-aware rules", "How it works", a tool table, a supported-stacks list and an FAQ; the generated catalog and preset tables are unchanged.
+- Point the README Quick start, in every language, at the `v1.1.0` tag.
+
+### Fixed
+
+- Markdownlint errors in `frontend/forms-validation`, `languages/csharp` and the `migrate-angularjs` skill.
+- Replace the removed OWASP Go cheat sheet link in `backend/go-http` with the OWASP Go Secure Coding Practices guide.
+- Exclude npmjs.com, which blocks CI runners, from the lychee link check.
+- Remove `.gitkeep` files from folders that now have content.
+
+### Security
+
+- `frontend/react-vite-spa`: add CVE-2026-118662 (`server.fs.deny` bypass, a regression in Vite 6.4.4) and raise the 6.x minimum safe version to 6.4.5.
+- `frontend/nuxt`, `legacy/vue2-nuxt2` and `upgrade-nuxt`: add CVE-2026-119200 (path dot segments bypass `server/middleware` and route rules in Nuxt 4.6.0–4.6.2) and raise the minimum safe version to 4.6.3.
+- `security/watchlist.yml`: record both advisories and the new safe versions.
 
 ## [1.0.0] - 2026-10-30
 
@@ -206,5 +224,6 @@ First release: every P0 and P1 rule from the roadmap, the P2 stacks, two legacy 
 - `supabase-rules.md`: the secret/service key bypasses RLS and must never reach clients (replaces "service role policies"); `SECURITY DEFINER` only with `set search_path = ''` and schema-qualified names; per-function `deno.json` with `npm:` specifiers instead of `import_map.json` and esm.sh; use the publishable/secret keys, since legacy `anon`/`service_role` keys are deprecated by the end of 2026.
 - `next-rules.md`: every Server Action authenticates, authorizes and validates input.
 
-[Unreleased]: https://github.com/Phaedra-Solutions/cursor-rules/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/Phaedra-Solutions/cursor-rules/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/Phaedra-Solutions/cursor-rules/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Phaedra-Solutions/cursor-rules/releases/tag/v1.0.0

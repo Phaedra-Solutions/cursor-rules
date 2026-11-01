@@ -8,8 +8,9 @@ globs: ["vite.config.*", "src/**/*.{ts,tsx}", "index.html"]
 alwaysApply: false
 tier: P0
 owner: "@Phaedra-Solutions/maintainers"
-last_reviewed: 2026-10-29
+last_reviewed: 2026-11-01
 sources:
+  - https://github.com/vitejs/vite/security/advisories/GHSA-8g5g-mxqh-grgj
   - https://vite.dev/guide/migration
   - https://vite.dev/config/server-options
   - https://vite.dev/guide/env-and-mode
@@ -86,10 +87,11 @@ sources:
 |---|---|---|
 | CVE-2026-39363, CVE-2026-39364 (dev server file read, `fs.deny` bypass; high) | `vite` < 8.0.5, < 7.3.2 | 8.0.5, 7.3.2 |
 | CVE-2026-112942, -112944, -112945, -112946 (`launch-editor` command issues, `fs.allow` bypass, cross-origin script) | `vite` < 8.3.3, < 7.3.7, < 6.4.4 | 8.3.3, 7.3.7, 6.4.4 |
+| CVE-2026-118662 (GHSA-8g5g-mxqh-grgj: `server.fs.deny` bypassed with query strings when the dev server is exposed; regression in 6.4.4) | `vite` 6.4.4 | 6.4.5 |
 | CVE-2025-30208 (`server.fs.deny` bypass) | `vite` < 6.2.3 and older lines | 6.2.3, 6.1.2, 6.0.12, 5.4.15, 4.5.10 |
 | GHSA-qwww-vcr4-c8h2 (RSC-mode CSRF), plus 13 earlier 2025–26 advisories | `react-router` < 8.3.0, < 7.18.2 | 8.3.0, 7.18.2 |
 
-Minimum safe: `vite` 8.3.3 (or 7.3.7 / 6.4.4) and `react-router` 8.3.0 (or 7.18.2). Most Vite issues affect only an exposed dev server, which is another reason never to expose it. This list goes stale; verify with the `cve-check` skill or OSV/GHSA before relying on it.
+Minimum safe: `vite` 8.3.3 (or 7.3.7 / 6.4.5) and `react-router` 8.3.0 (or 7.18.2). Most Vite issues affect only an exposed dev server, which is another reason never to expose it. This list goes stale; verify with the `cve-check` skill or OSV/GHSA before relying on it.
 
 ## Testing
 
