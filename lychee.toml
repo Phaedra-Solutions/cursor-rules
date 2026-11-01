@@ -17,8 +17,6 @@ exclude = [
   '^https://socradar\.io/',
   '^https://www\.ftc\.gov/',
   '^https://www\.npmjs\.com/',
-  # Release links in CHANGELOG.md resolve once the matching tag is pushed.
-  '^https://github\.com/Phaedra-Solutions/cursor-rules/(compare|releases/tag)/',
   # Invalid TLS certificate as of 2026-10-29; replace the ROADMAP source.
   '^https://zerotowp\.com/',
 ]
