@@ -36,17 +36,17 @@ metadata:
 
 ### Hybrid with ngUpgrade
 
-5. Create the Angular app (standalone bootstrap) and add `@angular/upgrade`; bootstrap the hybrid with `UpgradeModule` (or `downgradeModule` for lazy Angular).
-6. Migrate **services first** (upgrade AngularJS services with providers, or write Angular services and downgrade them with `downgradeInjectable`).
-7. Migrate **leaf components** to Angular and expose them to AngularJS templates with `downgradeComponent`; upgrade AngularJS components that Angular needs with `UpgradeComponent` only temporarily.
-8. Move routing last: switch the router to Angular's once most routes' components are Angular, keeping AngularJS routes behind a catch-all during the transition.
-9. Remove AngularJS when no AngularJS components, services or routes remain; drop `@angular/upgrade`.
+1. Create the Angular app (standalone bootstrap) and add `@angular/upgrade`; bootstrap the hybrid with `UpgradeModule` (or `downgradeModule` for lazy Angular).
+2. Migrate **services first** (upgrade AngularJS services with providers, or write Angular services and downgrade them with `downgradeInjectable`).
+3. Migrate **leaf components** to Angular and expose them to AngularJS templates with `downgradeComponent`; upgrade AngularJS components that Angular needs with `UpgradeComponent` only temporarily.
+4. Move routing last: switch the router to Angular's once most routes' components are Angular, keeping AngularJS routes behind a catch-all during the transition.
+5. Remove AngularJS when no AngularJS components, services or routes remain; drop `@angular/upgrade`.
 
 ### Strangler
 
-5. Put both apps behind one origin (reverse proxy or server routing); share auth via `HttpOnly` cookies.
-6. Rebuild a route in Angular, switch the proxy for that path, and delete the AngularJS route; repeat.
-7. Keep shared chrome (header, navigation) visually consistent; move it early or render it in both.
+1. Put both apps behind one origin (reverse proxy or server routing); share auth via `HttpOnly` cookies.
+2. Rebuild a route in Angular, switch the proxy for that path, and delete the AngularJS route; repeat.
+3. Keep shared chrome (header, navigation) visually consistent; move it early or render it in both.
 
 ### Every step
 

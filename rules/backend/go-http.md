@@ -18,7 +18,7 @@ sources:
   - https://pkg.go.dev/database/sql
   - https://go.dev/doc/security/vuln/
   - https://github.com/go-chi/chi
-  - https://cheatsheetseries.owasp.org/cheatsheets/Go_SCP_Cheat_Sheet.html
+  - https://owasp.org/www-project-go-secure-coding-practices-guide/
 ---
 
 # Go HTTP services

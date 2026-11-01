@@ -20,7 +20,7 @@ sources:
   - https://www.nuget.org/packages/Microsoft.CodeAnalysis.NetAnalyzers
 ---
 
-# C#
+# C# language
 
 Language-level rules only; ASP.NET Core gets its own rule (`backend/aspnet-core` when it exists). Generic secure-coding rules are in `core/security-baseline`.
 

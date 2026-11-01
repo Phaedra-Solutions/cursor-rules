@@ -63,7 +63,7 @@ Framework rules (`frontend/react`, `frontend/nextjs`, `frontend/vue`, `frontend/
 - Every input has a visible `<label>` (or `aria-label` when visually hidden by design); don't use placeholders as labels.
 - Link errors to inputs: `aria-invalid="true"` on the field and `aria-describedby` pointing at the error text; give the error an `id`.
 - On submit failure, move focus to the first invalid field or an error summary; announce form-level errors with `role="alert"` (or an `aria-live="polite"` region).
-- Describe errors in text that says how to fix them ("Enter an email like name@example.com"), not just color or an icon.
+- Describe errors in text that says how to fix them ("Enter an email like `name@example.com`"), not just color or an icon.
 - Mark required fields in the label and with `required`/`aria-required`; group related controls with `fieldset` and `legend`.
 - Add `data-testid` to inputs, buttons and error messages on house projects.
 
