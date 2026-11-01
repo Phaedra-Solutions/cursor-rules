@@ -80,7 +80,7 @@ Requires Node.js 22 or later. The scripts have no dependencies.
 1. Clone a release tag:
 
    ```bash
-   git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
+   git clone --branch v1.1.0 https://github.com/Phaedra-Solutions/cursor-rules.git
    cd cursor-rules
    ```
 

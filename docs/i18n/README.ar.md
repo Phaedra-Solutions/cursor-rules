@@ -82,7 +82,7 @@
 1. استنسخ وسم إصدار:
 
    ```bash
-   git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
+   git clone --branch v1.1.0 https://github.com/Phaedra-Solutions/cursor-rules.git
    cd cursor-rules
    ```
 

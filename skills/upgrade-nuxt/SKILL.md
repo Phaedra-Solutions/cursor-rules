@@ -4,8 +4,8 @@ description: Upgrade a Nuxt 3 app to Nuxt 4 (Nuxt 3 reached EOL on 31 Jul 2026) 
 license: MIT
 metadata:
   owner: "@Phaedra-Solutions/maintainers"
-  last_reviewed: "2026-10-30"
-  sources: "https://nuxt.com/docs/4.x/getting-started/upgrade https://nuxt.com/docs/4.x/community/roadmap https://nuxt.com/docs/4.x/getting-started/data-fetching https://www.herodevs.com/blog-posts/nuxt-3-reaches-end-of-life-on-july-31-2026-what-are-your-options https://www.npmjs.com/package/nuxt"
+  last_reviewed: "2026-11-01"
+  sources: "https://nuxt.com/docs/4.x/getting-started/upgrade https://nuxt.com/docs/4.x/community/roadmap https://nuxt.com/docs/4.x/getting-started/data-fetching https://www.herodevs.com/blog-posts/nuxt-3-reaches-end-of-life-on-july-31-2026-what-are-your-options https://www.npmjs.com/package/nuxt https://github.com/nuxt/nuxt/security/advisories/GHSA-9v7c-q64q-vv33"
 ---
 
 # Upgrade Nuxt 3 → 4
@@ -43,7 +43,7 @@ For a patch within Nuxt 4, run `npx nuxt upgrade` and Verify.
    - **Layers:** modules from extended layers now load before project modules; check plugins that depended on the old order.
    - **Server imports:** import server helpers from the documented `nuxt/server` path instead of relying on h3 auto-imports where the guide says so.
    - Check the upgrade guide for the remaining items (head handling, `useHead` types, generated TypeScript config) that apply to this app.
-6. **Patch to the minimum safe release** (≥ 4.6.2) and upgrade `@nuxt/devtools` (≥ 3.3.1); set `devtools: { enabled: false }` outside development.
+6. **Patch to the minimum safe release** (≥ 4.6.3) and upgrade `@nuxt/devtools` (≥ 3.3.1); set `devtools: { enabled: false }` outside development.
 7. **Optional:** preview Nuxt 5 changes with `future: { compatibilityVersion: 5 }` on a separate branch, only if the user asks (Nuxt 5 is scheduled for Q4 2026).
 8. **Verify** (next section). Show the diff and results; commit only when asked (`git-commit` skill). Then switch to `frontend/nuxt`.
 
@@ -51,7 +51,7 @@ For a patch within Nuxt 4, run `npx nuxt upgrade` and Verify.
 
 ```sh
 npm ci
-npm ls nuxt vue @nuxt/devtools nitropack   # nuxt ≥ 4.6.2
+npm ls nuxt vue @nuxt/devtools nitropack   # nuxt ≥ 4.6.3
 npx nuxi typecheck
 npx eslint .
 npx vitest run

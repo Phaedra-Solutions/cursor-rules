@@ -82,7 +82,7 @@ Node.js 22 یا نیا ورژن درکار ہے۔ اسکرپٹس کی کوئی �
 1. کسی ریلیز ٹیگ کو کلون کریں:
 
    ```bash
-   git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
+   git clone --branch v1.1.0 https://github.com/Phaedra-Solutions/cursor-rules.git
    cd cursor-rules
    ```
 

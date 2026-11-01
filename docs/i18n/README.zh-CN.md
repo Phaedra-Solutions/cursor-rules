@@ -82,7 +82,7 @@ AI 编程智能体是用多年混杂的示例训练出来的，所以经常为�
 1. 克隆一个发布标签：
 
    ```bash
-   git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
+   git clone --branch v1.1.0 https://github.com/Phaedra-Solutions/cursor-rules.git
    cd cursor-rules
    ```
 

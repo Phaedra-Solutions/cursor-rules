@@ -82,7 +82,7 @@ Node.js 22 या नया वर्ज़न चाहिए। स्क्�
 1. किसी रिलीज़ टैग को क्लोन करें:
 
    ```bash
-   git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
+   git clone --branch v1.1.0 https://github.com/Phaedra-Solutions/cursor-rules.git
    cd cursor-rules
    ```
 

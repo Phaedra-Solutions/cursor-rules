@@ -69,7 +69,7 @@ Also apply `core/legacy-mode` and the Security sections of `frontend/vue` and `f
 |---|---|---|
 | CVE-2024-6783: client-side XSS in `vue-template-compiler` | Vue 2 | No fix |
 | CVE-2024-9506: ReDoS in the template parser | Vue 2 | No fix in 2.x |
-| CVE-2026-114132: server-side route rules skipped for some paths | Nuxt 3.0+ | Fixed only in Nuxt 4.6.2 |
+| CVE-2026-114132: server-side route rules skipped for some paths | Nuxt 3.0+ | Fixed only in Nuxt 4.6.2; upgrade to ≥ 4.6.3, which also fixes CVE-2026-119200 |
 | CVE-2026-71320 (runtime template injection RCE), island DoS and payload advisories | Nuxt 3 | Fixed in 3.21.10 (use 3.21.11) |
 
 This list goes stale; verify with the `cve-check` skill or OSV/GHSA before relying on it.

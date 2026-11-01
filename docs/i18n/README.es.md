@@ -82,7 +82,7 @@ Requiere Node.js 22 o posterior. Los scripts no tienen dependencias.
 1. Clona una etiqueta de versión:
 
    ```bash
-   git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
+   git clone --branch v1.1.0 https://github.com/Phaedra-Solutions/cursor-rules.git
    cd cursor-rules
    ```
 

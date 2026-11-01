@@ -8,8 +8,9 @@ globs: ["nuxt.config.*", "app/**", "server/**"]
 alwaysApply: false
 tier: P1
 owner: "@Phaedra-Solutions/maintainers"
-last_reviewed: 2026-10-30
+last_reviewed: 2026-11-01
 sources:
+  - https://github.com/nuxt/nuxt/security/advisories/GHSA-9v7c-q64q-vv33
   - https://nuxt.com/docs/4.x/community/roadmap
   - https://nuxt.com/docs/4.x/getting-started/upgrade
   - https://nuxt.com/docs/4.x/getting-started/data-fetching
@@ -42,7 +43,7 @@ Also apply `frontend/vue`. Server code also follows `languages/javascript-node`;
 
 - **Status:** Nuxt 4 is stable (released 16 Jul 2025; latest 4.6.3) and supported until at least six months after Nuxt 5; **Nuxt 5 (Nitro v3) is scheduled for Q4 2026**. You can preview its changes with `future: { compatibilityVersion: 5 }` on 4.2+, only if the user asks.
 - **Nuxt 3 reached EOL on 31 Jul 2026** and Nuxt 2 earlier → `legacy/vue2-nuxt2`, offer `upgrade-nuxt`.
-- **Minimum safe:** `nuxt` 4.6.2, `@nuxt/devtools` 3.3.1, `nitropack` 2.13.4, `h3` 1.15.9 (see Known vulnerabilities).
+- **Minimum safe:** `nuxt` 4.6.3, `@nuxt/devtools` 3.3.1, `nitropack` 2.13.4, `h3` 1.15.9 (see Known vulnerabilities).
 
 ## Conventions
 
@@ -74,10 +75,11 @@ Also apply `frontend/vue`. Server code also follows `languages/javascript-node`;
 - **Markdown and content:** `@nuxtjs/mdc` ≥ 0.22.1; don't render untrusted Markdown with raw HTML enabled.
 - **Devtools:** `devtools: { enabled: false }` outside local development; never expose the dev server (`nuxt dev --host`) on shared networks (DevTools RPC RCE, IPC socket and path disclosure advisories).
 
-## Known vulnerabilities (as of 2026-10)
+## Known vulnerabilities (as of 2026-11)
 
 | Advisory | Affected | Fixed |
 |---|---|---|
+| CVE-2026-119200 (GHSA-9v7c-q64q-vv33): `.`/`..` and `%2e` path segments render a protected page while `server/middleware` and route rules see the unnormalized path | nuxt, @nuxt/nitro-server 4.6.0 – 4.6.2 | 4.6.3 |
 | CVE-2026-114132: server-side route rules (`redirect`, `headers`, `proxy`, `ssr`) skipped for some paths | nuxt 3.0+ and 4.x | 4.6.2 (no 3.x fix) |
 | CVE-2026-114133: server islands render `useHeadSafe` input unsanitized | nuxt 3.13+ | 4.6.2 |
 | CVE-2026-114130: incomplete fix for `javascript:` URLs in `<NuxtLink>` | nuxt | 4.6.0 |
