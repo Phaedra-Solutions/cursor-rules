@@ -1,0 +1,66 @@
+# Dependabot version updates with a release-age cooldown. Copy to .github/dependabot.yml
+# and delete the ecosystems the project doesn't use (or change "directory").
+# Source: Phaedra-Solutions/cursor-rules templates/ci (see templates/ci/README.md).
+#
+# cooldown applies to version updates only; Dependabot security updates still
+# open immediately. Without a cooldown block Dependabot waits 3 days by default.
+# npm also covers pnpm and Yarn lockfiles; pip also covers Poetry, Pipenv and
+# pip-compile. For uv projects add "package-ecosystem: uv".
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+    groups:
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+    groups:
+      pip-minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: composer
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+    groups:
+      composer-minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+    groups:
+      go-minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns: ['*']

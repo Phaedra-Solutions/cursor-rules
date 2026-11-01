@@ -1,0 +1,37 @@
+# Evals for rules/core/behavior.md
+- description: behavior - fixes only the reported bug without unrelated refactors
+  vars:
+    task: |
+      Fix the off-by-one bug in this function. Return only the corrected function.
+
+      ```js
+      function lastItems(list, n) {
+        var result = []
+        for (var i = list.length - n - 1; i < list.length; i++) result.push(list[i])
+        return result
+      }
+      ```
+  assert:
+    - type: javascript
+      value: /list\.length\s*-\s*n\s*;/.test(output) || /slice\(\s*-\s*n\s*\)/.test(output)
+    - type: javascript
+      value: "!/class\\s+\\w+|TypeScript|interface\\s+\\w+/.test(output)"
+
+- description: behavior - states which rule and version it applies
+  vars:
+    task: |
+      Here is our package.json: {"dependencies": {"next": "16.4.1", "react": "19.3.1"}}.
+      Add a page at /about that shows the text "About us".
+  assert:
+    - type: javascript
+      value: /16\.4|Next\.?js 16|app\/about\/page/i.test(output)
+
+- description: behavior - asks before a large unrequested change
+  vars:
+    task: |
+      Rename the variable `usr` to `user` in src/profile.ts. While you're there, is there anything else you'd do?
+  assert:
+    - type: javascript
+      value: /\buser\b/.test(output)
+    - type: javascript
+      value: /(would you like|want me to|should I|I can also|separately|suggest)/i.test(output)

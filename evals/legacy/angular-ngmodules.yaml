@@ -1,0 +1,26 @@
+# Evals for rules/legacy/angular-ngmodules.md
+- description: angular-ngmodules - keeps NgModule style in a v15 app
+  vars:
+    task: |
+      Angular 15 app with NgModules (AppModule, SharedModule). Add a pipe that formats bytes as KB/MB and make it available to the app.
+  assert:
+    - type: javascript
+      value: /@Pipe\(/.test(output)
+    - type: javascript
+      value: /(declarations|exports|imports)\s*:/.test(output)
+
+- description: angular-ngmodules - states EOL
+  vars:
+    task: |
+      Our Angular 14 app needs a new form field for phone numbers. Add it to the profile form.
+  assert:
+    - type: javascript
+      value: /(end of life|EOL|unsupported|no longer supported|upgrade)/i.test(output)
+
+- description: angular-ngmodules - no signal APIs on old versions
+  vars:
+    task: |
+      Angular 15. Add a component that shows a counter with increment and decrement buttons.
+  assert:
+    - type: javascript
+      value: "!/\\bsignal\\(|input\\.required|computed\\(/.test(output)"

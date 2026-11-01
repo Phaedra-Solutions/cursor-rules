@@ -1,0 +1,14 @@
+# Preset: all-core. Build with: node scripts/build.mjs --preset all-core
+name: all-core
+description: Core rules and security skills only; works with any stack.
+rules:
+  - core/*
+skills:
+  - security-audit
+  - dependency-vet
+  - cve-check
+  - secrets-scan
+  - threat-model-lite
+  - incident-supply-chain
+  - git-commit
+conventions: []

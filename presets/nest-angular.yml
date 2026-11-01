@@ -1,0 +1,29 @@
+# Preset: nest-angular. Build with: node scripts/build.mjs --preset nest-angular
+name: nest-angular
+description: NestJS API with an Angular front end.
+rules:
+  - core/*
+  - languages/typescript
+  - languages/javascript-node
+  - frontend/angular
+  - frontend/tailwind
+  - backend/nestjs
+  - backend/nestjs-microservices
+  - backend/nestjs-data
+  - data/postgres
+  - testing/cypress
+  - testing/unit-js
+  - testing/a11y
+  - devops/github-actions
+  - devops/docker
+skills:
+  - security-audit
+  - dependency-vet
+  - cve-check
+  - secrets-scan
+  - threat-model-lite
+  - incident-supply-chain
+  - git-commit
+  - upgrade-angular
+  - upgrade-nestjs
+conventions: [conventions/phaedra]

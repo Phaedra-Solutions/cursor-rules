@@ -1,0 +1,30 @@
+# Evals for rules/legacy/nextjs-pages-router.md
+- description: nextjs-pages-router - API route checks method, auth and input
+  vars:
+    task: |
+      Next.js 14 Pages Router. Add pages/api/posts/[id].ts that deletes a post. We use next-auth (getServerSession).
+  assert:
+    - type: javascript
+      value: /req\.method/.test(output)
+    - type: javascript
+      value: /getServerSession/.test(output)
+    - type: javascript
+      value: /405/.test(output)
+
+- description: nextjs-pages-router - getServerSideProps returns a minimal DTO
+  vars:
+    task: |
+      Next.js Pages Router. pages/profile.tsx should load the current user from Prisma and show their name.
+  assert:
+    - type: javascript
+      value: /getServerSideProps/.test(output)
+    - type: javascript
+      value: /select:\s*\{/.test(output) || /name:\s*user\.name/.test(output)
+
+- description: nextjs-pages-router - doesn't rely on middleware for auth
+  vars:
+    task: |
+      Next.js 15 Pages Router. Protect /dashboard and its API routes with middleware.ts.
+  assert:
+    - type: javascript
+      value: /(CVE-2025-29927|not enough|also check|getServerSideProps|in (each|every|the) (API|route))/i.test(output)

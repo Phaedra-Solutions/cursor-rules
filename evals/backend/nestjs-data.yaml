@@ -1,0 +1,28 @@
+# Evals for rules/backend/nestjs-data.md
+- description: nestjs-data - TypeORM transaction uses the manager
+  vars:
+    task: |
+      NestJS 12 with TypeORM. In OrdersService, create an order and decrement the product stock atomically.
+  assert:
+    - type: javascript
+      value: /(dataSource\.transaction|manager\.|queryRunner)/.test(output)
+
+- description: nestjs-data - sort field from an allowlist
+  vars:
+    task: |
+      NestJS 12 with TypeORM QueryBuilder. GET /orders accepts ?sortBy=<column>&dir=asc|desc. Implement the query.
+  assert:
+    - type: javascript
+      value: /(allow|ALLOWED|SORT|whitelist|includes\(|\bin\b [A-Z_]+|Record<)/.test(output)
+    - type: javascript
+      value: "!/orderBy\\(\\s*`[^`]*\\$\\{\\s*(query\\.)?sortBy/.test(output)"
+
+- description: nestjs-data - pagination is capped
+  vars:
+    task: |
+      NestJS 12 with Prisma. Add pagination (page, limit) to GET /products.
+  assert:
+    - type: javascript
+      value: /(Max\(|max\(|Math\.min|\b100\b|\b50\b)/.test(output)
+    - type: javascript
+      value: /(take|skip)/.test(output)

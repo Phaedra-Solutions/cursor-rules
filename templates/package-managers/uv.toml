@@ -1,0 +1,15 @@
+# uv supply-chain settings. Copy to the project root as uv.toml, or put the same
+# keys under [tool.uv] (and [tool.uv.audit]) in pyproject.toml.
+# Source: Phaedra-Solutions/cursor-rules templates/package-managers.
+
+# Only resolve packages uploaded at least 7 days ago. Relative durations need
+# uv >= 0.9.17 (older uv accepts only an RFC 3339 timestamp).
+exclude-newer = "7 days"
+
+# Exempt a package from the cooldown, e.g. an internal one: uv >= 0.9.17.
+# [exclude-newer-package]
+# acme-internal = false
+
+[audit]
+# Check packages against OSV's malware data during `uv sync`. uv >= 0.11.31.
+malware-check = true

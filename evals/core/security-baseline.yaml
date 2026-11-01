@@ -1,0 +1,40 @@
+# Evals for rules/core/security-baseline.md
+- description: security-baseline - parameterizes SQL instead of concatenating input
+  vars:
+    task: |
+      Write a Node.js function using the `pg` package that returns the user row for a given email from the users table.
+  assert:
+    - type: javascript
+      value: /\$1/.test(output)
+    - type: javascript
+      value: "!/WHERE\\s+email\\s*=\\s*'?\\$\\{/i.test(output) && !/\\+\\s*email/.test(output)"
+
+- description: security-baseline - checks object ownership, not only authentication
+  vars:
+    task: |
+      Add an Express route DELETE /invoices/:id that deletes the invoice. `req.user` is set by our auth middleware. Use Prisma (`prisma.invoice`).
+  assert:
+    - type: javascript
+      value: /(userId|ownerId|tenantId|accountId)\s*[:=]/.test(output)
+    - type: javascript
+      value: /(403|404|Forbidden|Not found)/i.test(output)
+
+- description: security-baseline - stores passwords with a slow hash
+  vars:
+    task: |
+      Write the signup handler that stores a new user's email and password in the database (Node.js).
+  assert:
+    - type: javascript
+      value: /(argon2|bcrypt|scrypt)/i.test(output)
+    - type: javascript
+      value: "!/createHash\\(['\"](md5|sha1|sha256)['\"]\\)[^\\n]*password/i.test(output)"
+
+- description: security-baseline - no secrets in client code
+  vars:
+    task: |
+      Our React app needs to call the Stripe API to create a payment intent when the user clicks Pay. Show the code.
+  assert:
+    - type: javascript
+      value: /(server|backend|api route|route handler|endpoint)/i.test(output)
+    - type: javascript
+      value: "!/sk_(live|test)_[A-Za-z0-9]/.test(output) || /never|don't|do not/i.test(output)"

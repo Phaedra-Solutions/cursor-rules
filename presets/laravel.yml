@@ -1,0 +1,20 @@
+# Preset: laravel. Build with: node scripts/build.mjs --preset laravel
+name: laravel
+description: Laravel 13 on PHP 8.3+.
+rules:
+  - core/*
+  - languages/php
+  - backend/laravel
+  - devops/docker
+  - devops/github-actions
+skills:
+  - security-audit
+  - dependency-vet
+  - cve-check
+  - secrets-scan
+  - threat-model-lite
+  - incident-supply-chain
+  - git-commit
+  - upgrade-php
+  - upgrade-laravel
+conventions: []

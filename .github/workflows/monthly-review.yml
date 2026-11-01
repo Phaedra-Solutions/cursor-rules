@@ -1,0 +1,63 @@
+name: Monthly security review
+
+on:
+  schedule:
+    - cron: '0 7 1 * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  open-issue:
+    name: Open the monthly review issue
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Create "Monthly security review YYYY-MM" unless it exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          month=$(date -u +%Y-%m)
+          title="Monthly security review $month"
+          existing=$(gh issue list --state all --search "\"$title\" in:title" --json title --jq '.[].title' | grep -Fx "$title" || true)
+          if [ -n "$existing" ]; then
+            echo "Issue \"$title\" already exists"
+            exit 0
+          fi
+
+          quarter_note=""
+          case "$(date -u +%m)" in
+            01|04|07|10) quarter_note="This is a quarter month: do the version sweep below." ;;
+            *) quarter_note="Not a quarter month: skip the version sweep unless something is overdue." ;;
+          esac
+
+          cat > body.md <<BODY
+          Monthly review from ROADMAP §10 (Governance and maintenance). Do it in the first week of the month; this lines up with Next.js's scheduled security releases.
+
+          ## Monthly
+
+          - [ ] Triage open \`[advisory]\` and \`[freshness]\` issues
+          - [ ] Refresh \`security/watchlist.yml\`: safe versions and known advisories (\`node scripts/check-advisories.mjs --dry-run\`)
+          - [ ] Refresh the "Known vulnerabilities" tables in affected rules; verify each with the \`cve-check\` skill
+          - [ ] Update tool and package-manager versions named in rules and skills, and the SHAs of pinned actions
+          - [ ] Check vendor security pages and scheduled security releases (Next.js, React, Angular, Node.js, Django, Spring, .NET)
+          - [ ] Check AI coding tool advisories (Cursor and others); update \`core/agent-safety\` and the minimum version in README
+          - [ ] Run \`node scripts/lint-rules.mjs --network\` and fix renamed or removed packages
+
+          ## Quarterly version sweep
+
+          $quarter_note
+
+          - [ ] Run \`node scripts/check-freshness.mjs --dry-run\` and update \`applies_to\` ranges
+          - [ ] Re-verify every rule's version check against current releases
+
+          ## Governance
+
+          - [ ] Every critical or CISA KEV advisory in a covered stack was handled within 7 days
+          - [ ] EOL versions moved to \`legacy/\` (kept at least 12 months) and the README matrix updated
+          - [ ] Changes to \`rules/core/**\` and security sections had 2 approvals, one from a security reviewer
+          BODY
+
+          gh issue create --title "$title" --body-file body.md

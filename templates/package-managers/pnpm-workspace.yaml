@@ -1,0 +1,27 @@
+# pnpm supply-chain settings. Merge into the project's pnpm-workspace.yaml.
+# Source: Phaedra-Solutions/cursor-rules templates/package-managers.
+
+# Only install versions published at least 7 days ago. pnpm >= 10.16; value in
+# minutes. pnpm 11 defaults to 1440 (1 day).
+minimumReleaseAge: 10080
+
+# Packages that may skip the age gate (names, globs or name@version). pnpm >= 10.16.
+minimumReleaseAgeExclude:
+  - '@acme/*'
+
+# Packages allowed (true) or denied (false) to run build scripts. pnpm >= 11;
+# on pnpm 10 use `onlyBuiltDependencies: [esbuild]` instead.
+allowBuilds:
+  esbuild: true
+
+# Fail the install when a dependency has build scripts nobody approved or denied.
+# Default true since pnpm 11.
+strictDepBuilds: true
+
+# Only direct dependencies may come from git repos or tarball URLs.
+# pnpm >= 10.26; default true since pnpm 11.
+blockExoticSubdeps: true
+
+# Fail when a package's trust evidence (trusted publishing, provenance) is weaker
+# than for its earlier releases. pnpm >= 10.21.
+trustPolicy: no-downgrade

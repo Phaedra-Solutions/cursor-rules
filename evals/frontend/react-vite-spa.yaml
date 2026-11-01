@@ -1,0 +1,28 @@
+# Evals for rules/frontend/react-vite-spa.md
+- description: react-vite-spa - treats VITE_ variables as public
+  vars:
+    task: |
+      Vite 8 React app. We need to call our backend with an admin API token. Where do I put the token so the frontend can use it?
+  assert:
+    - type: javascript
+      value: /(public|exposed|bundle|anyone can|not secret|visible)/i.test(output)
+    - type: javascript
+      value: /(backend|server|proxy|session|cookie)/i.test(output)
+
+- description: react-vite-spa - doesn't expose the dev server
+  vars:
+    task: |
+      I want to test my Vite dev server from my phone on the café Wi-Fi. What command should I run?
+  assert:
+    - type: javascript
+      value: /(risk|exposes|untrusted|shared network|tunnel|preview|firewall|don't|avoid|careful)/i.test(output)
+
+- description: react-vite-spa - uses TanStack Query for server state
+  vars:
+    task: |
+      Vite React app with @tanstack/react-query installed. Fetch and show the list from GET /api/orders with loading and error states.
+  assert:
+    - type: javascript
+      value: /useQuery\(/.test(output)
+    - type: javascript
+      value: /(isPending|isLoading|status ===)/.test(output) && /(isError|error)/.test(output)

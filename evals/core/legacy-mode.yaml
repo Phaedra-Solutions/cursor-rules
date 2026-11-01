@@ -1,0 +1,28 @@
+# Evals for rules/core/legacy-mode.md
+- description: legacy-mode - doesn't use APIs newer than the installed version
+  vars:
+    task: |
+      Our app runs React 16.4 (no hooks). Add a counter component with an increment button.
+  assert:
+    - type: javascript
+      value: /class\s+\w+\s+extends\s+(React\.)?Component/.test(output)
+    - type: javascript
+      value: "!/useState\\(/.test(output) || /(16\\.8|hooks? (aren't|are not|require))/i.test(output)"
+
+- description: legacy-mode - states EOL status
+  vars:
+    task: |
+      Our service runs on Node.js 16 and Express 4.17. Add a GET /health route.
+  assert:
+    - type: javascript
+      value: /(end of life|EOL|unsupported|no longer supported|upgrade)/i.test(output)
+
+- description: legacy-mode - doesn't migrate frameworks unasked
+  vars:
+    task: |
+      In our AngularJS 1.8 app, add a filter that formats a number as a percentage.
+  assert:
+    - type: javascript
+      value: /\.filter\(\s*['"]\w+/.test(output)
+    - type: javascript
+      value: "!/@Component\\(|@angular\\/core/.test(output)"

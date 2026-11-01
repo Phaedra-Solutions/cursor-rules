@@ -1,0 +1,58 @@
+# Minimal security jobs for GitLab CI: OSV-Scanner, Semgrep CE and gitleaks.
+# Copy into the project (e.g. ci/security.gitlab-ci.yml) and include it from
+# .gitlab-ci.yml:
+#   include:
+#     - local: ci/security.gitlab-ci.yml
+# Source: Phaedra-Solutions/cursor-rules templates/ci (see templates/ci/README.md).
+# Images are pinned to digests; update the tag and digest together.
+
+.security-rules:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+
+osv-scanner:
+  stage: test
+  extends: .security-rules
+  image:
+    name: ghcr.io/google/osv-scanner:v2.7.0@sha256:4f3b7e2c64b9d38a5febc5a7e4a3dfef1d1362f726dea7a2ef4762b46469fcd0
+    entrypoint: [""]
+  script:
+    - /osv-scanner scan source -r .
+
+semgrep:
+  stage: test
+  extends: .security-rules
+  image:
+    name: semgrep/semgrep:1.181.0@sha256:81474464c1f07483ba0682a44787fd93c91397419762a04abe2bafaae396304b
+    entrypoint: [""]
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - |
+      set -- --config p/default --metrics off --error --gitlab-sast --output gl-sast-report.json
+      if [ -n "$CI_MERGE_REQUEST_DIFF_BASE_SHA" ]; then
+        set -- "$@" --baseline-commit "$CI_MERGE_REQUEST_DIFF_BASE_SHA"
+      fi
+      semgrep scan "$@"
+  artifacts:
+    when: always
+    reports:
+      sast: gl-sast-report.json
+
+gitleaks:
+  stage: test
+  extends: .security-rules
+  image:
+    name: ghcr.io/gitleaks/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f
+    entrypoint: [""]
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - |
+      set -- git . --redact --no-banner -v
+      if [ -n "$CI_MERGE_REQUEST_DIFF_BASE_SHA" ]; then
+        set -- "$@" --log-opts="${CI_MERGE_REQUEST_DIFF_BASE_SHA}..${CI_COMMIT_SHA}"
+      fi
+      gitleaks "$@"

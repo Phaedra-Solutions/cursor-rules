@@ -1,0 +1,27 @@
+# Preset: next-supabase. Build with: node scripts/build.mjs --preset next-supabase
+name: next-supabase
+description: Next.js App Router with Supabase, TypeScript and Tailwind.
+rules:
+  - core/*
+  - languages/typescript
+  - frontend/react
+  - frontend/nextjs
+  - frontend/tailwind
+  - frontend/forms-validation
+  - data/supabase
+  - data/postgres
+  - testing/playwright
+  - testing/unit-js
+  - testing/a11y
+  - devops/github-actions
+skills:
+  - security-audit
+  - dependency-vet
+  - cve-check
+  - secrets-scan
+  - threat-model-lite
+  - incident-supply-chain
+  - git-commit
+  - upgrade-nextjs
+  - upgrade-supabase
+conventions: [conventions/phaedra]

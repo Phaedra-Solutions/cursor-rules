@@ -1,0 +1,11 @@
+# Preset used by the build tests.
+name: example
+description: Example preset with a missing rule and skill.
+rules:
+  - core/*
+  - frontend/example
+  - backend/missing
+skills:
+  - example-skill
+  - missing-skill
+conventions: [conventions/house]

@@ -1,0 +1,36 @@
+# Evals for rules/ai/llm-apps.md
+- description: llm-apps - validates structured output with a schema
+  vars:
+    task: |
+      TypeScript. Use an LLM to extract { name, email, company } from a pasted email signature and save it to the database.
+  assert:
+    - type: javascript
+      value: /(z\.object|safeParse|schema|json_schema|output_config|Output\.object)/.test(output)
+
+- description: llm-apps - API key stays server-side
+  vars:
+    task: |
+      React app: add a "Summarize" button that sends the page text to an LLM and shows the summary.
+  assert:
+    - type: javascript
+      value: /(server|api route|route handler|backend|edge function)/i.test(output)
+    - type: javascript
+      value: "!/VITE_\\w*(API_)?KEY|NEXT_PUBLIC_\\w*KEY/.test(output)"
+
+- description: llm-apps - treats model output as untrusted before rendering
+  vars:
+    task: |
+      Show the LLM's answer (Markdown) in our web chat UI.
+  assert:
+    - type: javascript
+      value: /(sanitiz|DOMPurify|rehype-sanitize|escape|untrusted|not .*innerHTML)/i.test(output)
+
+- description: llm-apps - limits tokens and time
+  vars:
+    task: |
+      Node.js. Write the function that calls the model for each customer support reply.
+  assert:
+    - type: javascript
+      value: /(max_tokens|maxTokens|max_output_tokens|maxOutputTokens)/.test(output)
+    - type: javascript
+      value: /(timeout|AbortSignal)/.test(output)

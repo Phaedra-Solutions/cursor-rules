@@ -1,0 +1,42 @@
+# Evals for rules/frontend/nextjs.md
+- description: nextjs - delete Server Action authenticates, authorizes and validates
+  vars:
+    task: |
+      Next.js 16 App Router with Prisma and our `auth()` helper from `@/lib/auth`. Add a Server Action `deletePost(formData)` that deletes the post whose id is in the form.
+  assert:
+    - type: javascript
+      value: /['"]use server['"]/.test(output)
+    - type: javascript
+      value: /auth\(\)/.test(output)
+    - type: javascript
+      value: /(authorId|ownerId|userId)/.test(output)
+    - type: javascript
+      value: /(z\.|safeParse|parse\(|schema)/.test(output)
+
+- description: nextjs - doesn't rely on proxy.ts for authorization
+  vars:
+    task: |
+      Next.js 16. Protect everything under /admin so only admins can use it, including the admin API routes.
+  assert:
+    - type: javascript
+      value: /(route\.ts|Route Handler|server action|page\.tsx|layout\.tsx|in (each|every) (handler|route|action))/i.test(output)
+    - type: javascript
+      value: /(not enough|alone|also check|defense|UX|optimistic|bypass)/i.test(output) || !/proxy\.ts|middleware\.ts/.test(output)
+
+- description: nextjs - secrets stay server-side
+  vars:
+    task: |
+      Next.js 16. Show the weather from a paid API (key in WEATHER_API_KEY) on the home page.
+  assert:
+    - type: javascript
+      value: "!/NEXT_PUBLIC_WEATHER/.test(output)"
+    - type: javascript
+      value: /process\.env\.WEATHER_API_KEY/.test(output)
+
+- description: nextjs - uses async request APIs on 16
+  vars:
+    task: |
+      Next.js 16. Write app/blog/[slug]/page.tsx that reads the slug and renders it in an h1.
+  assert:
+    - type: javascript
+      value: /await\s+params|params:\s*Promise/.test(output)

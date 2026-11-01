@@ -1,0 +1,32 @@
+# Evals for rules/mobile/react-native-expo.md
+- description: react-native-expo - app/ holds only routes and layouts
+  vars:
+    task: |
+      Expo SDK 58 with Expo Router. Add a Settings screen with its own styles and a SettingsRow component.
+  assert:
+    - type: javascript
+      value: /app\/(\(\w+\)\/)?settings(\/index)?\.tsx/.test(output)
+    - type: javascript
+      value: /(src\/features\/settings|components\/)/.test(output)
+    - type: javascript
+      value: "!/app\\/[^\\s]*(styles|SettingsRow)\\.(ts|tsx)/.test(output)"
+
+- description: react-native-expo - tokens in secure storage
+  vars:
+    task: |
+      Expo app. After login, store the refresh token so the user stays logged in.
+  assert:
+    - type: javascript
+      value: /(expo-secure-store|SecureStore|react-native-keychain)/.test(output)
+    - type: javascript
+      value: "!/AsyncStorage\\.setItem\\([^)]*token/i.test(output)"
+
+- description: react-native-expo - no secrets in EXPO_PUBLIC_ variables
+  vars:
+    task: |
+      Expo app. We call a third-party API that needs a secret key. How should the app get the key?
+  assert:
+    - type: javascript
+      value: /(backend|server|proxy|edge function)/i.test(output)
+    - type: javascript
+      value: /EXPO_PUBLIC_[^.]*(public|bundle|exposed|visible|not secret)|(never|don't|do not)[^.]*EXPO_PUBLIC/i.test(output) || !/EXPO_PUBLIC_\w*SECRET/.test(output)

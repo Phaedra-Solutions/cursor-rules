@@ -1,0 +1,635 @@
+# Packages and advisories that scripts/check-advisories.mjs watches.
+# safe_versions: the lowest version we document as safe, one per supported line.
+# known: advisory IDs (CVE or GHSA) we already cite; anything else that OSV
+# reports for a safe version is new and gets reported.
+# Verified against OSV and GHSA on 2026-10-30.
+
+updated: 2026-11-01
+packages:
+  - ecosystem: npm
+    name: react-server-dom-webpack
+    safe_versions: ["19.2.8", "19.3.0"]
+    known: [CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-67779, CVE-2026-23864, CVE-2026-23869, CVE-2026-23870, CVE-2026-44907]
+    rules: [frontend/react, frontend/nextjs]
+    note: "CVE-2025-55182 (React2Shell) is in CISA KEV. ROADMAP said >= 19.2.3; four later DoS fixes need 19.2.8."
+
+  - ecosystem: npm
+    name: react-server-dom-turbopack
+    safe_versions: ["19.2.8", "19.3.0"]
+    known: [CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-67779, CVE-2026-23864, CVE-2026-23869, CVE-2026-23870, CVE-2026-44907]
+    rules: [frontend/react, frontend/nextjs]
+
+  - ecosystem: npm
+    name: react-server-dom-parcel
+    safe_versions: ["19.2.8", "19.3.0"]
+    known: [CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-67779, CVE-2026-23864, CVE-2026-23869, CVE-2026-23870, CVE-2026-44907]
+    rules: [frontend/react]
+
+  - ecosystem: npm
+    name: next
+    safe_versions: ["16.4.1", "15.5.28"]
+    known: [GHSA-673q-mjm6-r5xr, GHSA-2464-fhr4-w9xw, CVE-2026-94482, CVE-2025-29927, GHSA-2xp9-vwfh-vxw4, CVE-2026-75604, CVE-2026-94484, CVE-2026-94543, CVE-2026-64649, CVE-2026-64645, CVE-2026-44573]
+    rules: [frontend/nextjs, legacy/nextjs-pages-router]
+    note: "16.4.1 is Active LTS, 15.5.28 Maintenance LTS. GHSA-2464-fhr4-w9xw (image optimizer SVG RCE) has no CVE; ROADMAP's CVE-2026-96889 is the librsvg issue under sharp."
+
+  - ecosystem: npm
+    name: sharp
+    safe_versions: ["0.35.5"]
+    known: [GHSA-wq5f-xc86-pv6w, CVE-2026-96889]
+    rules: [frontend/nextjs]
+
+  - ecosystem: npm
+    name: "@angular/core"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2026-22610, CVE-2026-27970, CVE-2026-32635, CVE-2026-50557, CVE-2026-52725, CVE-2026-54267, CVE-2026-69151, CVE-2026-88057]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+    note: "Use the latest patch of v20, v21 or v22; v19 and older are unsupported. Keep every @angular/* package on the same version."
+
+  - ecosystem: npm
+    name: "@angular/compiler"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2026-22610, CVE-2026-32635, CVE-2026-50557, CVE-2026-54265, CVE-2026-69151, CVE-2026-88057, CVE-2025-66412]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+
+  - ecosystem: npm
+    name: "@angular/common"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2025-66035, CVE-2026-111753, CVE-2026-54266, CVE-2026-54268, CVE-2026-68945, CVE-2026-88059, CVE-2026-50170, CVE-2026-50171]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+
+  - ecosystem: npm
+    name: "@angular/router"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2026-111751, CVE-2026-111752, CVE-2026-101896]
+    rules: [frontend/angular]
+
+  - ecosystem: npm
+    name: "@angular/platform-server"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2026-50555, CVE-2026-69149, CVE-2026-88056, CVE-2026-88058, CVE-2026-88060, CVE-2026-101895, CVE-2026-111754]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+
+  - ecosystem: npm
+    name: "@angular/ssr"
+    safe_versions: ["22.1.7", "21.2.23", "20.3.36"]
+    known: [CVE-2026-104871, CVE-2026-27739, CVE-2026-27738, CVE-2026-33397, CVE-2026-44437]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+    note: "@angular/ssr follows the CLI version line; the 20.3.36 fix for CVE-2026-104871 is newer than the framework minimum."
+
+  - ecosystem: npm
+    name: "@angular/service-worker"
+    safe_versions: ["22.2.1", "21.2.25", "20.3.34"]
+    known: [CVE-2026-54264]
+    rules: [frontend/angular, legacy/angular-ngmodules]
+
+  - ecosystem: npm
+    name: angular
+    safe_versions: ["1.8.3"]
+    known: [CVE-2022-25844, CVE-2022-25869, CVE-2023-26116, CVE-2023-26117, CVE-2023-26118, CVE-2024-8372, CVE-2024-8373, CVE-2024-21490, CVE-2025-0716, CVE-2026-11998]
+    rules: [legacy/angularjs]
+    note: "AngularJS is EOL (31 Dec 2021); 1.8.3 is the last release and none of these have an official fix."
+
+  - ecosystem: npm
+    name: "@nestjs/devtools-integration"
+    safe_versions: ["0.2.1"]
+    known: [CVE-2025-54782]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+
+  - ecosystem: npm
+    name: "@nestjs/core"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [CVE-2026-35515, CVE-2023-26108]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+    note: "Keep every @nestjs/* framework package on one version; 12.0.3 / 11.2.5 cover the microservices fixes. 10.x is unsupported and has no fix for the 2026 advisories."
+
+  - ecosystem: npm
+    name: "@nestjs/common"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [CVE-2024-29409]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+
+  - ecosystem: npm
+    name: "@nestjs/microservices"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [GHSA-96h4-vgxj-gvm2, CVE-2026-102281, CVE-2026-40879]
+    rules: [backend/nestjs-microservices, legacy/nestjs-legacy]
+
+  - ecosystem: npm
+    name: "@nestjs/platform-fastify"
+    safe_versions: ["12.0.3", "11.2.5"]
+    known: [GHSA-9c5c-9qcx-q35q, CVE-2026-54281, CVE-2026-33011, CVE-2026-2293, CVE-2025-69211]
+    rules: [backend/nestjs, legacy/nestjs-legacy]
+    note: "Five path-scoped middleware bypasses since 2025; the rules require guards, not middleware, for auth."
+
+  - ecosystem: npm
+    name: "@supabase/auth-js"
+    safe_versions: ["2.70.0"]
+    known: [CVE-2025-48370]
+    rules: [data/supabase, legacy/supabase-legacy]
+    note: "Bundled by @supabase/supabase-js; check with npm ls @supabase/auth-js."
+
+  - ecosystem: npm
+    name: sequelize
+    safe_versions: ["6.37.8"]
+    known: [CVE-2026-30951, CVE-2026-69240, CVE-2023-25813, CVE-2023-22578, CVE-2023-22579, CVE-2023-22580]
+    rules: [backend/nestjs-data, data/orm-sequelize-typeorm]
+
+  - ecosystem: npm
+    name: typeorm
+    safe_versions: ["1.1.0", "0.3.31"]
+    known: [CVE-2026-73651, GHSA-9ggv-8w38-r7pm, CVE-2025-60542, CVE-2022-33171]
+    rules: [backend/nestjs-data, data/orm-sequelize-typeorm]
+
+  - ecosystem: npm
+    name: mongoose
+    safe_versions: ["9.7.2", "8.24.1", "7.8.10", "6.13.10"]
+    known: [CVE-2026-73562, CVE-2026-42334, CVE-2025-23061, CVE-2024-53900]
+    rules: [data/mongodb]
+
+  - ecosystem: npm
+    name: drizzle-orm
+    safe_versions: ["0.45.2", "1.0.0-beta.20"]
+    known: [CVE-2026-39356]
+    rules: [data/orm-drizzle]
+
+  - ecosystem: npm
+    name: firebase
+    safe_versions: ["10.9.0"]
+    known: [CVE-2024-11023]
+    rules: [data/firebase]
+
+  - ecosystem: PyPI
+    name: pymongo
+    safe_versions: ["4.18.3"]
+    known: [CVE-2026-106435, CVE-2026-96748, CVE-2026-96749, CVE-2026-96747, CVE-2026-88029, CVE-2024-5629]
+    rules: [data/mongodb]
+
+  - ecosystem: npm
+    name: "@react-native-community/cli"
+    safe_versions: ["20.0.0"]
+    known: [CVE-2025-11953]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+    note: "Metro4Shell (CISA KEV 2026-02-05); also fixed in 18.0.1 and 19.1.2. No fixed line below 18."
+
+  - ecosystem: npm
+    name: "@react-native-community/cli-server-api"
+    safe_versions: ["20.0.0"]
+    known: [CVE-2025-11953]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+
+  - ecosystem: npm
+    name: react-native
+    safe_versions: ["0.88.0", "0.87.0", "0.86.0"]
+    known: [CVE-2020-1920]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+    note: "Only the latest three minors get patches; 0.85 and older are unsupported."
+
+  - ecosystem: npm
+    name: expo
+    safe_versions: ["58.0.0"]
+    known: [CVE-2023-28131, CVE-2020-24653]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+
+  - ecosystem: npm
+    name: react-native-webview
+    safe_versions: ["11.0.0"]
+    known: [CVE-2020-6506]
+    rules: [mobile/react-native-expo, legacy/react-native-old-arch]
+
+  - ecosystem: npm
+    name: express
+    safe_versions: ["5.0.0", "4.20.0"]
+    known: [CVE-2024-43796, CVE-2024-29041, CVE-2024-10491, CVE-2024-9266]
+    rules: [backend/express, legacy/express-4]
+    note: "Most Express advisories are in transitive packages; see path-to-regexp, body-parser and qs."
+
+  - ecosystem: npm
+    name: path-to-regexp
+    safe_versions: ["8.4.0", "0.1.13"]
+    known: [CVE-2026-4923, CVE-2026-4926, CVE-2026-4867, CVE-2024-45296, CVE-2024-52798]
+    rules: [backend/express, legacy/express-4]
+
+  - ecosystem: npm
+    name: body-parser
+    safe_versions: ["2.4.0", "1.20.9"]
+    known: [CVE-2026-111181, CVE-2026-12590, CVE-2025-13466, CVE-2024-45590]
+    rules: [backend/express, legacy/express-4]
+
+  - ecosystem: npm
+    name: qs
+    safe_versions: ["6.16.1"]
+    known: [CVE-2026-110816, CVE-2026-82417, CVE-2026-82562, CVE-2026-8723, CVE-2026-2391, CVE-2025-15284]
+    rules: [backend/express, legacy/express-4]
+
+  - ecosystem: npm
+    name: multer
+    safe_versions: ["2.5.0"]
+    known: [CVE-2026-113872, CVE-2026-88932, CVE-2026-82333, CVE-2026-77037, CVE-2026-77063, CVE-2026-77078, CVE-2026-5038, CVE-2026-5079, CVE-2026-3520, CVE-2026-2359, CVE-2026-3304, CVE-2025-47935, CVE-2025-47944, CVE-2025-7338, CVE-2025-48997]
+    rules: [backend/express]
+
+  - ecosystem: npm
+    name: express-rate-limit
+    safe_versions: ["8.2.2"]
+    known: [CVE-2026-30827]
+    rules: [backend/express]
+
+  - ecosystem: npm
+    name: nuxt
+    safe_versions: ["4.6.2"]
+    known: [CVE-2026-114130, CVE-2026-114131, CVE-2026-114132, CVE-2026-114133, CVE-2026-71314, CVE-2026-71315, CVE-2026-71316, CVE-2026-71318, CVE-2026-71320, CVE-2026-71321, CVE-2026-72744, CVE-2026-56301, CVE-2026-56317, CVE-2026-56326, CVE-2026-53721, CVE-2026-53722, CVE-2026-45669, CVE-2026-46342, CVE-2026-47200, CVE-2025-59414, CVE-2025-27415, GHSA-rq7w-g337-39qq]
+    rules: [frontend/nuxt, legacy/vue2-nuxt2]
+    note: "Nuxt 3 reached EOL on 31 Jul 2026; CVE-2026-114132 has no 3.x fix."
+
+  - ecosystem: npm
+    name: "@nuxt/devtools"
+    safe_versions: ["3.3.1"]
+    known: [CVE-2026-71319, CVE-2025-52662, CVE-2024-23657]
+    rules: [frontend/nuxt]
+
+  - ecosystem: npm
+    name: nitropack
+    safe_versions: ["2.13.4"]
+    known: [CVE-2026-44373, CVE-2026-44372]
+    rules: [frontend/nuxt]
+
+  - ecosystem: npm
+    name: h3
+    safe_versions: ["1.15.9", "2.0.8"]
+    known: [CVE-2026-33128, CVE-2026-33129, CVE-2026-33490, CVE-2026-33131, CVE-2026-86250, CVE-2026-86251, CVE-2026-86252, CVE-2026-86253, CVE-2026-86205, CVE-2026-23527]
+    rules: [frontend/nuxt]
+
+  - ecosystem: npm
+    name: vue-i18n
+    safe_versions: ["11.4.14"]
+    known: [CVE-2026-118256, CVE-2026-118257, CVE-2025-53892, CVE-2025-27597, CVE-2024-52809]
+    rules: [frontend/vue]
+
+  - ecosystem: npm
+    name: zod
+    safe_versions: ["4.6.6"]
+    known: [CVE-2023-54404]
+    rules: [frontend/forms-validation]
+
+  - ecosystem: npm
+    name: jquery
+    safe_versions: ["3.7.1", "4.0.0"]
+    known: [CVE-2020-11022, CVE-2020-11023, CVE-2019-11358, CVE-2015-9251, CVE-2012-6708, CVE-2020-7656, CVE-2011-4969, CVE-2016-10707]
+    rules: [legacy/jquery]
+
+  - ecosystem: npm
+    name: jquery-ui
+    safe_versions: ["1.13.2"]
+    known: [CVE-2022-31160, CVE-2021-41182, CVE-2021-41183, CVE-2021-41184, CVE-2016-7103, CVE-2012-6662, CVE-2010-5312]
+    rules: [legacy/jquery]
+
+  - ecosystem: npm
+    name: fastify
+    safe_versions: ["5.12.6"]
+    known: [CVE-2026-107832, CVE-2026-76169, CVE-2026-84504, CVE-2026-84428, CVE-2026-84469, CVE-2026-92081, CVE-2026-16732, CVE-2026-18504, CVE-2026-33806, CVE-2026-3635, CVE-2026-3419, CVE-2026-25223, CVE-2026-25224]
+    rules: [backend/fastify-hono]
+
+  - ecosystem: npm
+    name: hono
+    safe_versions: ["4.13.11"]
+    known: [CVE-2026-109955, CVE-2026-71850, CVE-2026-93981, CVE-2026-84364, CVE-2026-84363, CVE-2026-84365, CVE-2026-54290, CVE-2026-22817, CVE-2026-22818]
+    rules: [backend/fastify-hono]
+    note: "44 GHSA advisories in 2026; only the ones cited in the rule are listed."
+
+  - ecosystem: npm
+    name: "@hono/node-server"
+    safe_versions: ["2.1.3"]
+    known: [CVE-2026-118663, CVE-2026-73565, CVE-2026-39406, CVE-2026-29087, GHSA-frvp-7c67-39w9]
+    rules: [backend/fastify-hono]
+
+  - ecosystem: npm
+    name: "@apollo/server"
+    safe_versions: ["5.5.0"]
+    known: [CVE-2026-23897, GHSA-9q82-xgwf-vj6h]
+    rules: [backend/graphql]
+
+  - ecosystem: npm
+    name: svelte
+    safe_versions: ["5.55.7"]
+    known: [CVE-2025-15265, CVE-2026-42567, CVE-2026-27125, GHSA-f3cj-j4f6-wq85, CVE-2026-27121, GHSA-gw32-9rmw-qwww, CVE-2026-27119, CVE-2026-27122, CVE-2026-27901, CVE-2026-42599, CVE-2026-27902, CVE-2026-42573]
+    rules: [frontend/svelte]
+
+  - ecosystem: npm
+    name: "@sveltejs/kit"
+    safe_versions: ["3.0.0"]
+    known: [CVE-2026-114060, CVE-2026-114061, CVE-2026-66062, CVE-2026-40073, CVE-2026-40074, CVE-2026-82256, CVE-2026-82257, CVE-2026-82258, CVE-2026-82259, CVE-2026-82260, CVE-2026-82261, CVE-2026-22803, CVE-2025-67647]
+    rules: [frontend/svelte]
+
+  - ecosystem: npm
+    name: astro
+    safe_versions: ["7.3.3"]
+    known: [CVE-2026-114127, CVE-2026-114128, GHSA-26w7-cxv4-gfx2, CVE-2026-84376, CVE-2026-73422, CVE-2026-73423, CVE-2026-59727, CVE-2026-59729, CVE-2026-59731, CVE-2026-54298, CVE-2026-54299, CVE-2026-50146, CVE-2026-45028, CVE-2026-41067, CVE-2026-33769, CVE-2025-66202, CVE-2025-65019, CVE-2025-64765, CVE-2025-64764, CVE-2025-64757, CVE-2025-64745, CVE-2025-64525, CVE-2025-61925, CVE-2025-59837]
+    rules: [frontend/astro]
+
+  - ecosystem: npm
+    name: "@astrojs/node"
+    safe_versions: ["11.1.3"]
+    known: [CVE-2026-102984, CVE-2026-59730, CVE-2026-41322, CVE-2026-29772, CVE-2026-27829, CVE-2026-27729, CVE-2026-25545]
+    rules: [frontend/astro]
+
+  - ecosystem: npm
+    name: vite
+    safe_versions: ["8.3.3", "7.3.7", "6.4.4"]
+    known: [CVE-2025-30208, CVE-2026-39363, CVE-2026-39364, CVE-2026-39365, CVE-2026-53571, CVE-2026-53632, CVE-2026-112942, CVE-2026-112943, CVE-2026-112944, CVE-2026-112945, CVE-2026-112946]
+    rules: [frontend/react-vite-spa]
+
+  - ecosystem: npm
+    name: react-router
+    safe_versions: ["8.3.0", "7.18.2"]
+    known: [GHSA-qwww-vcr4-c8h2, CVE-2025-43865, CVE-2025-59057, CVE-2025-68470, CVE-2026-21884, CVE-2026-22029, CVE-2026-22030, CVE-2026-34077, CVE-2026-40181, CVE-2026-42211, CVE-2026-42342, CVE-2026-53666, CVE-2026-53669, CVE-2026-55685]
+    rules: [frontend/react-vite-spa]
+
+  - ecosystem: npm
+    name: vitest
+    safe_versions: ["5.0.5", "4.1.11"]
+    known: [CVE-2026-112948, CVE-2026-84373, CVE-2026-47429, CVE-2025-24964]
+    rules: [testing/unit-js]
+    note: "3.x has no fix for CVE-2026-84373."
+
+  - ecosystem: npm
+    name: "@vitest/browser"
+    safe_versions: ["5.0.5", "4.1.11"]
+    known: [CVE-2026-53633, CVE-2026-73653, CVE-2026-47428, CVE-2025-24963]
+    rules: [testing/unit-js]
+
+  - ecosystem: npm
+    name: "@playwright/test"
+    safe_versions: ["1.55.1"]
+    known: []
+    rules: [testing/playwright]
+
+  - ecosystem: PyPI
+    name: pytest
+    safe_versions: ["9.0.3"]
+    known: [CVE-2025-71176]
+    rules: [testing/pytest]
+    note: "8.x has no backported fix; set --basetemp to a user-owned directory on shared machines."
+
+  - ecosystem: npm
+    name: playwright
+    safe_versions: ["1.55.1"]
+    known: [CVE-2025-59288]
+    rules: [testing/playwright]
+
+  - ecosystem: npm
+    name: "@playwright/mcp"
+    safe_versions: ["0.0.40"]
+    known: [CVE-2025-9611]
+    rules: [testing/playwright]
+
+  - ecosystem: PyPI
+    name: django
+    safe_versions: ["6.1.2", "6.0.9", "5.2.18"]
+    known: [CVE-2025-57833, CVE-2025-59681, CVE-2025-13372, CVE-2025-64458, CVE-2025-64459, CVE-2026-1207, CVE-2026-1287, CVE-2026-1312, CVE-2026-3902, CVE-2026-4292, CVE-2026-4277, CVE-2026-6873, CVE-2026-8404, CVE-2026-15307, CVE-2026-15830, CVE-2026-25673, CVE-2026-33033, CVE-2026-33034, CVE-2026-35193, CVE-2026-48587, CVE-2026-48588, CVE-2026-53878]
+    rules: [backend/django, legacy/django-legacy]
+    note: "4.2 LTS ended on 7 Apr 2026; advisories after that are unfixed on 4.2."
+
+  - ecosystem: PyPI
+    name: djangorestframework
+    safe_versions: ["3.18.2"]
+    known: [CVE-2026-114136, CVE-2026-114137, CVE-2026-114138, CVE-2026-73228, CVE-2026-73229]
+    rules: [backend/django, legacy/django-legacy]
+
+  - ecosystem: PyPI
+    name: starlette
+    safe_versions: ["1.3.1"]
+    known: [CVE-2026-48710, CVE-2026-54282, CVE-2026-54283, CVE-2026-48817, CVE-2026-48818, CVE-2025-54121, CVE-2025-62727]
+    rules: [backend/fastapi]
+
+  - ecosystem: PyPI
+    name: python-multipart
+    safe_versions: ["0.0.31"]
+    known: [CVE-2026-53537, CVE-2026-53538, CVE-2026-53539, CVE-2026-53540, CVE-2026-40347, CVE-2026-42561, CVE-2026-24486]
+    rules: [backend/fastapi]
+
+  - ecosystem: PyPI
+    name: pyjwt
+    safe_versions: ["2.15.0"]
+    known: [CVE-2026-48526, CVE-2026-48523, CVE-2026-48522, CVE-2026-48524, CVE-2026-48525, CVE-2026-32597, CVE-2026-101917, CVE-2026-101918, CVE-2026-102265, CVE-2026-102266, CVE-2026-102267, CVE-2026-102268, CVE-2026-102269, CVE-2026-102270, CVE-2026-102271, CVE-2026-102272, CVE-2026-102273, CVE-2026-102274, CVE-2026-102275, CVE-2026-103001, GHSA-pxh4-856f-4h89]
+    rules: [backend/fastapi, languages/python]
+
+  - ecosystem: Maven
+    name: "org.springframework.boot:spring-boot"
+    safe_versions: ["4.0.6", "4.1.0"]
+    known: [CVE-2026-40976, CVE-2026-40973]
+    rules: [backend/spring-boot, legacy/java-spring-boot-legacy]
+    note: "3.x OSS support ended 30 Jun 2026; 4.0 OSS ends 31 Dec 2026."
+
+  - ecosystem: Maven
+    name: "org.springframework.security:spring-security-web"
+    safe_versions: ["7.0.6"]
+    known: [CVE-2026-41706, CVE-2026-22747, CVE-2026-47838, CVE-2026-22732]
+    rules: [backend/spring-boot, legacy/java-spring-boot-legacy]
+
+  - ecosystem: Maven
+    name: "org.springframework:spring-webmvc"
+    safe_versions: ["7.0.9"]
+    known: [CVE-2026-47890, CVE-2026-41853, CVE-2026-41843, CVE-2026-41844, CVE-2026-41845, CVE-2026-41846, CVE-2026-41841, CVE-2026-41842, CVE-2026-22745, CVE-2026-22741, CVE-2026-22737, CVE-2026-22735, CVE-2026-47884]
+    rules: [backend/spring-boot, legacy/java-spring-boot-legacy]
+
+  - ecosystem: Maven
+    name: "org.apache.struts:struts2-core"
+    safe_versions: ["7.4.0", "6.12.0"]
+    known: [CVE-2026-104711, CVE-2026-104712, CVE-2026-104713, CVE-2026-104714, CVE-2026-73631, CVE-2026-73632, CVE-2026-73633, CVE-2026-73634, CVE-2026-73635, CVE-2025-68493, CVE-2025-66675, CVE-2025-64775, CVE-2024-53677, CVE-2023-50164]
+    rules: [legacy/struts]
+    note: "2.5 EOL 30 Oct 2023; Struts 1 EOL 5 Apr 2013 with no fixed versions."
+
+  - ecosystem: Maven
+    name: "org.springframework.boot:spring-boot-devtools"
+    safe_versions: ["4.0.6", "4.1.0"]
+    known: [CVE-2026-40972]
+    rules: [backend/spring-boot]
+
+  - ecosystem: NuGet
+    name: Microsoft.AspNetCore.Server.Kestrel.Core
+    safe_versions: ["2.3.6"]
+    known: [CVE-2025-55315]
+    rules: [backend/aspnet-core]
+    note: "ASP.NET Core 8, 9 and 10 ship Kestrel in the shared runtime; patch the runtime (8.0.21, 9.0.10 or later)."
+
+  - ecosystem: NuGet
+    name: Microsoft.AspNetCore.App.Runtime.linux-x64
+    safe_versions: ["10.0.13", "9.0.21", "8.0.32"]
+    known: [CVE-2026-88092, CVE-2026-70183, CVE-2026-70188, CVE-2026-70175, CVE-2026-70196, CVE-2026-70186, CVE-2026-96236, CVE-2026-70181, CVE-2026-56170, CVE-2026-45591, CVE-2026-26130, CVE-2026-42899, CVE-2025-55315]
+    rules: [backend/aspnet-core, languages/csharp, legacy/dotnet-8-9]
+    note: ".NET 8 and 9 end support on 10 Nov 2026."
+
+  - ecosystem: Packagist
+    name: livewire/livewire
+    safe_versions: ["3.8.3", "4.4.8"]
+    known: [CVE-2025-54068, CVE-2026-81887, GHSA-mhf7-xp6r-6qrc, CVE-2024-47823]
+    rules: [backend/laravel, legacy/php-legacy]
+    note: "CVE-2025-54068 is in CISA KEV."
+
+  - ecosystem: Packagist
+    name: laravel/framework
+    safe_versions: ["13.30.0", "12.69.0"]
+    known: [CVE-2026-114509, CVE-2026-114508, CVE-2026-102279, GHSA-crmm-hgp2-wgrp, CVE-2026-48019, CVE-2025-27515, CVE-2024-52301, CVE-2024-13918, CVE-2024-13919]
+    rules: [backend/laravel, legacy/php-legacy]
+    note: "OSV lists the 2026 advisories as unfixed on 10.x and 11.x."
+
+  - ecosystem: Packagist
+    name: filament/filament
+    safe_versions: ["5.8.3", "4.13.3"]
+    known: [CVE-2026-104181, CVE-2026-77567, CVE-2026-84306, CVE-2026-84307, CVE-2026-48500, CVE-2026-48166, CVE-2026-48505, CVE-2025-67507]
+    rules: [backend/laravel]
+
+  - ecosystem: Packagist
+    name: guzzlehttp/guzzle
+    safe_versions: ["7.15.2", "8.0.1"]
+    known: [CVE-2026-67339, CVE-2026-55767, CVE-2026-67353, CVE-2026-69245, CVE-2026-59883, CVE-2026-67354, CVE-2026-69246, CVE-2026-67355, CVE-2026-55568]
+    rules: [languages/php]
+
+  - ecosystem: PyPI
+    name: langchain-core
+    safe_versions: ["1.3.3"]
+    known: [CVE-2025-68664, CVE-2026-26013, CVE-2026-34070, CVE-2026-40087, CVE-2026-44843, CVE-2025-65106]
+    rules: [ai/llm-apps, ai/agents]
+    note: "The 0.3 line has unfixed advisories; document 1.x only."
+
+  - ecosystem: PyPI
+    name: langchain-community
+    safe_versions: ["0.3.27"]
+    known: [CVE-2025-2828, CVE-2025-6984]
+    rules: [ai/rag]
+
+  - ecosystem: PyPI
+    name: llama-index-core
+    safe_versions: ["0.13.0"]
+    known: [CVE-2025-7647, CVE-2025-6209, CVE-2025-6208, CVE-2025-5472, CVE-2025-5302, CVE-2025-3108]
+    rules: [ai/llm-apps]
+
+  - ecosystem: PyPI
+    name: litellm
+    safe_versions: ["1.104.0"]
+    known: [CVE-2026-84377, CVE-2026-114612, GHSA-5mg7-485q-xm76]
+    rules: [ai/llm-apps, core/supply-chain]
+    note: "1.82.7 and 1.82.8 were malicious (Mar 2026); about 30 GHSA advisories in 2026. Track the latest release."
+
+  - ecosystem: PyPI
+    name: langgraph
+    safe_versions: ["1.2.14"]
+    known: [CVE-2026-28277, CVE-2026-118667]
+    rules: [ai/agents]
+
+  - ecosystem: PyPI
+    name: langgraph-checkpoint-sqlite
+    safe_versions: ["3.1.2"]
+    known: [CVE-2025-67644, CVE-2026-71433, CVE-2026-115883, CVE-2025-8709, CVE-2025-64104]
+    rules: [ai/agents]
+    note: "3.1.2 is the sqlite fix for CVE-2026-115883; the postgres package needs 3.1.3."
+
+  - ecosystem: PyPI
+    name: langgraph-checkpoint-postgres
+    safe_versions: ["3.1.3"]
+    known: [CVE-2026-71433, CVE-2026-115883]
+    rules: [ai/agents]
+
+  - ecosystem: PyPI
+    name: langgraph-checkpoint
+    safe_versions: ["4.1.1"]
+    known: [CVE-2026-48775, CVE-2026-27794, CVE-2025-64439]
+    rules: [ai/agents]
+
+  - ecosystem: PyPI
+    name: claude-agent-sdk
+    safe_versions: ["0.2.121"]
+    known: [CVE-2026-96620]
+    rules: [ai/agents]
+
+  - ecosystem: npm
+    name: "@modelcontextprotocol/sdk"
+    safe_versions: ["1.32.0"]
+    known: [CVE-2026-111771, CVE-2026-111768, CVE-2026-111769, CVE-2026-111767, CVE-2026-104850, CVE-2026-25536, CVE-2026-0621, CVE-2025-66414, GHSA-f897-62hf-6gxq]
+    rules: [ai/mcp-servers]
+
+  - ecosystem: npm
+    name: "@modelcontextprotocol/server"
+    safe_versions: ["2.3.0"]
+    known: [CVE-2026-111771, CVE-2026-111768, GHSA-f897-62hf-6gxq]
+    rules: [ai/mcp-servers]
+
+  - ecosystem: PyPI
+    name: mcp
+    safe_versions: ["2.2.0", "1.30.0"]
+    known: [CVE-2026-116684, CVE-2026-116685, CVE-2026-116686, CVE-2026-59951, CVE-2026-59950, CVE-2026-52869, CVE-2026-52870, CVE-2025-66416, CVE-2025-53365, CVE-2025-53366]
+    rules: [ai/mcp-servers]
+
+  - ecosystem: PyPI
+    name: fastmcp
+    safe_versions: ["4.1.2", "3.4.10"]
+    known: [CVE-2025-64340, CVE-2026-27124, CVE-2026-32871, CVE-2025-69196, GHSA-7xgj-8392-5q4r, GHSA-vqqp-x5qm-5qp4]
+    rules: [ai/mcp-servers]
+
+  - ecosystem: npm
+    name: "@langchain/langgraph-checkpoint-redis"
+    safe_versions: ["1.0.2"]
+    known: [CVE-2026-27022]
+    rules: [ai/agents]
+
+  - ecosystem: Go
+    name: github.com/opencontainers/runc
+    safe_versions: ["1.3.6", "1.4.3"]
+    known: [CVE-2025-31133, CVE-2025-52565, CVE-2025-52881, CVE-2026-41579]
+    rules: [devops/docker]
+
+  - ecosystem: Go
+    name: github.com/containerd/containerd/v2
+    safe_versions: ["2.4.1"]
+    known: [CVE-2026-95837, CVE-2026-53493, CVE-2026-53495, CVE-2026-95838, CVE-2026-53492, CVE-2026-50195, CVE-2026-53489, CVE-2026-53488, CVE-2026-47262, CVE-2026-46680, CVE-2025-64329, CVE-2024-25621]
+    rules: [devops/docker]
+
+  - ecosystem: Go
+    name: github.com/moby/buildkit
+    safe_versions: ["0.31.1"]
+    known: [CVE-2026-61711, CVE-2026-61712, CVE-2026-33747, CVE-2026-33748]
+    rules: [devops/docker]
+
+  - ecosystem: Go
+    name: k8s.io/ingress-nginx
+    safe_versions: ["1.14.3"]
+    known: [CVE-2023-5044, CVE-2025-1097, CVE-2025-1098, CVE-2025-1974, CVE-2025-24513, CVE-2025-24514, CVE-2026-1580, CVE-2026-24512, CVE-2026-24513, CVE-2026-24514]
+    rules: [devops/kubernetes, legacy/ingress-nginx]
+    note: "Retired in March 2026 with no further fixes (last controller release v1.15.1); migrate to Gateway API."
+
+  - ecosystem: npm
+    name: cordova-plugin-inappbrowser
+    safe_versions: ["6.0.1"]
+    known: [CVE-2026-47430]
+    rules: [legacy/cordova]
+
+  - ecosystem: npm
+    name: "@capacitor/android"
+    safe_versions: ["8.5.1", "8.4.3", "7.6.9", "6.2.2"]
+    known: [CVE-2026-103922]
+    rules: [legacy/cordova]
+
+  - ecosystem: npm
+    name: "@capacitor/ios"
+    safe_versions: ["8.5.1", "8.4.3", "7.6.9", "6.2.2"]
+    known: [CVE-2026-103922]
+    rules: [legacy/cordova]
+
+  - ecosystem: npm
+    name: moment
+    safe_versions: ["2.31.0"]
+    known: [CVE-2026-17495, CVE-2022-31129, CVE-2022-24785, CVE-2017-18214, CVE-2016-4055]
+    rules: [legacy/js-legacy-libraries]
+    note: "Maintenance mode; prefer Temporal or date-fns for new code."
+
+  - ecosystem: RubyGems
+    name: activestorage
+    safe_versions: ["8.1.3.1", "8.0.5.1", "7.2.3.2"]
+    known: [CVE-2026-66066, CVE-2026-33658, CVE-2026-33202, CVE-2026-33195, CVE-2026-33174, CVE-2026-33173, CVE-2025-24293]
+    rules: [legacy/rails-legacy]
+    note: "Rails 7.2 and older are EOL; mitigate CVE-2026-66066 with VIPS_BLOCK_UNTRUSTED."
+
+  - ecosystem: RubyGems
+    name: rack
+    safe_versions: ["3.2.6", "3.1.21", "2.2.23"]
+    known: [CVE-2026-34831, CVE-2026-34830, CVE-2026-34829, CVE-2026-34763, CVE-2026-34230, CVE-2026-26961, CVE-2026-34826, CVE-2026-34786, CVE-2026-34785, CVE-2026-25500, CVE-2026-22860]
+    rules: [legacy/rails-legacy]

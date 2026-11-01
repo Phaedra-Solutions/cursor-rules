@@ -1,0 +1,23 @@
+# Preset: ai-app. Build with: node scripts/build.mjs --preset ai-app
+name: ai-app
+description: LLM features, RAG, agents and MCP servers (TypeScript or Python).
+rules:
+  - core/*
+  - languages/typescript
+  - languages/python
+  - ai/llm-apps
+  - ai/rag
+  - ai/agents
+  - ai/mcp-servers
+  - data/postgres
+  - devops/docker
+  - devops/github-actions
+skills:
+  - security-audit
+  - dependency-vet
+  - cve-check
+  - secrets-scan
+  - threat-model-lite
+  - incident-supply-chain
+  - git-commit
+conventions: []
