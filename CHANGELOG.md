@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Add `testing/a11y` to the `react-vite`, `next-supabase` and `nest-angular` presets; `python-fastapi` no longer warns about the missing `testing/pytest` rule.
 - Exclude `ftc.gov` from the lychee link check because it answers automated requests with an error.
+- Rewrite `README.md` with an at-a-glance summary, "Why version-aware rules", "How it works", a tool table, a supported-stacks list and an FAQ; the generated catalog and preset tables are unchanged.
 
 ## [1.0.0] - 2026-10-30
 

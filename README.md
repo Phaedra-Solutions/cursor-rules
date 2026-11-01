@@ -1,39 +1,117 @@
-# Cursor Rules
+# Cursor Rules and Agent Skills for AI Coding Agents
 
-Version-aware rules and skills for AI coding agents, from **Phaedra Solutions**. Each rule checks the versions a project actually uses, applies current conventions and security guidance for that stack, and falls back to legacy guidance when the project is on an old or end-of-life version. One source builds Cursor project rules, `AGENTS.md` and Agent Skills.
+**Version-aware, security-first rules for Cursor, Claude Code, OpenAI Codex, GitHub Copilot and Gemini CLI.** Open source (MIT), maintained by [Phaedra Solutions](https://phaedrasolutions.com).
+
+`cursor-rules` is a library of coding rules and [Agent Skills](https://agentskills.io) that make AI coding agents work like a senior engineer on your stack. Before an agent writes code, each rule checks which framework version your project actually uses. It then applies current conventions, security controls and known-vulnerability checks for that version. For old or end-of-life versions it switches to legacy guidance and a migration path. One source builds Cursor project rules (`.mdc`), `AGENTS.md`, `CLAUDE.md` and Agent Skills (`SKILL.md`), so every tool on your team follows the same instructions.
 
 Questions or project work: [hello@phaedrasolutions.com](mailto:hello@phaedrasolutions.com).
 
+## At a glance
+
+| | |
+|---|---|
+| **What it is** | Rules for AI coding agents (coding standards, security, testing, version checks) plus on-demand skills (audits, upgrades, migrations) |
+| **Works with** | Cursor, Claude Code, OpenAI Codex, GitHub Copilot, Gemini CLI and any tool that reads `AGENTS.md` or Agent Skills |
+| **Stacks** | TypeScript, React, Next.js, Angular, Vue, Nuxt, Svelte, Astro, React Native, Expo, Flutter, SwiftUI, Jetpack Compose, Node.js, Express, NestJS, Fastify, Hono, Python, FastAPI, Django, PHP, Laravel, Java, Spring Boot, C#, ASP.NET Core, Go, Supabase, Postgres, Prisma, Drizzle, MongoDB, Firebase, Docker, Kubernetes, Terraform, GitHub Actions, AWS, GCP, Azure, WordPress, LLM apps, RAG, AI agents, MCP servers, and more |
+| **Legacy coverage** | AngularJS, Create React App, class components, jQuery, Vue 2, Express 4, Node.js ≤ 20, PHP ≤ 8.2, Django ≤ 4.2, Python 2.7, Rails ≤ 7.2, Struts, .NET Framework, Xamarin, Cordova, and more |
+| **Security** | OWASP Top 10:2025, CWE Top 25, supply-chain hardening, prompt-injection defenses for agents, dated CVE tables with minimum safe versions |
+| **Install** | `node scripts/install.mjs --preset <name>`: Node.js 22+, zero dependencies, no npm package |
+| **License** | MIT |
+
+## Contents
+
+- [Why version-aware rules](#why-version-aware-rules)
+- [How it works](#how-it-works)
+- [Works with](#works-with)
+- [Quick start](#quick-start)
+- [Presets](#presets)
+- [Supported stacks](#supported-stacks)
+- [Catalog](#catalog)
+- [Security](#security)
+- [Keep your tools updated](#keep-your-tools-updated)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Why version-aware rules
+
+AI coding agents are trained on years of mixed examples, so they often write code for the wrong version. They use `middleware.ts` in a Next.js 16 app, NgModules in Angular 22, or `getServerSideProps` where the App Router is in use. They also add packages that don't exist, skip authorization checks and copy patterns with known CVEs.
+
+Generic rule files make this worse. They assume one version, go stale within months and say nothing about security. These rules take a different approach:
+
+- **Check the version first.** Every stack rule starts by reading the installed version from the lockfile or manifest. It then names the rule and version it's applying.
+- **Stay current.** Each rule lists the version range it was written for (`applies_to`), its sources and a `last_reviewed` date. A weekly job flags rules whose range falls behind a new major release or an end-of-life date.
+- **Handle legacy code safely.** When a project is below a rule's range, the agent follows a `legacy/` rule instead. It makes minimal, behavior-preserving changes, never uses APIs newer than what's installed, reports the EOL status, adds compensating controls for unfixed CVEs and proposes a migration skill.
+- **Build in security.** OWASP-mapped secure-coding rules are always on. Every stack rule adds its own security section and a dated known-vulnerabilities table.
+
+## How it works
+
+Rules and skills are written once in `rules/` and `skills/`, then built for each tool.
+
+1. **Core rules are always on.** `core/behavior`, `core/security-baseline`, `core/supply-chain` and `core/agent-safety` load in every session.
+2. **Stack rules attach by file pattern.** Editing `app/page.tsx` loads `frontend/nextjs`; editing `supabase/migrations/*.sql` loads `data/supabase`. In tools without file-scoped rules (Codex, Gemini CLI), each stack rule is shipped as a `<stack>-conventions` skill that loads on demand.
+3. **The rule checks the version.** The agent reads the lockfile and states what it's applying, for example:
+
+   ```text
+   Applying frontend/nextjs (next 16.4.1, react 19.2.8, from pnpm-lock.yaml).
+   ```
+
+4. **Legacy rules take over below the range.** On Next.js 15 or a `pages/` directory, the agent follows `legacy/nextjs-pages-router` and `core/legacy-mode`.
+5. **Skills run on demand.** Procedures such as `security-audit`, `cve-check`, `upgrade-nextjs` or `migrate-cra-to-vite` stay out of context until you or the agent invoke them, so a large skill library costs almost nothing.
+
+More specific rules beat more general ones, and security rules beat convenience rules unless you explicitly override them. When you do, the agent says so.
+
+Every rule follows the same structure: **Version check**, **Conventions**, **Security**, **Known vulnerabilities**, **Testing** and **Before you finish**, which lists the exact lint, typecheck, test and audit commands to run. Legacy rules add a **Migration path**.
+
 ## Works with
 
-- **Cursor:** project rules (`.cursor/rules/**/*.mdc`) and skills (`.cursor/skills/`). Use Cursor 3.1.2 or later.
-- **Tools that read `AGENTS.md`:** OpenAI Codex, GitHub Copilot, Gemini CLI and others, with skills in `.agents/skills/`.
-- **Claude Code:** `CLAUDE.md` imports `AGENTS.md`; skills go in `.claude/skills/`.
+| Tool | What gets installed | Where the tool reads it |
+|---|---|---|
+| **Cursor** (3.1.2 or later) | Project rules and skills | `.cursor/rules/**/*.mdc`, `.cursor/skills/` |
+| **OpenAI Codex, GitHub Copilot, Gemini CLI** and other `AGENTS.md` tools | `AGENTS.md` (core rules plus a stack index) and skills | `AGENTS.md`, `.agents/skills/` |
+| **Claude Code** | `CLAUDE.md` that imports `AGENTS.md`, plus skills | `CLAUDE.md`, `.claude/skills/` |
 
 ## Quick start
 
 Requires Node.js 22 or later. The scripts have no dependencies.
 
-```bash
-git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
-cd cursor-rules
-node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app --dry-run
-node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app
-```
+1. Clone a release tag:
 
-- `--preset`: one of the presets below. Leave it out to install everything.
+   ```bash
+   git clone --branch v1.0.0 https://github.com/Phaedra-Solutions/cursor-rules.git
+   cd cursor-rules
+   ```
+
+2. Preview what a preset installs into your project:
+
+   ```bash
+   node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app --dry-run
+   ```
+
+3. Install it:
+
+   ```bash
+   node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app
+   ```
+
+Options:
+
+- `--preset`: one of the [presets](#presets). Leave it out to install everything.
 - `--tool`: any of `cursor`, `agents` (`AGENTS.md` and `.agents/skills/`) and `claude` (`CLAUDE.md` and `.claude/skills/`). The default is `cursor,agents`.
-- `--dry-run` prints every planned copy without writing anything. Run it first.
-- The script never overwrites a file that differs unless you pass `--force`; if anything conflicts, it writes nothing. If your project already has a `CLAUDE.md`, add the line `@AGENTS.md` to it instead.
-- It records the installed version, preset and manifest hash in `.cursor/rules/.cursor-rules-version` (or under `.agents/` or `.claude/`).
+- `--dry-run`: prints every planned copy without writing anything. Run it first.
+- `--force`: overwrites files that differ. Without it, the script writes nothing if any file conflicts. If your project already has a `CLAUDE.md`, add the line `@AGENTS.md` to it instead of overwriting it.
 
-Without cloning: download the archive for your tool from a [GitHub Release](https://github.com/Phaedra-Solutions/cursor-rules/releases), check it against `SHA256SUMS` (`sha256sum -c SHA256SUMS --ignore-missing`), and copy its contents into your project root. To see what a preset produces locally, run `node scripts/build.mjs --preset <name>` and look in `dist/`.
+The installer records the version, preset and manifest hash in `.cursor/rules/.cursor-rules-version` (or under `.agents/` or `.claude/`), so you can always tell which release a project uses.
+
+**Without cloning:** download the archive for your tool from a [GitHub Release](https://github.com/Phaedra-Solutions/cursor-rules/releases), check it against `SHA256SUMS` (`sha256sum -c SHA256SUMS --ignore-missing`), and copy its contents into your project root.
+
+**To see the output first:** run `node scripts/build.mjs --preset <name>` and look in `dist/`.
 
 Pin a release tag and update deliberately; the [CHANGELOG](./CHANGELOG.md) lists what changed.
 
 ## Presets
 
-A preset bundles the core rules, the stack rules and the skills for one kind of project. The core rules (`core/*`) are always on; stack rules load when you edit matching files.
+A preset bundles the core rules, the stack rules and the skills for one kind of project. Pick the one closest to your stack; `all-core` works with any project. The core rules are always on, and stack rules load only when you edit matching files, so extra rules don't fill the agent's context.
 
 <!-- presets:start (generated by node scripts/build.mjs --catalog; do not edit) -->
 
@@ -50,9 +128,24 @@ A preset bundles the core rules, the stack rules and the skills for one kind of 
 
 <!-- presets:end -->
 
+## Supported stacks
+
+Each stack has a modern rule; most have a legacy rule and an upgrade or migration skill. The [catalog](#catalog) has the exact version ranges.
+
+- **Languages:** TypeScript, JavaScript on Node.js, Python, PHP, Java, Kotlin, C#, Go, Dart, Swift, shell scripts.
+- **Frontend:** React 19, Next.js 16 (App Router), React with Vite, Angular, Vue 3, Nuxt 4, Svelte 5 and SvelteKit, Astro, Tailwind CSS 4, shadcn/ui and Radix, forms and validation (React Hook Form, Zod, Standard Schema), state and server data (TanStack Query, Zustand, Redux Toolkit).
+- **Mobile:** React Native and Expo (New Architecture), Flutter, SwiftUI, Jetpack Compose, mobile security (OWASP MASVS).
+- **Backend:** NestJS (core, microservices, data access), Express 5, Fastify, Hono, FastAPI, Django, Laravel, Spring Boot, ASP.NET Core, Go HTTP services, GraphQL.
+- **Data:** Supabase, PostgreSQL, Prisma, Drizzle, Sequelize, TypeORM, SQLAlchemy, MongoDB and Mongoose, Firebase.
+- **Testing:** Cypress, Playwright, Vitest and Jest, pytest, accessibility checks (axe-core, WCAG 2.2).
+- **DevOps and cloud:** GitHub Actions, Docker, Kubernetes, Terraform and OpenTofu, AWS, Google Cloud, Azure, Vercel, Netlify, Cloudflare Workers.
+- **AI:** LLM apps, RAG, AI agents, MCP servers (OWASP Top 10 for LLM and Agentic Applications).
+- **CMS:** WordPress plugins and themes.
+- **Legacy:** AngularJS, Angular NgModules, Create React App and class components, Next.js Pages Router, React Native old architecture, jQuery, Vue 2 and Nuxt 2/3, Express 4, Node.js 20 and older, NestJS 11 and Bull, PHP 8.2 and older with Laravel 11 and CodeIgniter 3, Python 2.7, Django 4.2, Rails 7.2 and older, Java 8/11/17 with Spring Boot 2/3, Apache Struts, .NET 8/9, .NET Framework (Web Forms, WCF, ASMX), Xamarin, Apache Cordova, Flutter 2, Supabase legacy keys, the retired ingress-nginx controller, Moment.js and other maintenance-mode libraries.
+
 ## Catalog
 
-Generated from the rule and skill files. Each rule's **Applies to** is the version range it was written for; outside that range the agent follows `core/legacy-mode` or the matching `legacy/` rule.
+Generated from the rule and skill files. Each rule's **Applies to** is the version range it was written for; outside that range the agent follows `core/legacy-mode` or the matching `legacy/` rule. **Tier** is the rule's priority, from P0 (most used stacks, covered by evals) to P3 (backlog).
 
 <!-- catalog:start (generated by node scripts/build.mjs --catalog; do not edit) -->
 
@@ -263,18 +356,24 @@ Referenced but not written yet; until they exist, the build skips them.
 
 Also in this repo:
 
-- [`evals/`](./evals/README.md): promptfoo suites that measure each P0 rule with and without the rule (run locally or by manual workflow; no paid model calls in pull-request CI).
-- [`templates/ci/`](./templates/ci/README.md): security workflows for your projects (GitHub Actions, GitLab CI, Dependabot).
-- [`templates/package-managers/`](./templates/package-managers/): release-age cooldown settings for npm, pnpm, Yarn, Bun and uv.
+- [`evals/`](./evals/README.md): promptfoo suites that measure each P0 rule's effect by running the same coding prompts with and without the rule. They run locally or by manual workflow, with no paid model calls in pull-request CI.
+- [`templates/ci/`](./templates/ci/README.md): security workflows to copy into your projects (GitHub Actions, GitLab CI, Dependabot).
+- [`templates/package-managers/`](./templates/package-managers/): release-age cooldown settings for npm, pnpm, Yarn, Bun and uv, which block packages published in the last few days.
 - The original root files (`global-rules.md`, `next-rules.md`, `react-typescript-rules.md`, `react-native-rules.md`, `angular-rules.md`, `nestjs-rules.md`, `supabase-rules.md`, `cypress-testing-rules.md`) are now stubs pointing to their replacements; their old content is in git history before `v1.0.0`.
 
 ## Security
 
-- **Always-on core rules:** `core/security-baseline` (OWASP Top 10:2025 with CWE Top 25 references), `core/supply-chain` (lockfiles, release-age cooldowns, install scripts, pinned CI actions), `core/agent-safety` (prompt injection, secrets, risky commands, MCP servers) and `core/behavior`.
-- **Per-stack security:** every rule has a Security section and a dated Known vulnerabilities list, with minimum safe versions; legacy rules add compensating controls for versions that no longer get fixes.
-- **Skills:** `security-audit`, `dependency-vet`, `cve-check`, `secrets-scan`, `threat-model-lite` and `incident-supply-chain`.
+Security is part of every rule, not a separate add-on.
+
+- **Always-on core rules:**
+  - `core/security-baseline`: secure coding grouped by OWASP Top 10:2025, with CWE Top 25 references.
+  - `core/supply-chain`: never invent packages, lockfiles and frozen installs, release-age cooldowns, install-script policy and pinned CI actions.
+  - `core/agent-safety`: treat fetched content as data, not instructions; secrets handling; confirmation before risky commands; MCP server allowlists.
+  - `core/behavior`: scoped changes and one-line security findings, even in short answers.
+- **Per-stack security:** every rule has a Security section and a dated Known vulnerabilities table with minimum safe versions. Legacy rules add compensating controls for versions that no longer get fixes.
+- **Security skills:** `security-audit` (dependencies, code, secrets, containers and CI), `dependency-vet` (typosquat and hallucinated-package checks before installing), `cve-check` (OSV and GitHub Advisory lookups), `secrets-scan` (gitleaks), `threat-model-lite` (a 10-minute STRIDE pass) and `incident-supply-chain` (response to a compromised dependency).
 - **For your projects:** the CI templates in [`templates/ci/`](./templates/ci/README.md) run OSV-Scanner, Semgrep, gitleaks and zizmor.
-- **For this repo:** pull-request lint checks frontmatter, size, hidden Unicode, links and Markdown; a daily job checks [`security/watchlist.yml`](./security/watchlist.yml) against OSV and CISA KEV; a weekly job checks every `applies_to` range for new releases and end-of-life dates.
+- **For this repo:** pull-request lint checks frontmatter, size, hidden Unicode, links and Markdown. A daily job checks [`security/watchlist.yml`](./security/watchlist.yml) against OSV and CISA KEV, and a weekly job checks every `applies_to` range for new releases and end-of-life dates.
 - **Reporting:** see [SECURITY.md](./SECURITY.md). Don't open public issues for vulnerabilities.
 
 ## Keep your tools updated
@@ -282,6 +381,44 @@ Also in this repo:
 - **Cursor:** several 2026 fixes covered sandbox escapes and prompt injection (for example CVE-2026-26268, CVE-2026-48124, CVE-2026-50548, CVE-2026-50549 and CVE-2026-73217). Use **Cursor 3.1.2 or later** and install updates when they ship. See [Cursor's security advisories](https://github.com/cursor/cursor/security/advisories).
 - **Claude Code, Codex, Copilot and other agents:** keep them on current releases; `core/agent-safety` covers their configuration files and MCP servers.
 - **These rules:** version and advisory tables go stale. Update to the latest release at least monthly, and use the `cve-check` skill before relying on a table.
+
+## FAQ
+
+### What are Cursor rules?
+
+Cursor rules are instructions that Cursor's AI agent reads while it works in your project. Project rules live in `.cursor/rules/` as `.mdc` files with frontmatter that says when each rule applies: always, for matching file patterns (`globs`), or when the agent decides the description fits. This repo generates those files from one source, along with `AGENTS.md` and Agent Skills for other tools.
+
+### What is the difference between a rule and a skill?
+
+A **rule** is short, declarative guidance that must be in context whenever matching files are edited, such as "use `proxy.ts`, not `middleware.ts`" in Next.js 16. A **skill** is a step-by-step procedure run on demand, such as "audit dependencies" or "upgrade Angular one major version at a time". Only a skill's name and description stay in context until it's used.
+
+### Does it work with Claude Code, Codex, GitHub Copilot or Gemini CLI?
+
+Yes. Install with `--tool agents` for tools that read `AGENTS.md` and `.agents/skills/` (Codex, Copilot, Gemini CLI and others), or `--tool claude` for Claude Code, which gets a `CLAUDE.md` that imports `AGENTS.md` and skills in `.claude/skills/`. You can install for several tools at once: `--tool cursor,agents,claude`.
+
+### Will the installer overwrite my existing files?
+
+No. It never overwrites a file that differs unless you pass `--force`, and if anything conflicts it writes nothing. Run `--dry-run` first to see every planned copy.
+
+### My project is on an old version. Will the rules still help?
+
+Yes. When the installed version is below a rule's range, the agent follows the matching `legacy/` rule and `core/legacy-mode`. It keeps changes minimal, reports the end-of-life status, applies compensating controls for unpatched CVEs and suggests a migration skill, such as `migrate-angularjs`, `upgrade-express` or `migrate-dotnet-framework`. It doesn't migrate unless you ask, and it asks before changing any version, even a patch.
+
+### How do you keep the rules current and accurate?
+
+Every version, date and CVE claim has a source in the rule's frontmatter. A daily job checks tracked packages against OSV and the CISA Known Exploited Vulnerabilities catalog, a weekly job flags rules that fall behind new releases or end-of-life dates, and a monthly security review is opened as an issue. P0 rules have eval suites that measure how often the agent follows them.
+
+### Can I add my team's own conventions?
+
+Yes. Team-specific choices go in an overlay in `conventions/` that presets can include; [`conventions/phaedra.md`](./conventions/phaedra.md) is an example. Generic rules defer to the project's existing choices, so an overlay only needs what's different for your team.
+
+### How do I add a stack that isn't covered?
+
+Follow [CONTRIBUTING.md](./CONTRIBUTING.md), or use the reusable prompt in [`implementation-prompts/36-template-new-stack.md`](./implementation-prompts/36-template-new-stack.md) with your AI agent. New rules must pass `node scripts/lint-rules.mjs`.
+
+### Is it free?
+
+Yes. The repo is MIT-licensed. Content adapted from [Project CodeGuard](https://github.com/cosai-oasis/project-codeguard) keeps its CC BY 4.0 attribution in [NOTICE.md](./NOTICE.md).
 
 ## Contributing
 
@@ -299,3 +436,5 @@ The plan and its reasoning are in [ROADMAP.md](./ROADMAP.md); decisions are in [
 ## License
 
 [MIT](./LICENSE). Third-party attributions are listed in [NOTICE.md](./NOTICE.md).
+
+Built and maintained by [Phaedra Solutions](https://phaedrasolutions.com), a custom software and AI development company. For help applying these rules to your codebase, contact [hello@phaedrasolutions.com](mailto:hello@phaedrasolutions.com).
