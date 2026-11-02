@@ -396,6 +396,18 @@ Security is part of every rule, not a separate add-on.
 
 Cursor rules are instructions that Cursor's AI agent reads while it works in your project. Project rules live in `.cursor/rules/` as `.mdc` files with frontmatter that says when each rule applies: always, for matching file patterns (`globs`), or when the agent decides the description fits. This repo generates those files from one source, along with `AGENTS.md` and Agent Skills for other tools.
 
+### Do I still need a `.cursorrules` file?
+
+No. `.cursorrules` is Cursor's legacy single-file format. Current versions of Cursor read project rules from `.cursor/rules/*.mdc`, where each rule says when it applies, and they also read `AGENTS.md`. The installer writes both. If your project still has a `.cursorrules` file, move anything you still need into a project rule, then delete the file so the two sets of instructions don't conflict.
+
+### What is AGENTS.md?
+
+[`AGENTS.md`](https://agents.md) is an open format for instructions to coding agents: a plain Markdown file at the root of a repository that tools such as OpenAI Codex, GitHub Copilot, Gemini CLI and Cursor read before they start work. It's stewarded by the Linux Foundation's Agentic AI Foundation. This repo generates an `AGENTS.md` with the always-on core rules and an index of the stack rules, and ships the stack guidance as Agent Skills (`SKILL.md`), so it only loads when it's needed.
+
+### Is it safe to install rule files from the internet?
+
+Treat rule files like code, because your agent follows them. In 2025, researchers showed that invisible Unicode characters can hide malicious instructions in Cursor and Copilot rule files (the "Rules File Backdoor"). This repo's CI fails on zero-width, bidirectional-control and tag characters in every tracked text file, every release ships with `SHA256SUMS`, and `--dry-run` lists every file the installer would write before it writes anything. Pin a release tag and read the diff before you update.
+
 ### What is the difference between a rule and a skill?
 
 A **rule** is short, declarative guidance that must be in context whenever matching files are edited, such as "use `proxy.ts`, not `middleware.ts`" in Next.js 16. A **skill** is a step-by-step procedure run on demand, such as "audit dependencies" or "upgrade Angular one major version at a time". Only a skill's name and description stay in context until it's used.

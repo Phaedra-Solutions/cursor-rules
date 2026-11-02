@@ -1,0 +1,39 @@
+# cursor-rules
+
+> Version-aware, security-first coding rules and Agent Skills for AI coding agents, maintained by Phaedra Solutions under the MIT license. One Markdown source builds Cursor project rules (`.cursor/rules/*.mdc`), `AGENTS.md`, `CLAUDE.md` and Agent Skills (`SKILL.md`) for Cursor, Claude Code, OpenAI Codex, GitHub Copilot and Gemini CLI.
+
+Each stack rule first reads the installed framework version from the lockfile, then applies current conventions, security controls mapped to OWASP Top 10:2025 and the CWE Top 25, a dated known-vulnerabilities table with minimum safe versions, and the exact lint, typecheck, test and audit commands to run. Below a rule's supported range, the agent follows a `legacy/` rule and `core/legacy-mode`: minimal changes, end-of-life status, compensating controls and a migration skill.
+
+Install from a clone with Node.js 22+ and no dependencies: `node scripts/install.mjs --preset <name> --tool cursor,agents,claude --dest <project> --dry-run`, then run it again without `--dry-run`. Archives for each tool, with `SHA256SUMS`, are attached to every GitHub Release.
+
+## Docs
+
+- [README](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/README.md): what it is, how it works, quick start, presets, the full generated catalog of rules and skills with version ranges, security and FAQ
+- [CONTRIBUTING](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/CONTRIBUTING.md): the rule and skill templates, frontmatter fields, sourcing rules and review checklist
+- [CHANGELOG](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/CHANGELOG.md): what changed in each release
+- [Decisions](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/docs/decisions.md): architecture decisions (multi-tool build, Project CodeGuard, license, overlays, evals, distribution)
+- [Security policy](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/SECURITY.md): how to report unsafe rule content or hidden-Unicode tampering privately
+
+## Core rules (always on)
+
+- [core/behavior](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/rules/core/behavior.md): scoped changes, small steps, follow existing patterns, state the rule and version being applied
+- [core/security-baseline](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/rules/core/security-baseline.md): secure coding grouped by OWASP Top 10:2025 with CWE Top 25 IDs
+- [core/supply-chain](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/rules/core/supply-chain.md): no invented packages, lockfiles and frozen installs, release-age cooldowns, install scripts, pinned CI actions
+- [core/agent-safety](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/rules/core/agent-safety.md): prompt injection, secrets, confirmation before risky commands, MCP server allowlists
+- [core/legacy-mode](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/rules/core/legacy-mode.md): how to work on versions below a rule's range or past end of life
+
+## Security skills
+
+- [security-audit](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/skills/security-audit/SKILL.md): audit dependencies, code, secrets, containers and CI config, and write security-report.md
+- [dependency-vet](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/skills/dependency-vet/SKILL.md): check a package for existence, typosquats, malware, age and install scripts before adding it
+- [cve-check](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/skills/cve-check/SKILL.md): look up package@version in OSV, the GitHub Advisory Database, vendor pages, CISA KEV and EPSS
+- [secrets-scan](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/skills/secrets-scan/SKILL.md): gitleaks scans and revoke-first rotation
+- [threat-model-lite](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/skills/threat-model-lite/SKILL.md): a 10-minute STRIDE pass for a new feature
+- [incident-supply-chain](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/skills/incident-supply-chain/SKILL.md): response steps for a compromised dependency, GitHub Action or developer tool
+
+## Optional
+
+- [Rules folder](https://github.com/Phaedra-Solutions/cursor-rules/tree/master/rules): every stack rule by category (languages, frontend, backend, data, mobile, testing, devops, ai, cms-commerce, legacy)
+- [Skills folder](https://github.com/Phaedra-Solutions/cursor-rules/tree/master/skills): upgrade and migration skills (Next.js, Angular, React Native, NestJS, Node.js, Django, Laravel, Spring Boot, .NET, AngularJS, CRA to Vite, Vue 2, Struts, Xamarin, Cordova, ingress-nginx and more)
+- [Presets](https://github.com/Phaedra-Solutions/cursor-rules/tree/master/presets): bundles of rules and skills per kind of project
+- [Consumer CI templates](https://raw.githubusercontent.com/Phaedra-Solutions/cursor-rules/master/templates/ci/README.md): OSV-Scanner, Semgrep, gitleaks and zizmor workflows to copy into a project

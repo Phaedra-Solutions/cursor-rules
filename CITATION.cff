@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use or reference these rules, please cite them as below."
+type: software
+title: "cursor-rules: Cursor Rules and Agent Skills for AI Coding Agents"
+abstract: >-
+  Version-aware, security-first coding rules and Agent Skills for AI coding
+  agents. One Markdown source builds Cursor project rules (.mdc), AGENTS.md,
+  CLAUDE.md and Agent Skills (SKILL.md) for Cursor, Claude Code, OpenAI Codex,
+  GitHub Copilot and Gemini CLI. Each stack rule checks the installed framework
+  version first, applies current conventions and security controls mapped to
+  OWASP Top 10:2025 and the CWE Top 25, lists dated known vulnerabilities with
+  minimum safe versions, and switches to legacy guidance and a migration path
+  for end-of-life versions.
+authors:
+  - name: "Phaedra Solutions"
+    website: "https://phaedrasolutions.com"
+    email: "hello@phaedrasolutions.com"
+repository-code: "https://github.com/Phaedra-Solutions/cursor-rules"
+url: "https://github.com/Phaedra-Solutions/cursor-rules"
+license: MIT
+version: "1.1.0"
+date-released: "2026-11-01"
+keywords:
+  - cursor rules
+  - cursor
+  - AGENTS.md
+  - agent skills
+  - CLAUDE.md
+  - Claude Code
+  - OpenAI Codex
+  - GitHub Copilot
+  - Gemini CLI
+  - AI coding agents
+  - secure coding
+  - OWASP Top 10
+  - software supply chain security
+  - legacy code migration

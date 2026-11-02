@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/Phaedra-Solutions/cursor-rules/security/advisories/new
+    about: Report unsafe or malicious rule content, hidden Unicode or a script issue privately. Don't open a public issue.
+  - name: Help applying the rules to your codebase
+    url: mailto:hello@phaedrasolutions.com
+    about: Questions about project work or rolling the rules out to a team.

@@ -6,9 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1) and issue forms for wrong or outdated guidance and for new stacks, rules or skills, with private security reporting linked from the issue chooser.
+- `CITATION.cff`, so GitHub shows "Cite this repository" and the project has machine-readable metadata; the release workflow fails if its `version` doesn't match the tag.
+- `llms.txt`, an index of the main docs, core rules and security skills for AI assistants that read the repo.
+- `docs/assets/social-preview.png`, a 1280×640 image for the repository's social preview.
+- README FAQ entries, in every language, on the legacy `.cursorrules` file, on what `AGENTS.md` is, and on whether it's safe to install rule files.
+
 ### Changed
 
 - Check the CHANGELOG release links again in the lychee link check, now that the `v1.0.0` and `v1.1.0` tags are published.
+- `ROADMAP.md`: mark the delivered phase items as done, list what's left on 2 Nov 2026, and match the install example to `scripts/install.mjs`.
+- `CONTRIBUTING.md` links the Code of Conduct and the issue forms.
 
 ## [1.1.0] - 2026-11-01
 

@@ -1,0 +1,48 @@
+name: Wrong or outdated guidance
+description: A rule or skill gives wrong advice, names an outdated version, or misses a CVE.
+title: "[guidance] <rule or skill id>: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. If the problem makes an agent do something harmful (exfiltrate secrets, disable security controls, run untrusted commands), [report it privately](https://github.com/Phaedra-Solutions/cursor-rules/security/advisories/new) instead.
+  - type: input
+    id: rule
+    attributes:
+      label: Rule or skill
+      description: The ID from the README catalog.
+      placeholder: frontend/nextjs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong
+      description: Quote the line and say what it should say instead.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Official docs, release notes or advisories (GHSA, OSV, vendor) that show the correct behavior or version.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions in your project
+      description: From your lockfile or manifest, if relevant.
+      placeholder: next 16.4.1, react 19.2.8
+  - type: input
+    id: tool
+    attributes:
+      label: AI tool and version
+      placeholder: Cursor 3.1.2, Claude Code, Codex, Copilot, Gemini CLI
+  - type: input
+    id: release
+    attributes:
+      label: cursor-rules release
+      description: From `.cursor-rules-version` in your project.
+      placeholder: v1.1.0

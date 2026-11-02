@@ -182,6 +182,18 @@ La seguridad forma parte de cada regla; no es un complemento aparte.
 
 Las reglas de Cursor son instrucciones que el agente de IA de Cursor lee mientras trabaja en tu proyecto. Las reglas de proyecto viven en `.cursor/rules/` como archivos `.mdc` con un frontmatter que indica cuándo se aplica cada regla: siempre, para ciertos patrones de archivo (`globs`) o cuando el agente decide que la descripción encaja. Este repositorio genera esos archivos a partir de una sola fuente, junto con `AGENTS.md` y Agent Skills para otras herramientas.
 
+### ¿Todavía necesito un archivo `.cursorrules`?
+
+No. `.cursorrules` es el formato heredado de Cursor, de un solo archivo. Las versiones actuales de Cursor leen las reglas de proyecto desde `.cursor/rules/*.mdc`, donde cada regla indica cuándo se aplica, y también leen `AGENTS.md`. El instalador escribe ambos. Si tu proyecto todavía tiene un archivo `.cursorrules`, pasa lo que aún necesites a una regla de proyecto y luego borra el archivo para que los dos conjuntos de instrucciones no entren en conflicto.
+
+### ¿Qué es AGENTS.md?
+
+[`AGENTS.md`](https://agents.md) es un formato abierto de instrucciones para agentes de programación: un archivo Markdown simple en la raíz del repositorio que herramientas como OpenAI Codex, GitHub Copilot, Gemini CLI y Cursor leen antes de empezar a trabajar. Lo custodia la Agentic AI Foundation de la Linux Foundation. Este repositorio genera un `AGENTS.md` con las reglas core siempre activas y un índice de las reglas de stack, y distribuye la guía de cada stack como Agent Skills (`SKILL.md`), de modo que solo se carga cuando hace falta.
+
+### ¿Es seguro instalar archivos de reglas de internet?
+
+Trata los archivos de reglas como código, porque tu agente los sigue. En 2025, unos investigadores demostraron que los caracteres Unicode invisibles pueden ocultar instrucciones maliciosas en los archivos de reglas de Cursor y Copilot (el "Rules File Backdoor"). La CI de este repositorio falla si encuentra caracteres de ancho cero, de control bidireccional o de etiqueta en cualquier archivo de texto versionado, cada versión se publica con `SHA256SUMS` y `--dry-run` muestra cada archivo que el instalador escribiría antes de escribir nada. Fija una etiqueta de versión y revisa el diff antes de actualizar.
+
 ### ¿Cuál es la diferencia entre una regla y un skill?
 
 Una **regla** es una guía breve y declarativa que debe estar en el contexto cada vez que se editan archivos que coinciden, como "usa `proxy.ts`, no `middleware.ts`" en Next.js 16. Un **skill** es un procedimiento paso a paso que se ejecuta bajo demanda, como "auditar las dependencias" o "actualizar Angular una versión mayor cada vez". Solo el nombre y la descripción de un skill permanecen en el contexto hasta que se usa.

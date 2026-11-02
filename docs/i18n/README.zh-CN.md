@@ -182,6 +182,18 @@ AI 编程智能体是用多年混杂的示例训练出来的，所以经常为�
 
 Cursor 规则是 Cursor 的 AI 智能体在你的项目中工作时会读取的指令。项目规则以 `.mdc` 文件的形式存放在 `.cursor/rules/` 中，其 frontmatter 说明每条规则何时生效：始终生效、对匹配的文件模式（`globs`）生效，或在智能体判断描述相符时生效。本仓库从同一份源文件生成这些文件，同时为其他工具生成 `AGENTS.md` 和 Agent Skills。
 
+### 还需要 `.cursorrules` 文件吗？
+
+不需要。`.cursorrules` 是 Cursor 旧版的单文件格式。当前版本的 Cursor 从 `.cursor/rules/*.mdc` 读取项目规则，每条规则都写明何时生效，同时也会读取 `AGENTS.md`。安装脚本会同时写入这两者。如果你的项目里还有 `.cursorrules` 文件，请把仍然需要的内容移到项目规则中，然后删除该文件，避免两套指令互相冲突。
+
+### 什么是 AGENTS.md？
+
+[`AGENTS.md`](https://agents.md) 是一种面向 AI 编程智能体的开放指令格式：放在仓库根目录的一个普通 Markdown 文件，OpenAI Codex、GitHub Copilot、Gemini CLI 和 Cursor 等工具在开始工作前都会读取它。它由 Linux 基金会旗下的 Agentic AI Foundation 管理。本仓库生成的 `AGENTS.md` 包含始终启用的核心规则和技术栈规则索引，并把各技术栈的指引以 Agent Skills（`SKILL.md`）的形式提供，只在需要时加载。
+
+### 从网上安装规则文件安全吗？
+
+请像对待代码一样对待规则文件，因为智能体会照着执行。2025 年，研究人员证明不可见的 Unicode 字符可以在 Cursor 和 Copilot 的规则文件中隐藏恶意指令（即“Rules File Backdoor”）。只要任何受 git 跟踪的文本文件中出现零宽字符、双向控制字符或标签字符，本仓库的 CI 就会失败；每个版本都附带 `SHA256SUMS`；`--dry-run` 会在写入之前列出安装脚本将要写入的每个文件。请固定一个版本标签，并在更新前查看 diff。
+
 ### 规则和技能有什么区别？
 
 **规则**是简短的声明式指导，凡是编辑匹配的文件时都必须在上下文中，例如在 Next.js 16 中“使用 `proxy.ts`，而不是 `middleware.ts`”。**技能**是按需运行的分步流程，例如“审计依赖”或“每次升级一个 Angular 主版本”。在被使用之前，上下文中只保留技能的名称和描述。

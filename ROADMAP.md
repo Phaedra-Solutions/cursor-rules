@@ -1,6 +1,6 @@
 # Cursor Rules: Improvement Plan
 
-> **Status:** proposal for team review · **Prepared:** 29 Oct 2026
+> **Status:** phases 0–4 shipped in v1.0.0 (30 Oct 2026) and v1.1.0 (1 Nov 2026); open items are listed in [§11 What's left](#whats-left-on-2-nov-2026) · **Prepared:** 29 Oct 2026
 > Every version, date and CVE below was checked against vendor or primary sources on 29 Oct 2026 (see [§13 Sources](#13-sources)). These go stale fast. Re-check anything older than a month before acting on it.
 
 ## Contents
@@ -189,10 +189,10 @@ More specific rules beat more general ones. Security rules beat convenience rule
 ```bash
 git clone https://github.com/Phaedra-Solutions/cursor-rules
 cd cursor-rules
-./scripts/install --preset next-supabase --tool cursor,agents --dest ../my-app
+node scripts/install.mjs --preset next-supabase --tool cursor,agents --dest ../my-app
 ```
 
-This writes `.cursor/rules/**/*.mdc`, `.agents/skills/**` and `AGENTS.md` into the project. It also records the release tag and checksum in `.cursor/rules/.version`.
+This writes `.cursor/rules/**/*.mdc`, `.agents/skills/**` and `AGENTS.md` into the project. It also records the release, preset and manifest hash in `.cursor/rules/.cursor-rules-version`.
 
 There's no npm package at first, because it would add a supply-chain dependency to every project. If we publish one later, use npm trusted publishing with provenance.
 
@@ -829,46 +829,46 @@ Detailed outlines for P0 and P1 rules; one-line essentials for P2 and P3. All of
 This assumes two or three part-time contributors.
 
 ### Phase 0: Stabilize (week 1)
-- [ ] Add `LICENSE` (§12), `SECURITY.md`, `CONTRIBUTING.md`, `CODEOWNERS` and a PR template.
-- [ ] Fix every defect listed in §2:
+- [x] Add `LICENSE` (§12), `SECURITY.md`, `CONTRIBUTING.md`, `CODEOWNERS` and a PR template.
+- [x] Fix every defect listed in §2:
   - the Expo Router layout and the API name mismatch;
   - the queue retries and the controller/service mismatch;
   - the Cypress intercept order;
   - the Next.js contradictions and the comment-rule contradiction;
   - the Supabase security lines.
-- [ ] Rename `supabase-rules` → `supabase-rules.md`.
-- [ ] Update the README: list all 8 files, explain that Cursor needs `.mdc` files in `.cursor/rules/`, and state the minimum Cursor version.
-- [ ] Replace client-specific identifiers with generic ones.
-- [ ] Settle decisions 1–5 in §12.
+- [x] Rename `supabase-rules` → `supabase-rules.md`.
+- [x] Update the README: list all 8 files, explain that Cursor needs `.mdc` files in `.cursor/rules/`, and state the minimum Cursor version.
+- [x] Replace client-specific identifiers with generic ones.
+- [x] Settle decisions 1–5 in §12.
 
 **Exit:** every existing rule loads in Cursor, and none contains known-wrong guidance.
 
 ### Phase 1: Security core (weeks 2–3)
-- [ ] Core rules: `core/behavior`, `core/security-baseline`, `core/supply-chain`, `core/agent-safety`, `core/legacy-mode`.
-- [ ] Skills: `security-audit`, `dependency-vet`, `cve-check`, `secrets-scan`, `git-commit`.
-- [ ] Decide whether to adopt Project CodeGuard as the generic security layer, and map any gaps to OWASP 2025.
-- [ ] CI checks: frontmatter schema, size, hidden Unicode, links, markdownlint, `alwaysApply` scope.
-- [ ] A minimal daily advisory watcher for the §5.8 watchlist.
-- [ ] `templates/ci/security.yml` for consumer projects (OSV-Scanner, Semgrep, gitleaks, zizmor).
+- [x] Core rules: `core/behavior`, `core/security-baseline`, `core/supply-chain`, `core/agent-safety`, `core/legacy-mode`.
+- [x] Skills: `security-audit`, `dependency-vet`, `cve-check`, `secrets-scan`, `git-commit`.
+- [x] Decide whether to adopt Project CodeGuard as the generic security layer, and map any gaps to OWASP 2025.
+- [x] CI checks: frontmatter schema, size, hidden Unicode, links, markdownlint, `alwaysApply` scope.
+- [x] A minimal daily advisory watcher for the §5.8 watchlist.
+- [x] `templates/ci/security.yml` for consumer projects (OSV-Scanner, Semgrep, gitleaks, zizmor).
 
 **Exit:** any project that installs `core` gets the baseline and runnable checks.
 
 ### Phase 2: Modernize existing stacks (weeks 3–6)
-- [ ] Rewrites:
+- [x] Rewrites:
   - React 19.3, Next.js 16.4, React + Vite 8;
   - Angular 22 (the current file becomes `legacy/angular-ngmodules`);
   - RN 0.88 / Expo SDK 58;
   - NestJS 12 (split in 3);
   - Supabase (new keys);
   - Cypress 15.
-- [ ] New P0 rules: TypeScript 7, `ai/llm-apps`, `devops/github-actions`.
-- [ ] Skills: `upgrade-nextjs`, `upgrade-angular`, `upgrade-react-native`, `upgrade-nestjs`, `upgrade-supabase`.
-- [ ] Build and install scripts.
-- [ ] First presets: `next-supabase`, `nest-angular`, `rn-expo`, `react-vite`.
-- [ ] Release **v0.1.0**.
+- [x] New P0 rules: TypeScript 7, `ai/llm-apps`, `devops/github-actions`.
+- [x] Skills: `upgrade-nextjs`, `upgrade-angular`, `upgrade-react-native`, `upgrade-nestjs`, `upgrade-supabase`.
+- [x] Build and install scripts.
+- [x] First presets: `next-supabase`, `nest-angular`, `rn-expo`, `react-vite`.
+- [x] ~~Release **v0.1.0**.~~ Skipped; the first release was v1.0.0.
 
 ### Phase 3: P1 breadth and first legacy pack (weeks 6–10)
-- [ ] Rules:
+- [x] Rules:
   - JavaScript/Node: Node, Express 5.
   - Python: Python, FastAPI, Django.
   - PHP: PHP, Laravel 13.
@@ -878,22 +878,23 @@ This assumes two or three part-time contributors.
   - Testing: Playwright, unit testing.
   - DevOps: Docker.
   - AI: RAG, agents, MCP servers.
-- [ ] Legacy pack 1, the stacks most common in client work: AngularJS, CRA and class components, Vue 2 / Nuxt 2–3, Express 4, Node ≤ 20, PHP ≤ 8.2 / Laravel ≤ 11, Django ≤ 4.2 / Python 3.10, jQuery.
-- [ ] Evals for every P0 rule.
-- [ ] Release **v0.2.0**.
+- [x] Legacy pack 1, the stacks most common in client work: AngularJS, CRA and class components, Vue 2 / Nuxt 2–3, Express 4, Node ≤ 20, PHP ≤ 8.2 / Laravel ≤ 11, Django ≤ 4.2 / Python 3.10, jQuery.
+- [x] Evals for every P0 rule.
+- [x] ~~Release **v0.2.0**.~~ Skipped; the first release was v1.0.0.
 
 ### Phase 4: P2 breadth and automation (weeks 10–16)
-- [ ] Rules:
+- [x] Rules:
   - Backend: Spring Boot 4.1, ASP.NET Core 10, Go 1.27, GraphQL.
   - Frontend: Svelte/SvelteKit 3, Astro 6.
   - Mobile: iOS/SwiftUI, Android/Compose.
   - DevOps and cloud: Kubernetes, Terraform/OpenTofu, AWS/GCP/Azure, Vercel/Netlify/Cloudflare.
   - Data: Firebase, MongoDB, Drizzle.
   - CMS: WordPress.
-- [ ] Legacy pack 2: Spring Boot 2/3 with Java 8/11/17, Struts, .NET 8/9, .NET Framework/WCF, Xamarin, Cordova, RN old architecture, Rails ≤ 7.1, ingress-nginx.
-- [ ] Automation: the weekly freshness bot, nightly evals and signed releases.
-- [ ] Verify the AGENTS.md and skills output in Codex, Copilot and Claude Code.
-- [ ] Release **v1.0.0**.
+- [x] Legacy pack 2: Spring Boot 2/3 with Java 8/11/17, Struts, .NET 8/9, .NET Framework/WCF, Xamarin, Cordova, RN old architecture, Rails ≤ 7.1, ingress-nginx.
+- [x] Automation: the weekly freshness bot.
+- [ ] Nightly evals (replaced by manual dispatch under decision D7) and signed releases (see below).
+- [ ] Verify the AGENTS.md and skills output in Codex, Copilot and Claude Code. The scripted checks pass; the hands-on checks in [docs/verification.md](docs/verification.md) are still open.
+- [x] Release **v1.0.0**.
 
 ### Backlog (P3, built when a client needs it)
 Rust/Axum, modern Rails, Symfony, Flask, Kotlin Multiplatform, .NET MAUI, Capacitor, Shopify, headless CMS, Redis, GitLab CI, OpenTelemetry, C/C++, ML/Python.
@@ -908,6 +909,32 @@ Rust/Axum, modern Rails, Symfony, Flask, Kotlin Multiplatform, .NET MAUI, Capaci
 | Time from a critical or KEV advisory to the rule update | ≤ 7 days |
 | CI check failures on `main` (Unicode, links, packages, schema) | 0 |
 | New internal projects starting from a preset | All |
+
+### What's left on 2 Nov 2026
+
+Everything in phases 0–4 shipped except the items below.
+
+**Governance (needs a maintainer with admin rights)**
+
+- [ ] **Owners (D6, §10).** `.github/CODEOWNERS` and every rule's `owner` use `@Phaedra-Solutions/maintainers`, and that team doesn't exist. GitHub reports "Unknown owner" on every line and ignores the file, so no review is requested automatically. Create the team, or point each path at an existing team.
+- [ ] **Branch protection (§5.5).** `master` isn't protected. Require pull requests, the Lint workflow and code-owner review, with 2 approvals for `rules/core/**` and the security paths.
+- [ ] **Signed release tags (§5.5, §9.5).** `v1.0.0` and `v1.1.0` are annotated, not signed. Set up a maintainer signing key and sign tags from the next release.
+- [ ] **Hands-on tool checks.** Run the **(human)** steps in [docs/verification.md](docs/verification.md) in Cursor, Codex, Copilot, Gemini CLI and Claude Code. The checklist was last recorded for v1.0.0.
+
+**Quality**
+
+- [ ] **Evals for P1 rules.** The success metric is an eval suite for 100% of P0 and P1 rules; today only the 25 P0 rules have one. Missing: `languages/javascript-node`, `languages/php`, `languages/python`, `frontend/forms-validation`, `frontend/nuxt`, `frontend/tailwind`, `frontend/vue`, `backend/django`, `backend/express`, `backend/fastapi`, `backend/laravel`, `data/orm-prisma`, `data/postgres`, `mobile/flutter`, `mobile/mobile-security`, `testing/playwright`, `testing/unit-js`, `devops/docker`, `ai/agents`, `ai/mcp-servers`, `ai/rag`, and the P1 legacy rules (`django-legacy`, `express-4`, `flutter-legacy`, `jquery`, `node-legacy`, `php-legacy`, `python-legacy`, `vue2-nuxt2`).
+- [ ] **CI checks from §9.2 not built yet:** type-checking extracted code snippets, and running the package-name check in CI (today `lint-rules.mjs --network` runs it only when called by hand).
+- [ ] **Planned rules that other files already reference:** `testing/mobile-e2e` (Maestro, Detox; used by the `rn-expo` preset and `mobile/react-native-expo`) and `languages/c-cpp` (referenced by `core/security-baseline`).
+
+**Date-driven updates** (handle through the monthly review issue)
+
+- Next.js scheduled security release on 3 Nov 2026.
+- .NET 8 and 9 reach end of support, and .NET 11 ships, on 10 Nov 2026.
+- Angular 20 support ends on 28 Nov 2026.
+- Spring Boot 4.0 OSS support and PHP 8.2 end in December 2026, and Supabase's legacy API keys are deprecated by the end of 2026.
+
+**Still in the P3 backlog:** Rust/Axum, modern Rails, Symfony, Flask, Kotlin Multiplatform, .NET MAUI, Capacitor, Shopify, headless CMS, Redis, GitLab CI, OpenTelemetry, C/C++ (`languages/c-cpp`), ML/Python, React Router 7 and mobile E2E.
 
 ---
 
