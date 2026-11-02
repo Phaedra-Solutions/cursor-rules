@@ -182,6 +182,18 @@ La sécurité fait partie de chaque règle ; ce n'est pas un module séparé.
 
 Les règles Cursor sont des instructions que l'agent IA de Cursor lit pendant qu'il travaille sur votre projet. Les règles de projet se trouvent dans `.cursor/rules/` sous forme de fichiers `.mdc` dont le frontmatter indique quand chaque règle s'applique : toujours, pour certains motifs de fichiers (`globs`), ou quand l'agent juge que la description correspond. Ce dépôt génère ces fichiers à partir d'une seule source, ainsi que `AGENTS.md` et des Agent Skills pour les autres outils.
 
+### Ai-je encore besoin d'un fichier `.cursorrules` ?
+
+Non. `.cursorrules` est l'ancien format de Cursor, en un seul fichier. Les versions actuelles de Cursor lisent les règles de projet dans `.cursor/rules/*.mdc`, où chaque règle indique quand elle s'applique, et lisent aussi `AGENTS.md`. L'installateur écrit les deux. Si votre projet contient encore un fichier `.cursorrules`, déplacez ce dont vous avez encore besoin dans une règle de projet, puis supprimez le fichier pour que les deux jeux d'instructions n'entrent pas en conflit.
+
+### Qu'est-ce que AGENTS.md ?
+
+[`AGENTS.md`](https://agents.md) est un format ouvert d'instructions pour les agents de code : un simple fichier Markdown à la racine d'un dépôt, que des outils comme OpenAI Codex, GitHub Copilot, Gemini CLI et Cursor lisent avant de commencer à travailler. Il est géré par l'Agentic AI Foundation de la Linux Foundation. Ce dépôt génère un `AGENTS.md` avec les règles core toujours actives et un index des règles de stack, et fournit les consignes de chaque stack sous forme d'Agent Skills (`SKILL.md`), qui ne se chargent qu'en cas de besoin.
+
+### Est-il sûr d'installer des fichiers de règles trouvés sur Internet ?
+
+Traitez les fichiers de règles comme du code, car votre agent les suit. En 2025, des chercheurs ont montré que des caractères Unicode invisibles peuvent cacher des instructions malveillantes dans les fichiers de règles de Cursor et de Copilot (la « Rules File Backdoor »). La CI de ce dépôt échoue sur les caractères de largeur nulle, de contrôle bidirectionnel et d'étiquette dans tout fichier texte suivi par git, chaque version est publiée avec `SHA256SUMS`, et `--dry-run` liste chaque fichier que l'installateur écrirait avant d'écrire quoi que ce soit. Épinglez un tag de version et lisez le diff avant de mettre à jour.
+
 ### Quelle est la différence entre une règle et un skill ?
 
 Une **règle** est une consigne courte et déclarative qui doit être dans le contexte chaque fois que des fichiers correspondants sont modifiés, par exemple « utilisez `proxy.ts`, pas `middleware.ts` » avec Next.js 16. Un **skill** est une procédure pas à pas exécutée à la demande, par exemple « auditer les dépendances » ou « mettre à jour Angular une version majeure à la fois ». Seuls le nom et la description d'un skill restent dans le contexte jusqu'à son utilisation.

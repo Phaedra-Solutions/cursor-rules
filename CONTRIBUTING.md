@@ -4,6 +4,8 @@ Thanks for helping. This repo holds rules and skills that AI coding agents follo
 
 The plan and its reasoning live in [`ROADMAP.md`](./ROADMAP.md). Approved decisions are recorded in [`docs/decisions.md`](./docs/decisions.md).
 
+Everyone taking part follows the [Code of Conduct](./CODE_OF_CONDUCT.md). To report a wrong or outdated rule, or to ask for a new stack, use the [issue forms](https://github.com/Phaedra-Solutions/cursor-rules/issues/new/choose).
+
 ## Layout
 
 | Path | What goes there |

@@ -1,0 +1,39 @@
+name: New stack, rule or skill
+description: Ask for a framework, language, tool or procedure that the catalog doesn't cover yet.
+title: "[request] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the [catalog](https://github.com/Phaedra-Solutions/cursor-rules#catalog) first; the "Planned" table lists rules that are already referenced but not written yet. To write the rule yourself, see [CONTRIBUTING.md](https://github.com/Phaedra-Solutions/cursor-rules/blob/master/CONTRIBUTING.md).
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What do you need?
+      options:
+        - A rule for a modern stack
+        - A legacy rule for an old or end-of-life version
+        - A skill (audit, upgrade, migration or another procedure)
+        - A preset
+    validations:
+      required: true
+  - type: input
+    id: stack
+    attributes:
+      label: Stack and version range
+      placeholder: Remix 2 / React Router 7, react-router >=7.0 <8
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What goes wrong today
+      description: What do AI agents get wrong on this stack without a rule? Wrong-version APIs, missing security checks, unsafe patterns?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Official docs, release notes, support or end-of-life pages and security advisories for the stack.

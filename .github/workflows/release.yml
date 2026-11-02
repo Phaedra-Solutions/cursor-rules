@@ -45,6 +45,15 @@ jobs:
             echo "CHANGELOG.md has no '## [$version]' section" >&2
             exit 1
           fi
+      - name: Check the CITATION.cff version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version="${TAG#v}"
+          if ! grep -Eq "^version: \"?${version}\"?$" CITATION.cff; then
+            echo "CITATION.cff version doesn't match $version; update version and date-released" >&2
+            exit 1
+          fi
       - name: Build and package
         env:
           TAG: ${{ github.ref_name }}
